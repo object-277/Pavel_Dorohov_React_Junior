@@ -2,10 +2,35 @@ import React, { PureComponent } from "react";
 import "./Header.style.scss";
 
 class Header extends PureComponent {
-    render(){
+    renderMenuItem(category, i) {
+        const { name } = category;
+
+
+        return (
+            <div className="Header-MenuItem" key={ i }>
+                <p>{ name }</p>
+            </div>
+            
+        );
+    }
+
+    renderMenu() {
+        const { categories } = this.props;
+
+        return (
+            <div className="Header-Menu">
+                { categories.map((category, i) => this.renderMenuItem(category, i))}
+            </div>
+            
+        );
+    }
+
+    render() {
+        const { categories } = this.props;
+
         return (
             <div className="Header">
-                <h1>Hello</h1>
+                { this.renderMenu() }
             </div>
             
         );

@@ -1,4 +1,18 @@
 .Header {
     min-height: 100px;
     background-color: red;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &-Menu {
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        margin-left: 50px;
+    }
+
+    &-MenuItem {
+        padding-right: 20px;
+    }
 }
