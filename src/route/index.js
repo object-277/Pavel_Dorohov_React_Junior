@@ -7,7 +7,7 @@ import {
 import Header from "../components/Header";
 import HomePage from "./HomePage";
 
-class AppRouter extends PureComponent {
+class AppRouter extends PureComponent { 
     render() {
         return(
             <Router>
