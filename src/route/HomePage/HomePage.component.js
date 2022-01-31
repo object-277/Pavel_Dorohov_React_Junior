@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import "./HomePage.style.scss";
 
 class HomePage extends PureComponent {
     render(){

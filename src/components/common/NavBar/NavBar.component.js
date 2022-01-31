@@ -1,13 +1,15 @@
 import React, { PureComponent } from "react";
-import "./Header.style.scss";
+import "./NavBar.style.scss";
 
-class Header extends PureComponent {
+
+class NavBar extends PureComponent {
+
     renderMenuItem(category, i) {
         const { name } = category;
 
 
         return (
-            <div className="Header-MenuItem" key={ i }>
+            <div className="NavBar-MenuItem" key={ i }>
                 <p>{ name }</p>
             </div>
             
@@ -18,8 +20,8 @@ class Header extends PureComponent {
         const { categories } = this.props;
 
         return (
-            <div className="Header-Menu">
-                { categories.map((category, i) => this.renderMenuItem(category, i))}
+            <div className="NavBar-Menu">
+                { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
             </div>
             
         );
@@ -29,7 +31,7 @@ class Header extends PureComponent {
         const { categories } = this.props;
 
         return (
-            <div className="Header">
+            <div className="NavBar">
                 { this.renderMenu() }
             </div>
             
@@ -37,4 +39,4 @@ class Header extends PureComponent {
     }
 }
 
-export default Header;
+export default NavBar;

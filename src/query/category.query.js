@@ -1,3 +1,3 @@
-import { Query, Field } from "@tilework/opus";
+import { Query } from "@tilework/opus";
 
 export const categoriesQuery = new Query("categories", true).addFieldList(["name"]);

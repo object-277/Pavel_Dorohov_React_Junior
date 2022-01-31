@@ -4,7 +4,8 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/common/Header/Header.component";
+import NavBar from "../components/common/NavBar";
 import HomePage from "./HomePage";
 
 class AppRouter extends PureComponent { 

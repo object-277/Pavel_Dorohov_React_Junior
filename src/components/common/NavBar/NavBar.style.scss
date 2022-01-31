@@ -1,0 +1,21 @@
+.NavBar {
+    width: 234px;
+    height: 56px;
+    left: 101px;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+
+    &-Menu {
+        display: flex;
+        flex-direction: row;
+        margin-left: 50px;
+    }
+
+    &-MenuItem {
+        padding-right: 20px;
+        text-transform: uppercase;
+    }
+}

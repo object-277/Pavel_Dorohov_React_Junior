@@ -1,10 +1,10 @@
 import React, { PureComponent } from "react";
-import Header from "./Header.component";
+import NavBar from "./NavBar.component";
 import { client } from "@tilework/opus";
-import { categoriesQuery } from "../../query/category.query";
-import { executePost } from "../../util/Request.util";
+import { categoriesQuery } from "../../../query/category.query";
+import { executePost } from "../../../util/Request.util";
 
-class HeaderContainer extends PureComponent {
+class NavBarContainer extends PureComponent {
     state = { 
         categories: []
      };
@@ -21,7 +21,7 @@ class HeaderContainer extends PureComponent {
 
     render(){
         return(
-            <Header
+            <NavBar
                 { ...this.props }
                 { ...this.state }
             />
@@ -29,4 +29,4 @@ class HeaderContainer extends PureComponent {
     }
 }
 
-export default HeaderContainer;
+export default NavBarContainer;
