@@ -3,12 +3,13 @@ import "./currency.button.style.scss";
 import vector from "./vector.svg";
 
 class CurrencyButton extends PureComponent {
-
+    
     render() {
-
         return (
-                <img className="currency-button" src={vector} alt="Select currency" onClick={this.props.handleClick} /> 
-     
+            <button onClick={this.props.onClick} >
+                <img className="currency-button" src={vector} alt="Select currency" /> 
+            </button>
+             
         );
     }
 

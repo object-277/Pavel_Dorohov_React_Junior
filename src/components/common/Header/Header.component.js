@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
+import CurrencyButton from "../CurrencyButton";
 import NavBar from "../NavBar";
-import HeaderActions from "../Header_Actions/HeaderActions.component";
 import "./Header.style.scss";
 import logo from "./logo.svg";
 
@@ -12,7 +12,7 @@ class Header extends PureComponent {
         return (
             <div className="Header">
                 <NavBar />
-                <HeaderActions />
+                <CurrencyButton />
                 <img className="logo" src={logo} alt="logo"/>
             </div>
             
