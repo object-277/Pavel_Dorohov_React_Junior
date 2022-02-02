@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import CurrencyButton from "./CurrencyButton/currency.button";
+import CurrencyButton from "./CurrencyButton/currency.button.component";
 import "./HeaderActions.style.scss";
 
 class HeaderActions extends PureComponent {
