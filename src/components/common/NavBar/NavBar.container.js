@@ -5,6 +5,7 @@ import { categoriesQuery } from "../../../query/category.query";
 import { executePost } from "../../../util/Request.util";
 
 class NavBarContainer extends PureComponent {
+    
     state = { 
         categories: []
      };

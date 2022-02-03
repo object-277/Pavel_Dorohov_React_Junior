@@ -1,0 +1,16 @@
+.HeaderActionsWrapper {
+    border: 2px solid black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+
+    position: absolute;
+    width: 204px;
+    height: 40px;
+    right: 101px;
+    top: 23px;
+
+} 

@@ -1,0 +1,23 @@
+.Currency-Switcher {
+    position: fixed;
+    width: 114px;
+    height: 169px;
+    left: 1248px;
+    top: 65px;
+
+
+    &Menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; 
+    }
+
+    &Item {
+        display: flex;
+        flex-direction: row; 
+    }
+    .symbol {
+        margin-right: 3px;
+    }
+}
