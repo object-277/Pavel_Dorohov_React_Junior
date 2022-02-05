@@ -2,11 +2,14 @@ import React, { PureComponent } from "react";
 import "./HomePage.style.scss";
 
 class HomePage extends PureComponent {
-    
 
-    render(){
+    render() {
+
         return (
-            <h1>Hello</h1>
+            <div>
+                <h1 className="category-name">All</h1>
+            </div>
+            
         );
     }
 }

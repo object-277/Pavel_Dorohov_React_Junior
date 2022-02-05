@@ -12,9 +12,10 @@
         display: flex;
         flex-direction: row;
         margin-left: 50px;
+        text-transform: uppercase;
     }
 
-    &-MenuItem {
+    p {
         padding-right: 20px;
         text-transform: uppercase;
     }
