@@ -1,15 +1,22 @@
+
+.Products {
+    display: flex;
+}
+
+.product-page {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    left: calc(50% - 386px/2 - 427px);
+    top: 331px;
+   
+}
+
+
 .product {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-
-    position: absolute;
     width: 386px;
     height: 444px;
-    left: calc(50% - 386px/2 - 427px);
-    bottom: 738px;
-
     border: 1px solid black;
 
     &-card {
@@ -39,20 +46,6 @@
         height: 330px;
         left: 16px;
         top: 16px; 
-    }
-
-    &-content {
-        flex: none;
-        order: 2;
-        align-self: stretch;
-        flex-grow: 0;
-        margin: 0px 0px;
-
-        position: static;
-        width: 354px;
-        height: 58px;
-        left: 16px;
-        top: 370px;
     }
 
 }

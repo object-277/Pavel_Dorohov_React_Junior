@@ -5,17 +5,18 @@ import {
     Route
   } from "react-router-dom";
 import Header from "../components/common/Header/Header.component";
-import ProductContainer from "../components/Product";
 import HomePage from "./HomePage";
+import PDP from "./PDP";
+import ProductsContainer from "./Products";
 
 class AppRouter extends PureComponent { 
     render() {
         return(
             <Router>
+                <HomePage />
                 <Header />
-                <ProductContainer />
-                <Switch>
-                    <Route path="/" component={ HomePage }/>
+                <Switch>  
+                    <Route path="/pdp" component={ PDP }/>        
                 </Switch>
             </Router>
         );

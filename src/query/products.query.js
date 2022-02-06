@@ -1,5 +1,6 @@
-import { Query } from "@tilework/opus";
+import { Field, Query } from "@tilework/opus";
 
-export const productsQuery = new Query("product", true)
-    .addArgument("id", "String!", "huarache-x-stussy-le")
-    .addFieldList(["brand", "description", "gallery"]);
+export const productsQuery = new Query("category", true)
+            .addField(new Field("products", true)
+                .addFieldList(["id", "brand", "name", "description", "gallery"])
+            );
