@@ -2,7 +2,7 @@ import CurrencyButtonContainer from "./CurrencySwitcher/CurrencyButton/currency.
 import CurrencySwitcherContainer from "./CurrencySwitcher/currency.switcher.container";
 import HeaderActions from "./HeaderActions";
 
-export default {
+export {
     CurrencyButtonContainer,
     CurrencySwitcherContainer,
     HeaderActions

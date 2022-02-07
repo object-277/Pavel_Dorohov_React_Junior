@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import CurrencySwitcher from "./currency.switcher.component";
-import { currenciesQuery } from "../../../../../query/currency.query";
-import { executePost } from "../../../../../util/Request.util";
+import CurrencySwitcher from "./CurrencySwitcher.component";
+import { currenciesQuery } from "../../query/currency.query";
+import { executePost } from "../../util/Request.util";
 
 class CurrencySwitcherContainer extends PureComponent {
 

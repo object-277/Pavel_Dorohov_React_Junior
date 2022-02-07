@@ -4,20 +4,20 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-import Header from "../components/common/Header/Header.component";
+import Header from "../components/Header/Header.component";
 import HomePage from "./HomePage";
 import PDP from "./PDP";
-import ProductsContainer from "./Products";
 
 class AppRouter extends PureComponent { 
     render() {
+
         return(
             <Router>
-                <HomePage />
-                <Header />
-                <Switch>  
+                <Switch> 
+                    <Route exact path="/" component={ HomePage }/> 
                     <Route path="/pdp" component={ PDP }/>        
                 </Switch>
+                <Header />
             </Router>
         );
     }

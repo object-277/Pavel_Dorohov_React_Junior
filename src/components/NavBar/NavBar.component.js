@@ -28,8 +28,7 @@ class NavBar extends PureComponent {
     }
 
     render() {
-        const { categories } = this.props;
-
+        
         return (
             <div className="NavBar">
                 { this.renderMenu() }

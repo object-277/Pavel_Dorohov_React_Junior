@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import NavBar from "./NavBar.component";
-import { categoriesQuery } from "../../../query/category.query";
-import { executePost } from "../../../util/Request.util";
+import { categoriesQuery } from "../../query/category.query";
+import { executePost } from "../../util/Request.util";
 
 class NavBarContainer extends PureComponent {
     

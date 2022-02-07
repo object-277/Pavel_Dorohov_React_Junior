@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import "./currency.switcher.style.scss";
+import "./CurrencySwitcher.style.scss";
 
 class CurrencySwitcher extends PureComponent {
     
@@ -13,7 +13,7 @@ class CurrencySwitcher extends PureComponent {
         const { label } = currency;
 
         return (
-            <div className="Currency-SwitcherItem" key={ i }>
+            <div className="CurrencySwitcher-Item" key={ i }>
                 <p className="symbol">{ symbol}</p>
                 <p>{ label }</p>
             </div>
@@ -25,7 +25,7 @@ class CurrencySwitcher extends PureComponent {
         const { currencies } = this.props;
 
         return (
-            <div className="Currency-SwitcherMenu">
+            <div className="CurrencySwitcher-Menu">
                 { this.props.currencies && currencies.map((currency, i) => this.renderCurrencyItem(currency, i))}
             </div>
             
@@ -35,7 +35,7 @@ class CurrencySwitcher extends PureComponent {
     render() {
 
         return (
-            <div className="Currency-Switcher">
+            <div className="CurrencySwitcher">
                 { this.renderCurrencySwithcer() }
             </div>
         );

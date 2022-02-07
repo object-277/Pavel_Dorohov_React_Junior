@@ -4,8 +4,6 @@ import ProductsContainer from "../Products";
 
 class HomePage extends PureComponent {
 
-
-
     render() {
 
         return (

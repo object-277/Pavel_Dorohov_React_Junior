@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
-import CurrencyButton from "../CurrencyButton/currency.button.component";
-import vector from "../vector.svg";
-import vectorClicked from "../vectorClicked.svg";
+import CurrencyButton from "./CurrencyButton.component";
+import vector from "../CurrencyButton/Vector.svg";
+import vectorClicked from "../CurrencyButton/VectorClicked.svg";
 
 class CurrencyButtonContainer extends PureComponent {
     constructor(props){
@@ -26,8 +26,10 @@ class CurrencyButtonContainer extends PureComponent {
     }
     
     render() {
+        const { isClicked } = this.state;
+
         return ( 
-            <CurrencyButton isClicked={this.state.isClicked} onClick={this.handleClick} />
+            <CurrencyButton isClicked={isClicked} onClick={this.handleClick} />
         );
     }
 

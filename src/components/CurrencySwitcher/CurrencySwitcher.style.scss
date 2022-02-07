@@ -1,4 +1,4 @@
-.Currency-Switcher {
+.CurrencySwitcher {
     position: fixed;
     width: 114px;
     height: 169px;
@@ -6,14 +6,14 @@
     top: 65px;
 
 
-    &Menu {
+    &-Menu {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column; 
     }
 
-    &Item {
+    &-Item {
         display: flex;
         flex-direction: row; 
     }

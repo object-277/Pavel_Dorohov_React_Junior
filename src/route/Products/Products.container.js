@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import Products from "./Products";
+import Products from "./Products.component";
 import { executePost } from "../../util/Request.util";
 import { productsQuery } from "../../query/products.query";
 
@@ -20,8 +20,6 @@ class ProductsContainer extends PureComponent {
             console.log({category});
         });
     }
-
-
 
     render(){
         return(
