@@ -1,20 +1,11 @@
-.product-page {
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    left: calc(50% - 386px/2 - 427px);
-    top: 331px;
-   
-}
-
-
-.product {
+.Product {
     display: flex;
     width: 386px;
     height: 444px;
     border: 1px solid black;
+    text-decoration: none;
 
-    &-card {
+    &-Card {
         position: static;
         left: 0%;
         right: 0%;
@@ -28,7 +19,7 @@
 
     }
 
-    &-image {
+    &-Image {
 
         flex: none;
         order: 0;
@@ -42,5 +33,5 @@
         left: 16px;
         top: 16px; 
     }
-
+    
 }

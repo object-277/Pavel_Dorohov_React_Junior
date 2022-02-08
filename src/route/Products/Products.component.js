@@ -8,7 +8,7 @@ class Products extends PureComponent {
         const { category: { products = [] } = {} } = this.props;
 
         return (
-            <div className="product-page">
+            <div className="Product-Page">
                 { products && products.map((product, i) => <ProductCard product={ product } key={ i }/> )}
             </div>
             

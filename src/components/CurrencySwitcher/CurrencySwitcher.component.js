@@ -11,9 +11,10 @@ class CurrencySwitcher extends PureComponent {
         
         const { symbol } = currency;
         const { label } = currency;
+        const { onClick } = this.props;
 
         return (
-            <div className="CurrencySwitcher-Item" key={ i }>
+            <div className="CurrencySwitcher-Item" key={ i } onClick={ onClick }>
                 <p className="symbol">{ symbol}</p>
                 <p>{ label }</p>
             </div>
@@ -30,7 +31,7 @@ class CurrencySwitcher extends PureComponent {
             </div>
             
         );
-    }
+        }
 
     render() {
 

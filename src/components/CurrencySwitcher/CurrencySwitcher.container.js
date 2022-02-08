@@ -4,10 +4,15 @@ import { currenciesQuery } from "../../query/currency.query";
 import { executePost } from "../../util/Request.util";
 
 class CurrencySwitcherContainer extends PureComponent {
-
-    state = { 
-        currencies: []
-     };
+    constructor(props){
+        super(props);
+        this.state = {
+            currencies: [],
+            isClicked: false,
+            chosenCurrency: '$'
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
 
     componentDidMount() {
         this.getCurrencies();
@@ -19,9 +24,19 @@ class CurrencySwitcherContainer extends PureComponent {
         });
     }
 
+    handleClick(e) {
+        e.preventDefault();
+        this.setState(prevState => ({
+            isClicked: !prevState.isClicked,
+            chosenCurrency: e.target.innerText
+        }));
+        this.props.chosenCur(e.target.innerText);
+    }
+
     render() {
         return(
             <CurrencySwitcher
+                onClick={this.handleClick}
                 { ...this.props }
                 { ...this.state }
             />
