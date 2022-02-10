@@ -1,11 +1,37 @@
-.PDP-Wrapper {
+.PDP {
 
+   position: relative;
+   width: 1440px;
+   height: 665px;
+   top: 80px;
+
+
+    &-Content {
+       
     position: absolute;
     width: 1002px;
     height: 513px;
     left: 219px;
-    top: 160px;
+    top: 80px;
+    overflow: hidden;
 
     border: 1px solid black;
+    }
 
+    &-MainImage {
+
+        width: 610px;
+        height: 511px;
+        left: 212px;
+        top: 82px;
+    }
+
+    &-SideSection {
+      
+        position: absolute;
+        width: 292px;
+        height: 513px;
+        left: 829px;
+        top: 80px;
+    }
 }

@@ -1,3 +1,3 @@
-import PDP from "./PDP.component";
+import PDPContainer from "./PDP.container";
 
-export default PDP;
+export default PDPContainer;

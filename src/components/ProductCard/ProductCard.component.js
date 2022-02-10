@@ -5,18 +5,17 @@ import "./ProductCard.style.scss";
 class ProductCard extends PureComponent {
 
     render() {
-        const { product } = this.props;
-        const { brand } = this.props.product;
-        const { name } = this.props.product;
-
+        const { brand, name, gallery, id } = this.props.product;
+       
         return (
 
-            <Link className="Product" to="/pdp">
+            <Link className="Product" to={ "/pdp/" + id }>
                 <div className="Product-Card">
-                <img className="Product-Image" src={ product.gallery[0] } alt="Product Card" />
+                <img className="Product-Image" src={ gallery[0] } alt="Product" />
                 <div className="Product-Content">
                     <p className="Product-Brand" >{ brand }</p>
                     <p className="Product-Name" >{ name }</p>
+                    <p>{ this.props.price }</p>
                 </div> 
             </div>
             </Link>

@@ -28,9 +28,11 @@ class CurrencySwitcherContainer extends PureComponent {
         e.preventDefault();
         this.setState(prevState => ({
             isClicked: !prevState.isClicked,
-            chosenCurrency: e.target.innerText
+            chosenCurrency: symbol
         }));
-        this.props.chosenCur(e.target.innerText);
+        const symbol = e.currentTarget.firstChild.innerText;
+        console.log(symbol);
+        this.props.chosenCur(symbol);
     }
 
     render() {

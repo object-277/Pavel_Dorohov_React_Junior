@@ -20,6 +20,7 @@ class NavBarContainer extends PureComponent {
     }
 
     render() {
+        
         return(
             <NavBar
                 { ...this.props }

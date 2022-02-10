@@ -31,3 +31,28 @@
 
     filter: drop-shadow(0px, 4px, 35px rgba(168, 172, 176, 0.19));
 }
+
+#Currency-Label {
+
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px 10px;
+   
+    position: absolute;
+    width: 32px;
+    height: 29px;
+    left: 124px;
+    top: 5.5px;
+}
+
+.CurrencyButton-Symbol {
+
+    position: static;
+    width: 12px;
+    height: 29px;
+    left: 10px;
+    top: 0px;
+
+}

@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import ProductCard from "../../components/ProductCard/ProductCard.component";
+import ProductCardContainer from "../../components/ProductCard/ProductCard.container";
 import "./Products.style.scss";
 
 class Products extends PureComponent {
@@ -9,7 +9,7 @@ class Products extends PureComponent {
 
         return (
             <div className="Product-Page">
-                { products && products.map((product, i) => <ProductCard product={ product } key={ i }/> )}
+                { products && products.map((product, i) => <ProductCardContainer product={ product } key={ i } /> )}
             </div>
             
         );

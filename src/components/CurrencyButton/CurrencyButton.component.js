@@ -17,12 +17,13 @@ class CurrencyButton extends PureComponent {
     }
 
     render() {
-        const { onClick } = this.props;
-        const { isClicked } = this.props;
+        const { onClick, isClicked } = this.props;
         
         return (
             <div>
+                <div id="Currency-Label" >
                 <p className="CurrencyButton-Symbol">{ this.state.currencySymbol }</p>
+                </div>
                 <img className="CurrencyButton" src={vector} alt="Select currency" onClick={ onClick } /> 
                 { isClicked && <CurrencySwitcherContainer chosenCur={ this.getSymbol }/> }
             </div>

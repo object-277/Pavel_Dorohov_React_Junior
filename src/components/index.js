@@ -1,10 +1,10 @@
 import NavBarContainer from "./NavBar";
-import CurrencyButtonContainer from "./Header_Actions";
-import HeaderActions from "./Header_Actions";
+import CurrencyButtonContainer from "./CurrencyButton";
 import CurrencySwitcherContainer from "./CurrencySwitcher";
+import HeaderActions from "./Header_Actions";
 
-export { NavBarContainer, 
-        CurrencyButtonContainer,
+export { NavBarContainer,
         CurrencySwitcherContainer,
+        CurrencyButtonContainer,
         HeaderActions
 }

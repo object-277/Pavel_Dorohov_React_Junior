@@ -8,6 +8,11 @@ export const productsQuery = new Query("category", true)
                     .addField(new Field("currency", true)
                         .addFieldList(["label", "symbol"])
                      )
-
+                )
+                .addField(new Field("attributes", true)
+                    .addFieldList(["id", "name", "type"])
+                    .addField(new Field("items", true)
+                        .addFieldList(["id", "value"])
+                    )
                 )
             );
