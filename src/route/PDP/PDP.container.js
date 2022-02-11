@@ -19,6 +19,18 @@ class PDPContainer extends PureComponent {
         await executePost(new Query("product", true)
                 .addArgument("id", "String!", id)
                 .addFieldList(["name", "brand", "inStock", "gallery", "description", "category"])
+                .addField(new Field("prices", true)
+                    .addFieldList(["amount"])
+                    .addField(new Field("currency", true)
+                        .addFieldList(["label", "symbol"])
+                     )
+                )
+                .addField(new Field("attributes", true)
+                    .addFieldList(["id", "name", "type"])
+                    .addField(new Field("items", true)
+                        .addFieldList(["id", "value"])
+                    )
+                )
         ).then(({product}) => {
             this.getCategory({product});
         });

@@ -31,7 +31,35 @@
         position: absolute;
         width: 292px;
         height: 513px;
-        left: 829px;
-        top: 80px;
+        left: 711px;
+        top: 0px;
+        right: 219px;
+    }
+
+    #PDP-Description {
+
+        position: absolute;
+        bottom: 72px;
+    }
+
+    .AttributeItems {
+
+        display: flex;
+        flex-direction: row;
+    }
+
+    .AttributeItem {
+        
+        align-items: center;
+        text-align: center;
+        
+        border: 1px solid #A6A6A6;
+        box-sizing: border-box;
+        width: 63px;
+        height: 45px;
+    }
+
+    .ItemText {
+        text-align: center;
     }
 }
