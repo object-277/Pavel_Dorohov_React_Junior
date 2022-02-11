@@ -42,13 +42,13 @@
         bottom: 72px;
     }
 
-    .AttributeItems {
+    &-AttributeItems {
 
         display: flex;
         flex-direction: row;
     }
 
-    .AttributeItem {
+    &-AttributeItem {
         
         align-items: center;
         text-align: center;
@@ -59,7 +59,21 @@
         height: 45px;
     }
 
-    .ItemText {
+    &-ItemText {
         text-align: center;
     }
+
+    &-AddToCart {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 32px;
+
+        width: 292px;
+        height: 52px;
+        left: 711px;
+        top: 318px;
+    }
+    
 }

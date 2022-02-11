@@ -11,8 +11,8 @@ class PDP extends PureComponent {
         const { value } = item;
 
         return (
-            <div className="AttributeItem" key={ i }>
-                <p className="ItemText">{ value }</p> 
+            <div className="PDP-AttributeItem" key={ i }>
+                <p className="PDP-ItemText">{ value }</p> 
             </div>
         );
     }
@@ -22,11 +22,11 @@ class PDP extends PureComponent {
         const { items } = attribute;
 
         return (
-            <div className="Attributes" key={ i }>
-                <div className="AttributeName">
+            <div className="PDP-Attributes" key={ i }>
+                <div className="PDP-AttributeName">
                     { id }
                 </div>
-                <div className="AttributeItems">
+                <div className="PDP-AttributeItems">
                    { items.map((item, i) => this.renderAttributeItems(item, i)) } 
                 </div>
                 
@@ -44,6 +44,7 @@ class PDP extends PureComponent {
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
                     { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
+                    <button className="PDP-AddToCart">ADD TO CART</button>
                     <p id="PDP-Description">{ description }</p>
                  </div>
                  
