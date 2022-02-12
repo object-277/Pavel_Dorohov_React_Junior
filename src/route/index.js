@@ -10,7 +10,6 @@ import PDP from "./PDP";
 
 class AppRouter extends PureComponent { 
     render() {
-
         return(
             <Router>
                 <Switch> 
@@ -18,7 +17,7 @@ class AppRouter extends PureComponent {
                     <Route path="/pdp/:id" component={ PDP } />     
                 </Switch>
                 <Header />
-            </Router>
+            </Router> 
         );
     }
 }

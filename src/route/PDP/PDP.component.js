@@ -1,8 +1,20 @@
 import React, { PureComponent } from "react";
 import "./PDP.style.scss";
+import { connect } from "react-redux";
+import { setItemInCart } from "../../redux/Cart/reducer";
 
 class PDP extends PureComponent {
+    constructor(props){
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
+    handleClick(e) {
+        const { product } = this.props.product;
+        e.stopPropagation();
+        this.props.dispatch(setItemInCart(product))
+    }
+   
     componentDidMount() {
         console.log(this.props.product);
     }
@@ -36,6 +48,7 @@ class PDP extends PureComponent {
 
     renderPDP() {
         const { brand, name, description, gallery, attributes } = this.props.product.product;
+        const { product } = this.props.product;
 
         return (
             <div className="PDP-Content">
@@ -44,10 +57,9 @@ class PDP extends PureComponent {
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
                     { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
-                    <button className="PDP-AddToCart">ADD TO CART</button>
+                    <button className="PDP-AddToCart" onClick={this.handleClick}>ADD TO CART</button>
                     <p id="PDP-Description">{ description }</p>
                  </div>
-                 
             </div>  
         ); 
     }
@@ -62,4 +74,10 @@ class PDP extends PureComponent {
 
 }
 
-export default PDP;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setItemInCart: () => dispatch(setItemInCart())
+    }
+};
+
+export default connect()(PDP);

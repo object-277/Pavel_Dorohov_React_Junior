@@ -7,7 +7,9 @@
    
 }
 
-.Products {
-    display: flex;
+.Products::after {
+    display: table;
+    content: "";
+    clear: both;
 }
 
