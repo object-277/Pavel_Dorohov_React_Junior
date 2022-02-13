@@ -1,10 +1,29 @@
 import React, { PureComponent } from "react";
 import ProductCard from "./ProductCard.component";
+import { connect } from "react-redux";
+import { addItem } from "../../redux/Cart/cart.actions";
 
 class ProductCardContainer extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            price: [],
+            isHovering: false
+        }
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+    };
+    
+    handleMouseOver() {
+        this.setState (() => ({
+            isHovering: true
+        }));
+    }
 
-    state = {
-        price: []
+    handleMouseOut() {
+        this.setState (() => ({
+            isHovering: false
+        }));
     }
 
     componentDidMount() {
@@ -31,11 +50,29 @@ class ProductCardContainer extends PureComponent {
             <ProductCard
                 { ...this.props }
                 { ...this.state }
+                onMouseOver={this.handleMouseOver}
+                onMouseOut={this.handleMouseOut}
+                addToCart={this.props.addItem}
+
             />
         );
     }
     
-
 }
 
-export default ProductCardContainer;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        cartItems: state.cartItems
+    };
+};
+
+const mapDispatchToProps = {
+    addToCart: (product) => {
+        return (
+            {type: "ADD_ITEM"}
+        )
+    } 
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCardContainer);
