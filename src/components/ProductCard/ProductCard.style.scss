@@ -4,7 +4,7 @@
     height: 444px;
     border: 1px solid black;
     text-decoration: none;
-
+    
     &-Card {
         position: static;
         left: 0%;
@@ -32,6 +32,15 @@
         height: 330px;
         left: 16px;
         top: 16px; 
+    }
+
+    &-Content {
+
+        position: static;
+        width: 354px;
+        height: 58px;
+        left: 16px;
+        top: 370px;
     }
 
     &-AddToCartIcon {

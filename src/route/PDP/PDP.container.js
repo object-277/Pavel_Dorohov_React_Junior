@@ -3,7 +3,7 @@ import PDP from "./PDP.component";
 import { executePost } from "../../util/Request.util";
 import { Field, Query } from "@tilework/opus";
 import { connect } from "react-redux";
-import { addItem } from "../../redux/Cart/cart.actions";
+import { addItem } from "../../redux/Cart/Cart.actions";
 
 class PDPContainer extends PureComponent {
     

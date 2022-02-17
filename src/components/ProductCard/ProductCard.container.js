@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 import ProductCard from "./ProductCard.component";
 import { connect } from "react-redux";
-import { addItem } from "../../redux/Cart/cart.actions";
+import { setItemInCart } from "../../redux/Cart/test.reducer";
+import { addItem, CartDispatcher } from "../../redux/Cart";
 
 class ProductCardContainer extends PureComponent {
     constructor(props) {
@@ -12,6 +13,11 @@ class ProductCardContainer extends PureComponent {
         }
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    };
+
+    handleClick = (product) => {
+        this.props.setItemInCart(this.props.product);
     };
     
     handleMouseOver() {
@@ -52,27 +58,27 @@ class ProductCardContainer extends PureComponent {
                 { ...this.state }
                 onMouseOver={this.handleMouseOver}
                 onMouseOut={this.handleMouseOut}
-                addToCart={this.props.addItem}
-
+                onClick={this.handleClick}
             />
         );
     }
-    
 }
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        cartItems: state.cartItems
-    };
-};
+//const mapStateToProps = state => ({
+    //cart: state.CartReducer.cart 
+//});
 
-const mapDispatchToProps = {
-    addToCart: (product) => {
-        return (
-            {type: "ADD_ITEM"}
-        )
-    } 
-}
-  
+//const mapDispatchToProps = dispatch => ({
+  //  addItem: (product) => dispatch({
+    //    type: "ADD_PRODUCT",
+      //  product
+    //})
+//});
+
+const mapStateToProps = state => ({
+    itemsInCart: state.cart.itemsInCart
+});
+
+const mapDispatchToProps = { setItemInCart };
+
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCardContainer);
