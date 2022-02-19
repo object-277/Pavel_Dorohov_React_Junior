@@ -32,7 +32,6 @@ class CurrencyButtonContainer extends PureComponent {
             <CurrencyButton isClicked={isClicked} onClick={this.handleClick} />
         );
     }
-
 }
 
 export default CurrencyButtonContainer;

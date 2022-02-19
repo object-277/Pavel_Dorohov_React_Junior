@@ -7,7 +7,7 @@ class ProductCard extends PureComponent {
 
     render() {
         const { brand, name, gallery, id } = this.props.product;
-        const { onMouseOver, onMouseOut, isHovering, updateConfig, onClick } = this.props;
+        const { onMouseOver, onMouseOut, isHovering, onClick } = this.props;
 
         return (
             <div className="Product" onMouseOver={ onMouseOver } onMouseOut={ onMouseOut }>

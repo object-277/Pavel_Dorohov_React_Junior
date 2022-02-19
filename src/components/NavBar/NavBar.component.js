@@ -6,13 +6,11 @@ class NavBar extends PureComponent {
 
     renderMenuItem(category, i) {
         const { name } = category;
-
-
+        
         return (
             <div className="NavBar-MenuItem" key={ i }>
                 <p>{ name }</p>
             </div>
-            
         );
     }
 
@@ -23,7 +21,6 @@ class NavBar extends PureComponent {
             <div className="NavBar-Menu">
                 { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
             </div>
-            
         );
     }
 
@@ -33,7 +30,6 @@ class NavBar extends PureComponent {
             <div className="NavBar">
                 { this.renderMenu() }
             </div>
-            
         );
     }
 }

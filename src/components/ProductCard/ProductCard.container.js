@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import ProductCard from "./ProductCard.component";
 import { connect } from "react-redux";
 import { setItemInCart } from "../../redux/Cart/test.reducer";
-import { addItem, CartDispatcher } from "../../redux/Cart";
 
 class ProductCardContainer extends PureComponent {
     constructor(props) {
@@ -16,10 +15,11 @@ class ProductCardContainer extends PureComponent {
         this.handleClick = this.handleClick.bind(this);
     };
 
-    handleClick = (product) => {
-        this.props.setItemInCart(this.props.product);
+    handleClick = () => {
+        const { product, setItemInCart } = this.props;
+        setItemInCart(product);
     };
-    
+  
     handleMouseOver() {
         this.setState (() => ({
             isHovering: true
@@ -56,24 +56,13 @@ class ProductCardContainer extends PureComponent {
             <ProductCard
                 { ...this.props }
                 { ...this.state }
-                onMouseOver={this.handleMouseOver}
-                onMouseOut={this.handleMouseOut}
-                onClick={this.handleClick}
+                onMouseOver={ this.handleMouseOver }
+                onMouseOut={ this.handleMouseOut }
+                onClick={ this.handleClick }
             />
         );
     }
 }
-
-//const mapStateToProps = state => ({
-    //cart: state.CartReducer.cart 
-//});
-
-//const mapDispatchToProps = dispatch => ({
-  //  addItem: (product) => dispatch({
-    //    type: "ADD_PRODUCT",
-      //  product
-    //})
-//});
 
 const mapStateToProps = state => ({
     itemsInCart: state.cart.itemsInCart
