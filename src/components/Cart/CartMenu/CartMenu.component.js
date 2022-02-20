@@ -1,11 +1,12 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import "./CartMenu.style.scss";
 
 class CartMenu extends PureComponent {
 
   renderCartItem(item, i) {
     const { brand, name, gallery, cartQuantity } = item;
-    const { removeItem } = this.props;
+    const { increaseAmount, decreaseAmount } = this.props;
 
     return (
       <div className="CartMenu-Item" key={ i }>
@@ -14,11 +15,11 @@ class CartMenu extends PureComponent {
           <p>{ name }</p>
         </div>
         <div>
-          <button className="CartMenu-IncreaseQuantity">+</button>
+          <button className="CartMenu-IncreaseQuantity" onClick={() => increaseAmount(item) }>+</button>
           <div className="CartMenu-Quantity">
             { cartQuantity }
           </div>
-          <button className="CartMenu-DecreaseQuantity" onClick={ removeItem }>-</button>
+          <button className="CartMenu-DecreaseQuantity" onClick={() => decreaseAmount(item) }>-</button>
         </div>
         <img className="CartMenu-Img" src={ gallery[0] } alt="Product in your Bag" />
       </div>
@@ -41,6 +42,10 @@ class CartMenu extends PureComponent {
         <div className="CartMenu">
           <p>My Bag</p>
           { this.renderCartMenu() }
+          <Link to="/cart">
+            <button>VIEW BAG</button>
+          </Link>
+          <button>CHECK OUT</button>
         </div>
     );
   } 

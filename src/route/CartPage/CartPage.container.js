@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
-import CartMenu from "./CartMenu.component";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity } from "../../../redux/Cart/test.reducer";
+import { setItemInCart, decreaseQuantity } from "../../redux/Cart/test.reducer";
+import CartPage from "./CartPage.component";
 
-class CartMenuContainer extends PureComponent {
+class CartPageContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.handleDecrease = this.handleDecrease.bind(this);
@@ -18,12 +18,10 @@ class CartMenuContainer extends PureComponent {
     };
 
     render() {
-        return (
-            <CartMenu
+        return(
+            <CartPage 
                 { ...this.state }
                 { ...this.props }
-                decreaseAmount={ this.handleDecrease }
-                increaseAmount ={ this.handleIncrease }
             />
         );
     }
@@ -37,4 +35,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = { setItemInCart, decreaseQuantity };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartMenuContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPageContainer);

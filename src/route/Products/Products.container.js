@@ -6,7 +6,6 @@ import { productsQuery } from "../../query/products.query";
 class ProductsContainer extends PureComponent {
 
     state = {
-
         category: []
     }
 

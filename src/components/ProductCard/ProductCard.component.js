@@ -6,12 +6,12 @@ import CircleIcon from "./CircleIcon.svg";
 class ProductCard extends PureComponent {
 
     render() {
-        const { brand, name, gallery, id } = this.props.product;
-        const { onMouseOver, onMouseOut, isHovering, onClick } = this.props;
+        const { brand, name, gallery, id, product } = this.props.product;
+        const { onMouseOver, onMouseOut, isHovering, addToCart} = this.props;
 
         return (
             <div className="Product" onMouseOver={ onMouseOver } onMouseOut={ onMouseOut }>
-                <Link className="Product-Card" to={ "/pdp/" + id } > 
+                <Link className="Product-Card" to={"/pdp/" + id } > 
                     <img className="Product-Image" src={ gallery[0] } alt="Product" />
                     <div className="Product-Content">
                         <p className="Product-Brand" >{ brand }</p>
@@ -19,7 +19,7 @@ class ProductCard extends PureComponent {
                         <p>{ this.props.price }</p>
                     </div> 
                 </Link>
-                <img className="Product-AddToCartIcon" src={ CircleIcon } alt="Add To Cart" onClick={ onClick }/> 
+                <img className="Product-AddToCartIcon" src={ CircleIcon } alt="Add To Cart" onClick={() => addToCart(product) }/> 
             </div>
         );
     }

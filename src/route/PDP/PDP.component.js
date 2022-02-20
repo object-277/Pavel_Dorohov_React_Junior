@@ -35,7 +35,7 @@ class PDP extends PureComponent {
 
     renderPDP() {
         const { brand, name, description, gallery, attributes } = this.props.product.product;
-        const { product } = this.props.product;
+        const { addToCart} = this.props;
 
         return (
             <div className="PDP-Content">
@@ -44,7 +44,7 @@ class PDP extends PureComponent {
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
                     { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
-                    <button className="PDP-AddToCart" onClick={this.props.addToCart}>ADD TO CART</button>
+                    <button className="PDP-AddToCart" onClick={ addToCart }>ADD TO CART</button>
                     <p id="PDP-Description">{ description }</p>
                  </div>
             </div>  

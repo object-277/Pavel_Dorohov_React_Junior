@@ -1,4 +1,4 @@
-import { Component, PureComponent } from "react";
+import { PureComponent } from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -7,6 +7,7 @@ import {
 import Header from "../components/Header/Header.component";
 import HomePage from "./HomePage";
 import PDP from "./PDP";
+import CartPage from "./CartPage";
 
 class AppRouter extends PureComponent { 
     render() {
@@ -14,7 +15,8 @@ class AppRouter extends PureComponent {
             <Router>
                 <Switch> 
                     <Route exact path="/" component={ HomePage }/> 
-                    <Route path="/pdp/:id" component={ PDP } />     
+                    <Route path="/pdp/:id" component={ PDP } /> 
+                    <Route path="/cart" component={ CartPage } />   
                 </Switch>
                 <Header />
             </Router> 

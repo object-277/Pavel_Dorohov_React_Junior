@@ -12,10 +12,10 @@ class ProductCardContainer extends PureComponent {
         }
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleAddToCart = this.handleAddToCart.bind(this);
     };
 
-    handleClick = () => {
+    handleAddToCart  = () => {
         const { product, setItemInCart } = this.props;
         setItemInCart(product);
     };
@@ -58,7 +58,7 @@ class ProductCardContainer extends PureComponent {
                 { ...this.state }
                 onMouseOver={ this.handleMouseOver }
                 onMouseOut={ this.handleMouseOut }
-                onClick={ this.handleClick }
+                addToCart={ this.handleAddToCart }
             />
         );
     }

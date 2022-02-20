@@ -3,7 +3,7 @@ import PDP from "./PDP.component";
 import { executePost } from "../../util/Request.util";
 import { Field, Query } from "@tilework/opus";
 import { connect } from "react-redux";
-import { addItem } from "../../redux/Cart/Cart.actions";
+import { setItemInCart } from "../../redux/Cart/test.reducer";
 
 class PDPContainer extends PureComponent {
     
@@ -11,6 +11,12 @@ class PDPContainer extends PureComponent {
         product: []
     }
 
+    handleAddToCart = () => {
+        const { setItemInCart } = this.props;
+        const { product } = this.state.product;
+        setItemInCart(product);
+    };
+  
     componentDidMount() {
         this.productQuery();
     }
@@ -38,8 +44,7 @@ class PDPContainer extends PureComponent {
     }
 
     getCategory(product) {
-            this.setState({product});
-            console.log(this.props.match.params.id);      
+            this.setState({product});     
     }
 
     render(){
@@ -49,25 +54,16 @@ class PDPContainer extends PureComponent {
             product.length !== 0 && <PDP
                 { ...this.props }
                 { ...this.state }
-                addToCart={this.props.addToCart}
+                addToCart={ this.handleAddToCart }
             />  
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    console.log(state);
-    return {
-        cartItems: state.cartItems
-    };
-};
+const mapStateToProps = state => ({
+    itemsInCart: state.cart.itemsInCart
+});
 
-const mapDispatchToProps = {
-    addToCart: (product) => {
-        return (
-            {type: "ADD_ITEM"}
-        )
-    } 
-}
-  
+const mapDispatchToProps = { setItemInCart };
+
 export default connect(mapStateToProps, mapDispatchToProps)(PDPContainer);
