@@ -9,18 +9,19 @@ class CartPage extends PureComponent {
     
         return (
           <div className="CartPage-Item" key={ i }>
-            <div>
-              <p>{ brand }</p>
-              <p>{ name }</p>
-            </div>
-            <div>
-              <button className="CartPage-IncreaseQuantity" onClick={() => increaseAmount(item) }>+</button>
-              <div className="CartPage-Quantity">
-                { cartQuantity }
+              <hr className="CartPage-Line"/>
+              <div>
+                <p>{ brand }</p>
+                <p>{ name }</p>
               </div>
-              <button className="CartPage-DecreaseQuantity" onClick={() => decreaseAmount(item) }>-</button>
-            </div>
-            <img className="CartPage-Img" src={ gallery[0] } alt="Product in your Bag" />
+              <div className="CartPage-BtnImgGroup">
+                <button className="CartPage-IncreaseQuantity" onClick={() => increaseAmount(item) }>+</button>
+                <div className="CartPage-Quantity">
+                  { cartQuantity }
+                </div>
+                <button className="CartPage-DecreaseQuantity" onClick={() => decreaseAmount(item) }>-</button>
+                <img className="CartPage-Img" src={ gallery[0] } alt="Product in your Bag" />
+              </div>
           </div>
         );
       }
@@ -30,7 +31,7 @@ class CartPage extends PureComponent {
     
           return (
             <div className="CartPage-Wrapper">
-              { itemsInCart.length > 0 ? itemsInCart.map((item, i) => this.renderCartItem(item, i)) : <p>Your Bag is empty</p>}
+              { itemsInCart.length > 0 ? itemsInCart.map((item, i) => this.renderCartItem(item, i)) : <p className="CartPage-Empty">Your Bag is empty</p>}
             </div> 
         );
     }
@@ -38,7 +39,7 @@ class CartPage extends PureComponent {
     render() {
         return(
             <div className="CartPage">
-                <h1 id="Title">Cart</h1>
+                 <h1 id="Title">Cart</h1>
                 { this.renderCartWrapper() }
             </div>
         );

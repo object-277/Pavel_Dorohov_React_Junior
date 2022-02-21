@@ -1,9 +1,91 @@
-#Title {
-    position: absolute;
-    width: 84px;
-    height: 40px;
-    left: 100px;
-    top: 160px;
-    text-transform: uppercase;
-    color: #1D1F22;
+.CartPage {
+    position: relative;
+    top: 80px;
+
+    #Title {
+        position: absolute;
+        width: 84px;
+        height: 40px;
+        left: 100px;
+        top: 0px;
+        text-transform: uppercase;
+        color: #1D1F22;
+    }
+
+    &-Wrapper {
+        position: absolute;
+        top: 59px;
+    }
+
+    &-Item {
+        position: absolute;
+        width: 1098px;
+        height: 207px;
+        left: 100px;
+        top: 59px;
+    }
+
+    &-BtnImgGroup {
+        position: absolute;
+        width: 198px;
+        height: 185px;
+        left: 900px;
+        top: 21px;
+    }
+
+    &-Img {
+        position: absolute;
+        width: 141px;
+        height: 185px;
+        top: 0px;
+        right: 0px;
+    }
+
+
+    &-Line {
+        width: 1097px;
+        height: 1px;
+        width: 1097px;
+        height: 1px;
+        background: #E5E5E5;
+        border: none;
+    }
+
+    &-IncreaseQuantity {
+        width: 45px;
+        height: 45px;
+    }
+
+    &-DecreaseQuantity {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    &-Quantity {
+        position: relative;
+        left: 18px;
+        top: 30px;
+    }
+    
+    &-Empty {
+        position: absolute;
+        top: 200px;
+        width: 100%;
+        text-transform: uppercase;
+        color: #1D1F22;
+        text-align: center;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

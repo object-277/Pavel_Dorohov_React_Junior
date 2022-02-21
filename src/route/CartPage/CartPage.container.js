@@ -6,15 +6,16 @@ import CartPage from "./CartPage.component";
 class CartPageContainer extends PureComponent {
     constructor(props) {
         super(props);
+        this.handleIncrease = this.handleIncrease.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
+    };
+
+    handleIncrease = (productInCart) => {
+        this.props.setItemInCart(productInCart);
     };
 
     handleDecrease = (productInCart) => {
         this.props.decreaseQuantity(productInCart);
-    };
-    
-    handleIncrease = (productInCart) => {
-        this.props.setItemInCart(productInCart);
     };
 
     render() {
@@ -22,6 +23,8 @@ class CartPageContainer extends PureComponent {
             <CartPage 
                 { ...this.state }
                 { ...this.props }
+                increaseAmount={ this.handleIncrease }
+                decreaseAmount={ this.handleDecrease }
             />
         );
     }
