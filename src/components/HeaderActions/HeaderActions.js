@@ -5,15 +5,6 @@ import "./HeaderActions.style.scss";
 
 class HeaderActions extends PureComponent {
 
-    render() {
-        return (
-            <div className="HeaderActionsWrapper">
-                <CurrencyButton />
-                <CartContainer />
-            </div>
-        );
-    }
-
-}
+ 
 
 export default HeaderActions; 

@@ -36,16 +36,32 @@ class CartMenu extends PureComponent {
     );
 }
 
-  render() {
+  renderTotal() {
+    const { cartTotalQuantity } = this.props;
+    let itemsTotal = "";
+    if ( cartTotalQuantity > 1 ) {
+      itemsTotal = <span> { cartTotalQuantity + " items" } </span>;
+    } else {
+        itemsTotal = <span> { cartTotalQuantity + " item" } </span>;
+    }
+    return itemsTotal;
+  }
 
+  render() {
+    const { cartTotalQuantity } = this.props;
+   
     return (
         <div className="CartMenu">
-          <p>My Bag</p>
-          { this.renderCartMenu() }
+            <p className="CartMenu-Header">My Bag, 
+              { cartTotalQuantity > 0 && this.renderTotal() }
+            </p>
+            { this.renderCartMenu() } 
           <Link to="/cart">
-            <button>VIEW BAG</button>
+            <button className="CartMenu-ViewBagBtn">
+              <p>VIEW BAG</p>
+            </button>
           </Link>
-          <button>CHECK OUT</button>
+          <button className="CartMenu-CheckOutBtn">CHECK OUT</button>
         </div>
     );
   } 

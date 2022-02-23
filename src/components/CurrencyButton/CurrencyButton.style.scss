@@ -11,11 +11,8 @@
 .CurrencyButton {
 
     position: absolute;
-    left: 76.47%;
-    right: 20.59%;
-    top: 53.75%;
-    bottom: 38.75%;
-    padding: 5px;
+    left: 1291px;
+    top: 44.5px;
     cursor: pointer;
 
 }
@@ -34,25 +31,20 @@
 
 #Currency-Label {
 
-    display:flex;
+    position: absolute;
+    left: 1269px;
+    top: 28.5px;
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-end;
-    padding: 0px 10px;
-   
-    position: absolute;
-    width: 32px;
+    align-items: center;
+    padding: 0;
+    width: 12px;
     height: 29px;
-    left: 124px;
-    top: 5.5px;
 }
 
 .CurrencyButton-Symbol {
 
-    position: absolute;
-    width: 12px;
-    height: 29px;
-    left: 10px;
-    top: 0px;
-
+    margin-top: 0px;
+    margin-bottom: 0px;
 }

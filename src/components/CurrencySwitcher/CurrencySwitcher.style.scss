@@ -1,5 +1,5 @@
 .CurrencySwitcher {
-    position: fixed;
+    position: absolute;
     width: 114px;
     height: 169px;
     left: 1248px;
@@ -10,13 +10,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column; 
+        flex-direction: column;
+        position: absolute;
+        width: 54px;
+        margin-left: 23px;
     }
 
     &-Item {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
+        align-items: center;
+        width: 54px;
+        height: 29px; 
     }
+
     .symbol {
         margin-right: 3px;
     }

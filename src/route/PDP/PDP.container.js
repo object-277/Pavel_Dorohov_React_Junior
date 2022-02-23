@@ -3,7 +3,7 @@ import PDP from "./PDP.component";
 import { executePost } from "../../util/Request.util";
 import { Field, Query } from "@tilework/opus";
 import { connect } from "react-redux";
-import { setItemInCart } from "../../redux/Cart/test.reducer";
+import { setItemInCart, getTotals } from "../../redux/Cart/test.reducer";
 
 class PDPContainer extends PureComponent {
     
@@ -15,6 +15,7 @@ class PDPContainer extends PureComponent {
         const { setItemInCart } = this.props;
         const { product } = this.state.product;
         setItemInCart(product);
+        this.props.getTotals();
     };
   
     componentDidMount() {
@@ -64,6 +65,6 @@ const mapStateToProps = state => ({
     itemsInCart: state.cart.itemsInCart
 });
 
-const mapDispatchToProps = { setItemInCart };
+const mapDispatchToProps = { setItemInCart, getTotals };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PDPContainer);

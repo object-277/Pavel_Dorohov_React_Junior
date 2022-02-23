@@ -1,17 +1,23 @@
 .CartMenu {
-    position: fixed;
+    position: absolute;
     width: 325px;
     height: 540px;
-    left: 1028px;
-    top: 78px;
+    right: -14px;
     border: 1px solid black;
     background: rgba(255, 255, 255, 1);
+
+    &-Header {
+        position: relative;
+        left: 16px;
+        top: 8px;
+    }
 
     &-Wrapper {
         border: 1px solid black;
         left: 16px;
+        top: 57px;
         width: 293px;
-        position: relative;
+        position: absolute;
         display: flex;
         flex-direction: column;
     }
@@ -19,10 +25,33 @@
     &-Item {
         display: flex;
         justify-content: space-between;
+        border: 1px solid;
+        margin-bottom: 41px;
     }
 
     &-Img {
         width: 105px;
         height: 137px;
+    }
+
+    &-ViewBagBtn {
+        position: absolute;
+        bottom: 20px;
+        left: 13px;
+        width: 140px;
+        height: 43px;
+        background: #FFF;
+        border: 1px solid #1D1F22;
+        box-sizing: border-box;
+    }
+
+    &-CheckOutBtn {
+        position: absolute;
+        bottom: 20px;
+        left: 165px;
+        width: 140px;
+        height: 43px;
+        background: #5ECE7B;
+        border: none;
     }
 }

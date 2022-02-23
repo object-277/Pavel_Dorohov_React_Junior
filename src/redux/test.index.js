@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./Cart/test.reducer";
+import cartReducer, { getTotals } from "./Cart/test.reducer";
 
 export const store = configureStore({
     reducer: {
@@ -7,3 +7,4 @@ export const store = configureStore({
     }
 });
 
+store.dispatch(getTotals());

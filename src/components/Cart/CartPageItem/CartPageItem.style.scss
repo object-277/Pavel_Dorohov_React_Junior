@@ -1,0 +1,89 @@
+.CartPageItem {
+    position: relative;
+    width: 1098px;
+    height: 207px;
+    left: 100px;
+    top: 59px;
+
+    &-BtnImgGroup {
+        position: absolute;
+        width: 198px;
+        height: 185px;
+        left: 900px;
+        top: 20px;
+        bottom: 19px;
+    }
+
+    &-IncreaseButtonWrapper {
+        position: relative;
+    }
+
+    #Vertical {
+        position: absolute;
+        top: 33.33%;
+        bottom: 33.33%;
+        left: 50%;
+        right: 50%;
+        margin: auto;
+    }
+
+    #Horizontal {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        right: 33.33%;
+        left: 33.33%;
+    }
+
+    &-ButtonImg {
+        position: absolute; 
+        left: 33%; 
+        right: 33.33%;
+        top: 50%;
+        bottom: 50%;
+        padding: 0;
+        margin: 0;
+    }
+
+    &-Img {
+        position: absolute;
+        width: 141px;
+        height: 185px;
+        top: 0px;
+        right: 0px;
+    }
+
+
+    &-Line {
+        width: 1097px;
+        height: 1px;
+        width: 1097px;
+        height: 1px;
+        background: #E5E5E5;
+        border: none;
+    }
+
+    &-IncreaseQuantity {
+        width: 45px;
+        height: 45px;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
+
+    &-DecreaseQuantity {
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        bottom: 0;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+    }
+
+    &-Quantity {
+        position: relative;
+        left: 18px;
+        top: 30px;
+    }
+}
