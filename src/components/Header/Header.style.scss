@@ -18,11 +18,28 @@
 }
 
 .cartIcon {
+
     position: absolute;
     width: 20px;
     height: 20px;
     left: 1319px;
     top: 33px;
+    cursor: pointer;
+    
+    &-ShowQuantity {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: -8px;
+        left: 13px;
+    }
+
+    #cartQuantityNumber {
+        position: absolute;
+        top: 0;
+        left: 5.5px;
+        margin: 0;
+        padding: 0;
+        color: #FFF;
+    }
 }
-
-

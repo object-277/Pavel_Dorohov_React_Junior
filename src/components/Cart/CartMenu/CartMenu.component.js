@@ -10,13 +10,13 @@ class CartMenu extends PureComponent {
 
     return (
       <div className="CartMenu-Item" key={ i }>
-        <div>
+        <div className="CartMenu-BrandName">
           <p>{ brand }</p>
           <p>{ name }</p>
         </div>
-        <div>
+        <div className="CartMenu-Quantity">
           <button className="CartMenu-IncreaseQuantity" onClick={() => increaseAmount(item) }>+</button>
-          <div className="CartMenu-Quantity">
+          <div className="CartMenu-QuantityNumber">
             { cartQuantity }
           </div>
           <button className="CartMenu-DecreaseQuantity" onClick={() => decreaseAmount(item) }>-</button>

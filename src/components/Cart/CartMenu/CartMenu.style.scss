@@ -29,9 +29,18 @@
         margin-bottom: 41px;
     }
 
+    &-BrandName {
+        position: absolute;
+        top: 0;
+        width: 136px;
+        height: 62px;
+    }
+
     &-Img {
         width: 105px;
         height: 137px;
+        position: relative;
+        left: 188px;
     }
 
     &-ViewBagBtn {
@@ -53,5 +62,34 @@
         height: 43px;
         background: #5ECE7B;
         border: none;
+    }
+
+    &-IncreaseQuantity {
+        height: 24px;
+        width: 24px;
+        border: 1px solid #1D1F22;
+        background: #FFF;
+    }
+
+    &-DecreaseQuantity {
+        height: 24px;
+        width: 24px;
+        border: 1px solid #1D1F22;
+        background: #FFF;
+        position: absolute;
+        top: 113px;
+    }
+
+    &-Quantity {
+        position: absolute;
+        left: 154px;
+        width: 24px;
+        height: 137px;
+    }
+
+    &-QuantityNumber {
+        position: relative;
+        top: 30px;
+        text-align: center;
     }
 }

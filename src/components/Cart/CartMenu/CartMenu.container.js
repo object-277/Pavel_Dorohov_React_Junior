@@ -7,6 +7,15 @@ class CartMenuContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.handleDecrease = this.handleDecrease.bind(this);
+        this.ref = React.createRef();
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    };
+    
+    handleClickOutside = (event) => {
+        const { current } = this.ref;
+        if (current && !current.contains(event.target)) {
+            this.props.onClickOutside() && this.props.onClickOutside();
+        }
     };
 
     handleDecrease = (productInCart) => {
@@ -18,6 +27,14 @@ class CartMenuContainer extends PureComponent {
         this.props.setItemInCart(productInCart);
         this.props.getTotals()
     };
+
+    componentDidMount() {
+        document.addEventListener('click', this.handleClickOutside, true);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, true);
+    }
 
     render() {
         return (
