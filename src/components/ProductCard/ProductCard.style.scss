@@ -11,12 +11,12 @@
         right: 0%;
         top: 0%;
         bottom: 0%;
-
         flex: none;
         order: 0;
         flex-grow: 0;
         margin: 0px 0px;
-
+        width: 386px;
+        height: 444px;
     }
 
     &-Image {
@@ -49,6 +49,6 @@
         height: 52px;
         right: 15px;
         bottom: -26px;
+        visibility: hidden;
     }
-    
 }

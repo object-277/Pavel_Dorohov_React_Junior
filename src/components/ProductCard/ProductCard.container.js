@@ -10,8 +10,6 @@ class ProductCardContainer extends PureComponent {
             price: [],
             isHovering: false
         }
-        this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
         this.handleAddToCart = this.handleAddToCart.bind(this);
     };
 
@@ -21,18 +19,6 @@ class ProductCardContainer extends PureComponent {
         this.props.getTotals();
     };
   
-    handleMouseOver() {
-        this.setState (() => ({
-            isHovering: true
-        }));
-    }
-
-    handleMouseOut() {
-        this.setState (() => ({
-            isHovering: false
-        }));
-    }
-
     componentDidMount() {
         this.getPrice();
     }
@@ -57,8 +43,6 @@ class ProductCardContainer extends PureComponent {
             <ProductCard
                 { ...this.props }
                 { ...this.state }
-                onMouseOver={ this.handleMouseOver }
-                onMouseOut={ this.handleMouseOut }
                 addToCart={ this.handleAddToCart }
             />
         );

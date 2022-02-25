@@ -7,10 +7,10 @@ class ProductCard extends PureComponent {
 
     render() {
         const { brand, name, gallery, id, product } = this.props.product;
-        const { onMouseOver, onMouseOut, isHovering, addToCart} = this.props;
+        const { addToCart} = this.props;
 
         return (
-            <div className="Product" onMouseOver={ onMouseOver } onMouseOut={ onMouseOut }>
+            <div className="Product" >
                 <Link className="Product-Card" to={"/pdp/" + id } > 
                     <img className="Product-Image" src={ gallery[0] } alt="Product" />
                     <div className="Product-Content">

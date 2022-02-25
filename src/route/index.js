@@ -16,7 +16,8 @@ class AppRouter extends PureComponent {
                 <Switch> 
                     <Route exact path="/" component={ HomePage }/> 
                     <Route path="/pdp/:id" component={ PDP } /> 
-                    <Route path="/cart" component={ CartPage } />   
+                    <Route path="/cart" component={ CartPage } /> 
+                    <Route path="/:selectedCategory" />
                 </Switch>
                 <Header />
             </Router> 
