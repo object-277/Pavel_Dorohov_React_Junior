@@ -10,12 +10,14 @@ class Header extends PureComponent {
     render() {
     
         return (
-            <div className="Header">
-                <NavBar />
+            <>
+                <div className="Header">         
+                    <img className="logo" src={logo} alt="logo"/> 
+                    <NavBar />
+                </div> 
                 <CurrencyButton /> 
-                <CartContainer />              
-                <img className="logo" src={logo} alt="logo"/>
-            </div>
+                <CartContainer /> 
+            </> 
         );
     }
 }

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { withRouter } from "react-router-dom";
 import NavBarMenu from "./NavBarMenu.component";
 
 class NavBarMenuContainer extends PureComponent {
@@ -6,7 +7,7 @@ class NavBarMenuContainer extends PureComponent {
         super(props);
         this.state = { 
             selectedCategory: "all"
-         };
+        };
          this.handleClick = this.handleClick.bind(this);
     }
 
@@ -30,4 +31,4 @@ class NavBarMenuContainer extends PureComponent {
     }
 }
 
-export default NavBarMenuContainer;
+export default withRouter(NavBarMenuContainer);
