@@ -7,15 +7,18 @@
    
 }
 
-.Product-CategoryName {
+.Products-CategoryName {
     
     position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    height: 68px;
+    width: 299px;
+    left: 101px;
+    top: 160px;
     margin-top: 0px;
+    bottom: 0px;
     margin-bottom: 0px;
-    top: -103px;
+    line-height: 160%;
+    text-transform: capitalize;
 }
 
 .Products::after {

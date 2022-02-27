@@ -1,0 +1,32 @@
+.PDPGallery-MainImage {
+    width: 610px;
+    height: 511px;
+    left: 212px;
+    top: 82px;
+    position: absolute;
+}
+
+.PDPGallery-SideGallery {
+    position: absolute;
+    border: 1px solid black;
+    width: 79px;
+    height: 513px;
+    left: 100px;
+    top: 80px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.PDPGallery-SideGallery img {
+    width: 79px;
+    height: 80px;
+    margin-bottom: 40px;
+}
+
+.PDPGallery-SideGallery::-webkit-scrollbar {
+    width: 2px;   
+}
+
+.PDPGallery-SideGallery::-webkit-scrollbar-thumb {
+    background-color: #5ECE7B;
+}

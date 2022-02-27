@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import PDPGalleryContainer from "./PDPGallery";
 import "./PDP.style.scss";
 
 class PDP extends PureComponent {
@@ -39,7 +40,6 @@ class PDP extends PureComponent {
 
         return (
             <div className="PDP-Content">
-                 <img className="PDP-MainImage" src={ gallery[0] } alt="Product" />
                  <div className="PDP-SideSection">
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
@@ -55,10 +55,12 @@ class PDP extends PureComponent {
         return (
             <div className="PDP">
                 { this.renderPDP() }
+                <PDPGalleryContainer 
+                    { ...this.props }
+                />
             </div>
         );
     }
-
 }
 
 export default (PDP);

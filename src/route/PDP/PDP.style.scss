@@ -5,25 +5,15 @@
    height: 665px;
    top: 80px;
 
-
     &-Content {
        
-    position: absolute;
-    width: 1002px;
-    height: 513px;
-    left: 219px;
-    top: 80px;
-    overflow: hidden;
-
-    border: 1px solid black;
-    }
-
-    &-MainImage {
-
-        width: 610px;
-        height: 511px;
-        left: 212px;
-        top: 82px;
+        position: absolute;
+        width: 1002px;
+        height: 513px;
+        left: 219px;
+        top: 80px;
+        overflow: hidden;
+        border: 1px solid black;
     }
 
     &-SideSection {
@@ -64,16 +54,16 @@
     }
 
     &-AddToCart {
-
+        position: absolute;
+        top: 312.5px;
+        background-color: #5ECE7B;
+        border: none;
+        color: #FFF;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 16px 32px;
-
         width: 292px;
         height: 52px;
-        left: 711px;
-        top: 318px;
     }
-    
 }

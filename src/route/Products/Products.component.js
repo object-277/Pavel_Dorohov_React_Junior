@@ -10,7 +10,6 @@ class Products extends PureComponent {
            const filteredProducts = products.filter((product) => product.category === selectedCategory)
            return (
                 <div className="Product-Page"> 
-                    <h1 className="Product-CategoryName">{ selectedCategory }</h1>
                     { products && filteredProducts.map((product, i) => <ProductCardContainer product={ product } key={ i } /> )}
                 </div> 
            );
@@ -24,9 +23,11 @@ class Products extends PureComponent {
     }
 
     render() {
+        const { selectedCategory } = this.props;
 
         return (
             <div className="Products">
+                 <h1 className="Products-CategoryName">{ selectedCategory }</h1>
                 { this.renderProducts() }  
             </div>  
         );
