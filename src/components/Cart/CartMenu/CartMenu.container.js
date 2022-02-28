@@ -6,10 +6,20 @@ import { setItemInCart, decreaseQuantity, getTotals } from "../../../redux/Cart/
 class CartMenuContainer extends PureComponent {
     constructor(props) {
         super(props);
+        this.state = {
+            notClicked: true
+        }
+        this.handleClick = this.handleClick.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
         this.ref = React.createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
     };
+
+    handleClick(e) {
+        this.setState(prevState => ({
+            notClicked: !prevState.notClicked
+        }));
+    }
     
     handleClickOutside = (event) => {
         const { current } = this.ref;
@@ -34,17 +44,24 @@ class CartMenuContainer extends PureComponent {
 
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClickOutside, true);
+        this.setState({notClicked: true});
     }
 
     render() {
-        return (
-            <CartMenu
+        const { notClicked } = this.state;
+        if ( notClicked === true ) {
+            return ( 
+                <CartMenu
                 { ...this.state }
                 { ...this.props }
+                changeClickedState = { this.handleClick }
                 decreaseAmount={ this.handleDecrease }
                 increaseAmount ={ this.handleIncrease }
-            />
-        );
+            /> 
+             );
+        } else {
+            return null;
+        }
     }
 }
 

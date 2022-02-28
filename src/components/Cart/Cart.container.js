@@ -8,8 +8,13 @@ class CartContainer extends PureComponent {
         this.state = {
             isClicked: false
         };
+        this.cartMenuUnmounts = this.cartMenuUnmounts.bind(this);
         this.handleClick = this.handleClick.bind(this);
         }
+
+    cartMenuUnmounts() {
+        this.setState({isClicked: false});
+    }   
 
     handleClick(e) {
         e.preventDefault();
@@ -26,7 +31,8 @@ class CartContainer extends PureComponent {
                 { ...this.state }
                 { ...this.props }
                 isClicked={ isClicked } 
-                onClick={ this.handleClick } 
+                onClick={ this.handleClick }
+                cartMenuUnmounts = { this.cartMenuUnmounts }
             />
         );
     }

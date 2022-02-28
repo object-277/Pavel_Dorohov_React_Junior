@@ -4,6 +4,10 @@ import "./CartMenu.style.scss";
 
 class CartMenu extends PureComponent {
 
+  componentWillUnmount() {
+    this.props.cartMenuUnmounts();
+  }
+
   renderCartItem(item, i) {
     const { brand, name, gallery, cartQuantity } = item;
     const { increaseAmount, decreaseAmount } = this.props;
@@ -48,7 +52,7 @@ class CartMenu extends PureComponent {
   }
 
   render() {
-    const { cartTotalQuantity } = this.props;
+    const { cartTotalQuantity, changeClickedState } = this.props;
    
     return (
         <div className="CartMenu">
@@ -56,7 +60,7 @@ class CartMenu extends PureComponent {
               { cartTotalQuantity > 0 && this.renderTotal() }
             </p>
             { this.renderCartMenu() } 
-          <Link to="/cart">
+          <Link to="/cart" onClick={ changeClickedState }>
             <button className="CartMenu-ViewBagBtn">
               <p>VIEW BAG</p>
             </button>

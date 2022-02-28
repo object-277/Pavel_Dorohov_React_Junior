@@ -10,16 +10,15 @@ class CurrencyButtonContainer extends PureComponent {
             isClicked: false
         };
         this.handleClick = this.handleClick.bind(this);
+        this.currencySwitcherUnmounts = this.currencySwitcherUnmounts.bind(this);
     }
+
+    currencySwitcherUnmounts() {
+        this.setState({isClicked: false});
+    }   
 
     handleClick(e) {
         e.preventDefault();
-        if (e.target.getAttribute('src') === vector) {
-            e.target.setAttribute('src', vectorClicked );
-        }
-        else {
-            e.target.setAttribute('src', vector);
-        }
         this.setState(prevState => ({
             isClicked: !prevState.isClicked
         }));
@@ -29,7 +28,11 @@ class CurrencyButtonContainer extends PureComponent {
         const { isClicked } = this.state;
 
         return ( 
-            <CurrencyButton isClicked={isClicked} onClick={this.handleClick} />
+            <CurrencyButton
+                currencySwitcherUnmounts={ this.currencySwitcherUnmounts }
+                isClicked={ isClicked } 
+                onClick={ this.handleClick } 
+            />
         );
     }
 }

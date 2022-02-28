@@ -9,7 +9,8 @@ class CurrencySwitcherContainer extends PureComponent {
         this.state = {
             currencies: [],
             isClicked: false,
-            chosenCurrency: '$'
+            chosenCurrency: '$',
+            notSelected: true
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -18,16 +19,21 @@ class CurrencySwitcherContainer extends PureComponent {
         this.getCurrencies();
     }
 
+    componentWillUnmount() {
+        this.setState({notSelected: true});
+    }
+
     async getCurrencies() {
         await executePost(currenciesQuery).then(({currencies}) => {
             this.setState({currencies});
         });
     }
-
+    
     handleClick(e) {
         e.preventDefault();
         this.setState(prevState => ({
             isClicked: !prevState.isClicked,
+            notSelected: !prevState.notSelected,
             chosenCurrency: symbol
         }));
         const symbol = e.currentTarget.firstChild.innerText;
@@ -36,13 +42,18 @@ class CurrencySwitcherContainer extends PureComponent {
     }
 
     render() {
-        return(
-            <CurrencySwitcher
-                onClick={this.handleClick}
-                { ...this.props }
-                { ...this.state }
-            />
-        );
+        const { notSelected } = this.state;
+        if ( notSelected === true ) {
+            return(
+                <CurrencySwitcher
+                    { ...this.props }
+                    { ...this.state }
+                    onClick={ this.handleClick }
+                />
+            );
+        } else {
+            return null;    
+        }
     }
 }
 

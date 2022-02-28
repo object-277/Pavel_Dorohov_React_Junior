@@ -17,9 +17,19 @@
         left: 16px;
         top: 57px;
         width: 293px;
+        height: 315px;
         position: absolute;
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    &-Wrapper::-webkit-scrollbar {
+        width: 2px;   
+    }
+    
+    &-Wrapper::-webkit-scrollbar-thumb {
+        background-color: #5ECE7B;
     }
 
     &-Item {
@@ -31,7 +41,6 @@
 
     &-BrandName {
         position: absolute;
-        top: 0;
         width: 136px;
         height: 62px;
     }

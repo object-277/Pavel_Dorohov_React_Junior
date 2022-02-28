@@ -25,9 +25,12 @@ class Cart extends PureComponent {
             <img src={ CartIcon } alt="Shopping Cart" onClick={ onClick } />
             { cartTotalQuantity > 0 && this.renderCartQuantity() }
             { isClicked && 
-            <CartMenuContainer { ...this.state } { ...this.props }
+              <CartMenuContainer 
+              { ...this.state } 
+              { ...this.props }
               onClickOutside={ () => isClicked === false }
-            /> }
+              /> 
+            }
         </div>
     );
   } 
