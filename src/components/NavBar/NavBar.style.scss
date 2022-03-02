@@ -27,6 +27,15 @@
         cursor: pointer;
     }
 
+    &-MenuItemLink {
+        text-decoration: none;
+        color: inherit; 
+    }
+
+    &-MenuItemLink :focus, :hover, :visited, :link, :active {
+        text-decoration: none; 
+    }
+
     &-MenuItem:hover {
         color: #5ECEB7;
         border-bottom: 2px solid #5ECEB7;

@@ -16,7 +16,7 @@ class ProductCard extends PureComponent {
                     <div className="Product-Content">
                         <p className="Product-Brand" >{ brand }</p>
                         <p className="Product-Name" >{ name }</p>
-                        <p>{ this.props.price }</p>
+                        
                     </div> 
                 </Link>
                 <img className="Product-AddToCartIcon" src={ CircleIcon } alt="Add To Cart" onClick={() => addToCart(product) }/> 

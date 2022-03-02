@@ -21,8 +21,8 @@ class Cart extends PureComponent {
     const { onClick, isClicked, cartTotalQuantity } = this.props;
 
     return (
-        <div className="cartIcon">
-            <img src={ CartIcon } alt="Shopping Cart" onClick={ onClick } />
+        <div className="cartIcon" onClick={ onClick }>
+            <img src={ CartIcon } alt="Shopping Cart" />
             { cartTotalQuantity > 0 && this.renderCartQuantity() }
             { isClicked && 
               <CartMenuContainer 

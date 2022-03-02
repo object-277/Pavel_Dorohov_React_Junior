@@ -14,9 +14,9 @@ class Header extends PureComponent {
                 <div className="Header">         
                     <img className="logo" src={logo} alt="logo"/> 
                     <NavBar />
+                    
                 </div> 
-                <CurrencyButton /> 
-                <CartContainer /> 
+                
             </> 
         );
     }

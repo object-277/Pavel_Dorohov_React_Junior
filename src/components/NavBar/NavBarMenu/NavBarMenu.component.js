@@ -21,15 +21,14 @@ class NavBarMenu extends PureComponent {
             );
         } else {*/
         return (
-            //<Link to={ "/"} key={ i } >
-            <div className="NavBar-MenuItem" key={ i } onClick={ () => this.props.onClick(name)}
-                 style={ name === selectedCategory ? activeCategoryStyle : null }   
-            >
-                <p>{ name }</p>
-            </div>
-        //</Link> 
+            <Link className="NavBar-MenuItemLink" to={ "/" } key={ i } onClick={ () => this.props.onClick(name) } >
+                <div className="NavBar-MenuItem" key={ i } 
+                    style={ name === selectedCategory ? activeCategoryStyle : null } >
+                    <p>{ name }</p>
+                </div>
+            </Link> 
         );
-       // }
+       //</Link> }
     }
 
     render() {

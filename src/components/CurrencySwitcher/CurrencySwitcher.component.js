@@ -37,8 +37,6 @@ class CurrencySwitcher extends PureComponent {
             </div>
         );
     }
-
-
 }
 
 export default CurrencySwitcher;

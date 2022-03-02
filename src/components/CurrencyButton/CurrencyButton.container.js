@@ -7,10 +7,12 @@ class CurrencyButtonContainer extends PureComponent {
     constructor(props){
         super(props);
         this.state = {
-            isClicked: false
+            isClicked: false,
+            currencySymbol: '$'
         };
         this.handleClick = this.handleClick.bind(this);
         this.currencySwitcherUnmounts = this.currencySwitcherUnmounts.bind(this);
+        this.getSymbol = this.getSymbol.bind(this);
     }
 
     currencySwitcherUnmounts() {
@@ -23,15 +25,21 @@ class CurrencyButtonContainer extends PureComponent {
             isClicked: !prevState.isClicked
         }));
     }
-    
+
+    getSymbol(symbol) {
+        this.setState(({currencySymbol: symbol}));
+    }
+
     render() {
-        const { isClicked } = this.state;
+        const { isClicked, currencySymbol } = this.state;
 
         return ( 
             <CurrencyButton
                 currencySwitcherUnmounts={ this.currencySwitcherUnmounts }
                 isClicked={ isClicked } 
-                onClick={ this.handleClick } 
+                onClick={ this.handleClick }
+                getSymbol={ this.getSymbol }
+                currencySymbol = { currencySymbol } 
             />
         );
     }

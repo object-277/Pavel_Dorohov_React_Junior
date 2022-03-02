@@ -17,6 +17,7 @@ class CurrencySwitcherContainer extends PureComponent {
 
     componentDidMount() {
         this.getCurrencies();
+        console.log(this.state.chosenCurrency);
     }
 
     componentWillUnmount() {
