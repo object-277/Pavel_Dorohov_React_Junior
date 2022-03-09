@@ -4,12 +4,12 @@ import ProductPrice from "./ProductPrice.component";
 class ProductPriceContainer extends PureComponent {
 
     state = {
-        price: []
+        price: [this.props.product.prices[0]]
     }
     
-    /*componentDidMount() {
+    componentDidMount() {
         this.getPrice();
-    }*/
+    }
 
     componentDidUpdate() {
         this.getPrice();
@@ -20,19 +20,34 @@ class ProductPriceContainer extends PureComponent {
 
         switch (document.getElementById("Currency-Label").innerText) {
             case "£":
-                this.setState({price: prices[1].amount})
-                console.log(this.state.price);
+                this.setState({price: prices[1]})
                 break;
-                
+            case "A$":
+                this.setState({price: prices[2]})
+                break;
+            case "¥":
+                this.setState({price: prices[3]})
+                break;
+            case "₽":
+                this.setState({price: prices[4]})
+                break;
             default:
-                this.setState({price: prices[0].amount})
+                this.setState({price: prices[0]})
         }
     }
 
     render() {
-        return (
-            <ProductPrice />
-        );
+        const { price } = this.state;
+
+        if ( price.currency !== undefined ) {
+            return (
+                <ProductPrice 
+                    price={ price }
+                />
+            );
+        } else {
+            return null;
+        }
     }
 }
 

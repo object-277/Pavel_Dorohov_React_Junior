@@ -5,7 +5,7 @@ class PDPGallery extends PureComponent {
  
     render() {
         const { src, onClick } = this.props;
-        const { gallery } = this.props.product.product;
+        const { gallery } = this.props.product;
         return (
             <>
                 <div className="PDPGallery-SideGallery">

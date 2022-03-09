@@ -4,9 +4,10 @@ import { executePost } from "../../util/Request.util";
 import { productsQuery } from "../../query/products.query";
 
 class ProductsContainer extends PureComponent {
+    constructor(props) {
+        super(props)
 
-    state = {
-        category: []
+        this.state = {};
     }
 
     componentDidMount() {
@@ -14,9 +15,9 @@ class ProductsContainer extends PureComponent {
     }
 
     async getProducts() {
-        await executePost(productsQuery).then(({category}) => {
-            this.setState({category});
-            console.log({category});
+        await executePost(productsQuery).then(({products}) => {
+            this.setState(products);
+            console.log(products);
         });
     }
 

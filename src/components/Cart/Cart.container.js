@@ -13,10 +13,10 @@ class CartContainer extends PureComponent {
         }
 
     cartMenuUnmounts() {
-        this.setState({isClicked: false});
+       this.setState({isClicked: false});
     }   
 
-    handleClick(e) {
+   handleClick(e) {
         e.preventDefault();
         this.setState(prevState => ({
             isClicked: !prevState.isClicked

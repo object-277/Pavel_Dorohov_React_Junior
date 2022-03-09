@@ -1,15 +1,11 @@
 import React, { PureComponent } from "react";
 import ProductCard from "./ProductCard.component";
 import { connect } from "react-redux";
-import { setItemInCart, getTotals } from "../../redux/Cart/test.reducer";
+import { setItemInCart, getTotals } from "../../redux/Cart/Cart.reducer";
 
 class ProductCardContainer extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            price: [],
-            isHovering: false
-        }
         this.handleAddToCart = this.handleAddToCart.bind(this);
     };
 
@@ -18,24 +14,6 @@ class ProductCardContainer extends PureComponent {
         setItemInCart(product);
         this.props.getTotals();
     };
-  
-    componentDidMount() {
-        this.getPrice();
-    }
-
-    getPrice() {
-        const { prices } = this.props.product;
-
-        switch (document.getElementById("Currency-Label").innerText) {
-            case "£":
-                this.setState({price: prices[1].amount})
-                console.log(this.state.price);
-                break;
-                
-            default:
-                this.setState({price: prices[0].amount})
-        }
-    }
 
     render(){
 

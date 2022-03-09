@@ -4,7 +4,7 @@ import PDPGallery from "./PDPGallery.component";
 class PDPGalleryContainer extends PureComponent {
     constructor(props){
         super(props)
-        const { gallery } = this.props.product.product;
+        const { gallery } = this.props.product;
         this.state = {
             src: gallery[0]
         }

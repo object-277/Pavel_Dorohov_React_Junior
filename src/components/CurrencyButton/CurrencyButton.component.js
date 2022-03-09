@@ -22,9 +22,8 @@ class CurrencyButton extends PureComponent {
                         <p className="CurrencyButton-Symbol">{ currencySymbol }</p>
                     </div>
                     <img className="CurrencyButton" src={ isClicked ? vectorClicked : vector } alt="Select currency" /> 
-                    { isClicked && <CurrencySwitcherContainer chosenCur={ getSymbol }/> }
+                    { isClicked && <CurrencySwitcherContainer selectedCurrency={ getSymbol }/> }
                 </div>
-                <ProductPriceContainer />
             </>
         );
     }

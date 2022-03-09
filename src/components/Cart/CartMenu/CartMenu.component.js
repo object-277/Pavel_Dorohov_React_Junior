@@ -56,10 +56,10 @@ class CartMenu extends PureComponent {
    
     return (
         <div className="CartMenu">
-            <p className="CartMenu-Header">My Bag, 
-              { cartTotalQuantity > 0 && this.renderTotal() }
-            </p>
-            { this.renderCartMenu() } 
+          <p className="CartMenu-Header">My Bag, 
+            { cartTotalQuantity > 0 && this.renderTotal() }
+          </p>
+          { this.renderCartMenu() } 
           <Link to="/cart" onClick={ changeClickedState }>
             <button className="CartMenu-ViewBagBtn">
               <p>VIEW BAG</p>

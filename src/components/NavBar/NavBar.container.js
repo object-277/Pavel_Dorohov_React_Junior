@@ -9,9 +9,14 @@ class NavBarContainer extends PureComponent {
         super(props);
         this.state = { 
             categories: [],
-            category: []
+            category: [],
+            selectedCurrency: '$'
          };
-         this.handleClick = this.handleClick.bind(this);
+         this.getCurrency = this.getCurrency.bind(this);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.selectedCurrency);
     }
 
     componentDidMount() {
@@ -19,8 +24,8 @@ class NavBarContainer extends PureComponent {
         this.getProducts();
     }
 
-    handleClick() {
-
+    getCurrency(symbol) {
+        this.setState({selectedCurrency: symbol});
     }
 
     async getCategories() {
@@ -42,6 +47,8 @@ class NavBarContainer extends PureComponent {
             <NavBar
                 { ...this.props }
                 { ...this.state }
+                getCurrency={ this.getCurrency }
+                selectedCurrency={ this.state.selectedCurrency }
             />
         );
     }

@@ -1,0 +1,20 @@
+.ProductPrice {
+    position: absolute;
+    top: 29px;
+    width: 80px;
+    height: 29px;
+    display: inline-flex;
+    border: 1px solid black;
+
+    &-CurrencySymbol {
+        margin: 0;
+        padding: 0;    
+    }
+
+    &-Amount {
+        margin: 0;
+        width: 40px;
+        height: 20px;
+        padding: 0; 
+    }
+}

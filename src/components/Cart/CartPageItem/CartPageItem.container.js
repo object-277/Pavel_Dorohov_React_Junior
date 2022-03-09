@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity } from "../../../redux/Cart/test.reducer";
+import { setItemInCart, decreaseQuantity } from "../../../redux/Cart/Cart.reducer";
 import CartPageItem from "./CartPageItem.component";
 
 class CartPageItemContainer extends PureComponent {

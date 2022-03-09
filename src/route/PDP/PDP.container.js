@@ -3,17 +3,18 @@ import PDP from "./PDP.component";
 import { executePost } from "../../util/Request.util";
 import { Field, Query } from "@tilework/opus";
 import { connect } from "react-redux";
-import { setItemInCart, getTotals } from "../../redux/Cart/test.reducer";
+import { setItemInCart, getTotals } from "../../redux/Cart/Cart.reducer";
 
 class PDPContainer extends PureComponent {
-    
-    state = {
-        product: []
+    constructor(props) {
+        super(props)
+
+        this.state = {};
     }
 
     handleAddToCart = () => {
         const { setItemInCart } = this.props;
-        const { product } = this.state.product;
+        const { product } = this.state;
         setItemInCart(product);
         this.props.getTotals();
     };
@@ -45,19 +46,21 @@ class PDPContainer extends PureComponent {
     }
 
     getCategory(product) {
-            this.setState({product});     
+            this.setState(product);     
     }
 
     render(){
-        const { product } = this.state;
-
-        return(
-            product.length !== 0 && <PDP
-                { ...this.props }
-                { ...this.state }
-                addToCart={ this.handleAddToCart }
-            />  
-        );
+        if ( this.state !== {} ) { 
+            return (
+                <PDP
+                    { ...this.props }
+                    { ...this.state }
+                    addToCart={ this.handleAddToCart }
+                />  
+            );
+        } else {
+            return console.log("error");
+        }
     }
 }
 

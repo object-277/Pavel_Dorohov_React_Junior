@@ -7,13 +7,14 @@ class Cart extends PureComponent {
 
   renderCartQuantity() {
     const { cartTotalQuantity } = this.props;
-    let showQuantity = "";
 
     if (cartTotalQuantity > 0) {
-      return showQuantity = <div className="cartIcon-ShowQuantity">
-                              <img src={ CartQuantityIcon } alt="Cart Quantity" />
-                              <p id="cartQuantityNumber">{ cartTotalQuantity }</p>
-                            </div>
+      return (
+        <div className="cartIcon-ShowQuantity">
+          <img src={ CartQuantityIcon } alt="Cart Quantity" />
+          <p id="cartQuantityNumber">{ cartTotalQuantity }</p>
+        </div>
+      );
     }
   }
  
@@ -21,20 +22,20 @@ class Cart extends PureComponent {
     const { onClick, isClicked, cartTotalQuantity } = this.props;
 
     return (
+      <>
         <div className="cartIcon" onClick={ onClick }>
             <img src={ CartIcon } alt="Shopping Cart" />
             { cartTotalQuantity > 0 && this.renderCartQuantity() }
-            { isClicked && 
-              <CartMenuContainer 
-              { ...this.state } 
-              { ...this.props }
-              onClickOutside={ () => isClicked === false }
-              /> 
-            }
         </div>
+        { isClicked && 
+          <CartMenuContainer 
+            { ...this.state } 
+            cartMenuUnmounts = { this.props.cartMenuUnmounts }
+          /> 
+        }
+      </>
     );
   } 
-
 }
 
 export default Cart;

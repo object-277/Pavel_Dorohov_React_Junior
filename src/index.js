@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from './redux/test.index';
-//import store from './redux/index'; 
+import { store } from './redux/index';
 import AppRouter from './route';
 import "./index.css";
 

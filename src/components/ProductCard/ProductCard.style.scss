@@ -6,7 +6,7 @@
     text-decoration: none;
     
     &-Card {
-        position: static;
+        position: relative;
         left: 0%;
         right: 0%;
         top: 0%;
@@ -36,19 +36,55 @@
 
     &-Content {
 
-        position: static;
+        position: absolute;
         width: 354px;
         height: 58px;
-        left: 16px;
         top: 370px;
+        right: 0px;
+        bottom: 0px;
+        left: 16px;
+    }
+
+    #Product-Brand {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+    }
+
+    #Product-Name {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        left: 115px;    
     }
 
     &-AddToCartIcon {
-
+        position: relative;
         width: 52px;
         height: 52px;
-        right: 15px;
+        right: 50px;
         bottom: -26px;
-        visibility: hidden;
+        //visibility: hidden;
+    }
+}
+
+.Product-OutOfStock {
+    position: relative;
+    background: #FFF;
+    opacity: 0.5;
+
+    .OutOfStockLabel {
+        position: absolute;
+        text-transform: uppercase;
+        color: #8D8F9A;
+        width: 173px;
+        height: 39px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 90px;
+        top: 146px;
     }
 }

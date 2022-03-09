@@ -7,6 +7,7 @@ import "./NavBar.style.scss";
 class NavBar extends PureComponent {
 
     render() {
+        const { getCurrency } = this.props;
         
         return (
             <>
@@ -16,7 +17,9 @@ class NavBar extends PureComponent {
                         { ...this.props }
                     />
                 </div>
-                <CurrencyButton /> 
+                <CurrencyButton 
+                    selectedCurrency={ getCurrency }    
+                /> 
                 <CartContainer /> 
             </>
         );

@@ -15,6 +15,10 @@ class CurrencyButtonContainer extends PureComponent {
         this.getSymbol = this.getSymbol.bind(this);
     }
 
+    componentDidUpdate(){
+        this.props.selectedCurrency(this.state.currencySymbol);
+    }
+
     currencySwitcherUnmounts() {
         this.setState({isClicked: false});
     }   

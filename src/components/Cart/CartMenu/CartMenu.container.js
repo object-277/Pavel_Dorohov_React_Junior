@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import CartMenu from "./CartMenu.component";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity, getTotals } from "../../../redux/Cart/test.reducer";
+import { setItemInCart, decreaseQuantity, getTotals } from "../../../redux/Cart/Cart.reducer";
 
 class CartMenuContainer extends PureComponent {
     constructor(props) {
@@ -11,8 +11,7 @@ class CartMenuContainer extends PureComponent {
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
-        this.ref = React.createRef();
-        this.handleClickOutside = this.handleClickOutside.bind(this);
+        //this.handleClickOutside = this.handleClickOutside.bind(this);
     };
 
     handleClick(e) {
@@ -21,12 +20,12 @@ class CartMenuContainer extends PureComponent {
         }));
     }
     
-    handleClickOutside = (event) => {
+    /*handleClickOutside = (event) => {
         const { current } = this.ref;
         if (current && !current.contains(event.target)) {
             this.props.onClickOutside() && this.props.onClickOutside();
         }
-    };
+    };*/
 
     handleDecrease = (productInCart) => {
         this.props.decreaseQuantity(productInCart);
@@ -38,12 +37,11 @@ class CartMenuContainer extends PureComponent {
         this.props.getTotals()
     };
 
-    componentDidMount() {
+    /*componentDidMount() {
         document.addEventListener('click', this.handleClickOutside, true);
-    }
+    }*/
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.handleClickOutside, true);
         this.setState({notClicked: true});
     }
 
@@ -52,13 +50,13 @@ class CartMenuContainer extends PureComponent {
         if ( notClicked === true ) {
             return ( 
                 <CartMenu
-                { ...this.state }
-                { ...this.props }
-                changeClickedState = { this.handleClick }
-                decreaseAmount={ this.handleDecrease }
-                increaseAmount ={ this.handleIncrease }
-            /> 
-             );
+                    { ...this.state }
+                    { ...this.props }
+                    changeClickedState = { this.handleClick }
+                    decreaseAmount={ this.handleDecrease }
+                    increaseAmount ={ this.handleIncrease }
+                /> 
+            );
         } else {
             return null;
         }
