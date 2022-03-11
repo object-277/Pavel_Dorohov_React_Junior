@@ -1,22 +1,15 @@
 import React, {PureComponent} from "react";
 import CurrencyButton from "./CurrencyButton.component";
-import vector from "../CurrencyButton/Vector.svg";
-import vectorClicked from "../CurrencyButton/VectorClicked.svg";
+import { connect } from "react-redux";
 
 class CurrencyButtonContainer extends PureComponent {
     constructor(props){
         super(props);
         this.state = {
             isClicked: false,
-            currencySymbol: '$'
         };
         this.handleClick = this.handleClick.bind(this);
         this.currencySwitcherUnmounts = this.currencySwitcherUnmounts.bind(this);
-        this.getSymbol = this.getSymbol.bind(this);
-    }
-
-    componentDidUpdate(){
-        this.props.selectedCurrency(this.state.currencySymbol);
     }
 
     currencySwitcherUnmounts() {
@@ -30,23 +23,22 @@ class CurrencyButtonContainer extends PureComponent {
         }));
     }
 
-    getSymbol(symbol) {
-        this.setState(({currencySymbol: symbol}));
-    }
-
     render() {
-        const { isClicked, currencySymbol } = this.state;
+        const { isClicked } = this.state;
 
         return ( 
             <CurrencyButton
+                { ...this.props }
                 currencySwitcherUnmounts={ this.currencySwitcherUnmounts }
                 isClicked={ isClicked } 
-                onClick={ this.handleClick }
-                getSymbol={ this.getSymbol }
-                currencySymbol = { currencySymbol } 
+                onClick={ this.handleClick } 
             />
         );
     }
 }
 
-export default CurrencyButtonContainer;
+const mapStateToProps = state => ({
+    currency: state.cart.currency
+});
+
+export default connect(mapStateToProps)(CurrencyButtonContainer);

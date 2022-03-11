@@ -9,7 +9,7 @@ const cartSlice = createSlice({
         cartTotalQuantity: 0,
         cartTotalAmount: [],
         Category: localStorage.getItem("category"),
-        selectedCurrency: "$"
+        currency: localStorage.getItem("currency")
     },
     reducers: {
         setItemInCart: (state, action) => {
@@ -66,9 +66,20 @@ const cartSlice = createSlice({
         setCategory: (state, action) => {
             state.Category = action.payload;
             localStorage.setItem("category", action.payload);
+        },
+        setCurrency: (state, action) => {
+            state.currency = action.payload;
+            localStorage.setItem("currency", action.payload);
         }
     }
 });
 
-export const { setItemInCart, removeItemInCart, decreaseQuantity, getTotals, setCategory } = cartSlice.actions;
+export const { setItemInCart, 
+               removeItemInCart, 
+               decreaseQuantity, 
+               getTotals, 
+               setCategory, 
+               setCurrency 
+            } = cartSlice.actions;
+
 export default cartSlice.reducer;

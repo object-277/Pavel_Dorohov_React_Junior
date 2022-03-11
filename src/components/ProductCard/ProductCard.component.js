@@ -5,6 +5,24 @@ import CircleIcon from "./CircleIcon.svg";
 import ProductPriceContainer from "../ProductPrice/ProductPrice.container";
 
 class ProductCard extends PureComponent {
+    
+    getPrice() {
+        const { currency} = this.props; 
+        const { prices } = this.props;
+        const index = prices.findIndex((price) => (price.currency.symbol === currency));
+
+        console.log(index);
+        return (
+            <div className="ProductPrice">
+                <p className="ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>
+                <p className="ProductPrice-Amount">{ prices[index].amount }</p>
+            </div>
+        );         
+    }
+
+    componentDidMount() {
+        this.getPrice();
+    }
 
     render() {
         const { id, gallery, brand, name, inStock } = this.props.product;
@@ -20,9 +38,10 @@ class ProductCard extends PureComponent {
                         <div className="Product-Content">
                             <p id="Product-Brand" >{ brand }</p>
                             <p id="Product-Name" >{ name }</p>
-                            <ProductPriceContainer 
+                            { this.getPrice() }
+                            {/*<ProductPriceContainer 
                                 { ...this.props }
-                            />
+                            />*/}
                         </div> 
                     </Link>
                     <img className="Product-AddToCartIcon" 

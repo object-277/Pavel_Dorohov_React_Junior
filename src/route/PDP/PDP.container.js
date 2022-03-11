@@ -65,7 +65,8 @@ class PDPContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    itemsInCart: state.cart.itemsInCart
+    itemsInCart: state.cart.itemsInCart,
+    currency: state.cart.currency
 });
 
 const mapDispatchToProps = { setItemInCart, getTotals };

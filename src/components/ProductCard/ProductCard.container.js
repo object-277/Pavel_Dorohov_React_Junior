@@ -6,6 +6,9 @@ import { setItemInCart, getTotals } from "../../redux/Cart/Cart.reducer";
 class ProductCardContainer extends PureComponent {
     constructor(props) {
         super(props);
+        this.state = {
+            prices: this.props.product.prices
+        }
         this.handleAddToCart = this.handleAddToCart.bind(this);
     };
 
@@ -28,7 +31,8 @@ class ProductCardContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    itemsInCart: state.cart.itemsInCart
+    itemsInCart: state.cart.itemsInCart,
+    currency: state.cart.currency
 });
 
 const mapDispatchToProps = { setItemInCart, getTotals };

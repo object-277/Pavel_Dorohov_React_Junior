@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import CurrencySwitcher from "./CurrencySwitcher.component";
 import { currenciesQuery } from "../../query/currency.query";
 import { executePost } from "../../util/Request.util";
+import { connect } from "react-redux";
+import { setCurrency } from "../../redux/Cart/Cart.reducer";
 
 class CurrencySwitcherContainer extends PureComponent {
     constructor(props){
@@ -9,7 +11,6 @@ class CurrencySwitcherContainer extends PureComponent {
         this.state = {
             currencies: [],
             isClicked: false,
-            selectedCurrency: '$',
             notSelected: true
         };
         this.handleClick = this.handleClick.bind(this);
@@ -17,7 +18,6 @@ class CurrencySwitcherContainer extends PureComponent {
 
     componentDidMount() {
         this.getCurrencies();
-        console.log(this.state.selectedCurrency);
     }
 
     componentWillUnmount() {
@@ -30,16 +30,13 @@ class CurrencySwitcherContainer extends PureComponent {
         });
     }
     
-    handleClick(e) {
-        e.preventDefault();
+    handleClick = (symbol) => {
         this.setState(prevState => ({
             isClicked: !prevState.isClicked,
             notSelected: !prevState.notSelected,
-            selectedCurrency: symbol
         }));
-        const symbol = e.currentTarget.firstChild.innerText;
-        console.log(symbol);
-        this.props.selectedCurrency(symbol);
+        const { setCurrency } = this.props;
+        setCurrency(symbol);
     }
 
     render() {
@@ -58,5 +55,11 @@ class CurrencySwitcherContainer extends PureComponent {
     }
 }
 
-export default CurrencySwitcherContainer;
+const mapStateToProps = state => ({
+    currency: state.cart.currency
+});
+
+const mapDispatchToProps = { setCurrency };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcherContainer);
 

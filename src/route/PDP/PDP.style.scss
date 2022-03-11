@@ -38,6 +38,29 @@
         font-weight: bold;
     }
 
+    &-ProductPrice {
+        position: absolute;
+        top: 252px;
+        width: 86px;
+        height: 46px;
+        display: inline-flex;
+        align-items: center;
+        color: #1D1F22;
+        border: 1px solid black;
+    
+        &-CurrencySymbol {
+            margin: 0;
+            padding: 0;    
+        }
+    
+        &-Amount {
+            margin: 0;
+            width: 40px;
+            height: 20px;
+            padding: 0; 
+        }
+    }
+
     #PDP-Description {
 
         position: absolute;

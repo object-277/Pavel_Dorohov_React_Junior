@@ -4,13 +4,28 @@ import ProductPriceContainer from "../../components/ProductPrice";
 import "./PDP.style.scss";
 
 class PDP extends PureComponent {
-  
+
+    getPrice() {
+        const { currency} = this.props; 
+        const { prices } = this.props.product;
+        const index = prices.findIndex((price) => (price.currency.symbol === currency));
+
+        console.log(index);
+        return (
+            <div className="PDP-ProductPrice">
+                <p className="PDP-ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>
+                <p className="PDP-ProductPrice-Amount">{ prices[index].amount }</p>
+            </div>
+        );         
+    }
+
     componentDidMount() {
         console.log(this.props.product);
     }
 
     componentDidUpdate() { 
-        console.log(this.props.product);    
+        console.log(this.props.product);
+        this.getPrice();    
     }
     
     renderAttributeItems(item, i) {
@@ -50,7 +65,7 @@ class PDP extends PureComponent {
                     <p id="PDP-Name">{ name }</p>
                     { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
                     <p id="PDP-PriceLabel">price:</p>
-                         
+                    { this.getPrice() } 
                     <button className="PDP-AddToCart" onClick={ addToCart }>ADD TO CART</button>
                     <p id="PDP-Description">{ description }</p>
                  </div>
