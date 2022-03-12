@@ -49,8 +49,9 @@ const cartSlice = createSlice({
         getTotals: (state, action) => {
             let { total, quantity } = state.itemsInCart.reduce((cartTotal, productInCart) => {
                 const { prices,  cartQuantity } = productInCart;
-                const itemTotal = prices[0].amount * cartQuantity;
-
+                const { currency } = state;
+                const index = prices.findIndex((price) => (price.currency.symbol === currency));
+                const itemTotal = +(prices[index].amount * cartQuantity).toFixed(2);
                 cartTotal.total += itemTotal;
                 cartTotal.quantity += cartQuantity;
 

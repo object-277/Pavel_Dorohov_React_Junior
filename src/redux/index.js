@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer, { getTotals } from "./Cart/Cart.reducer";
+import cartReducer, { getTotals, setCurrency } from "./Cart/Cart.reducer";
 
 export const store = configureStore({
     reducer: {
@@ -7,4 +7,4 @@ export const store = configureStore({
     }
 });
 
-store.dispatch(getTotals());
+store.dispatch(getTotals(), setCurrency("$") );

@@ -29,12 +29,12 @@ class CartMenuContainer extends PureComponent {
 
     handleDecrease = (productInCart) => {
         this.props.decreaseQuantity(productInCart);
-        this.props.getTotals()
+        this.props.getTotals();
     };
     
     handleIncrease = (productInCart) => {
         this.props.setItemInCart(productInCart);
-        this.props.getTotals()
+        this.props.getTotals();
     };
 
     /*componentDidMount() {

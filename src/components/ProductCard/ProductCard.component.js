@@ -10,8 +10,7 @@ class ProductCard extends PureComponent {
         const { currency} = this.props; 
         const { prices } = this.props;
         const index = prices.findIndex((price) => (price.currency.symbol === currency));
-
-        console.log(index);
+        
         return (
             <div className="ProductPrice">
                 <p className="ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>

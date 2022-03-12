@@ -3,7 +3,7 @@ import CurrencySwitcher from "./CurrencySwitcher.component";
 import { currenciesQuery } from "../../query/currency.query";
 import { executePost } from "../../util/Request.util";
 import { connect } from "react-redux";
-import { setCurrency } from "../../redux/Cart/Cart.reducer";
+import { setCurrency, getTotals } from "../../redux/Cart/Cart.reducer";
 
 class CurrencySwitcherContainer extends PureComponent {
     constructor(props){
@@ -35,8 +35,9 @@ class CurrencySwitcherContainer extends PureComponent {
             isClicked: !prevState.isClicked,
             notSelected: !prevState.notSelected,
         }));
-        const { setCurrency } = this.props;
+        const { setCurrency, getTotals } = this.props;
         setCurrency(symbol);
+        getTotals();
     }
 
     render() {
@@ -59,7 +60,7 @@ const mapStateToProps = state => ({
     currency: state.cart.currency
 });
 
-const mapDispatchToProps = { setCurrency };
+const mapDispatchToProps = { setCurrency, getTotals };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencySwitcherContainer);
 

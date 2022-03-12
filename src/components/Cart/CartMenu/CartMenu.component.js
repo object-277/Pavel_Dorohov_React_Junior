@@ -52,7 +52,7 @@ class CartMenu extends PureComponent {
   }
 
   render() {
-    const { cartTotalQuantity, changeClickedState } = this.props;
+    const { cartTotalQuantity, cartTotalAmount, changeClickedState } = this.props;
    
     return (
         <div className="CartMenu">
@@ -60,8 +60,13 @@ class CartMenu extends PureComponent {
             { cartTotalQuantity > 0 && this.renderTotal() }
           </p>
           { this.renderCartMenu() } 
-          <div className="CartMenu-TotalWrapper">
-            <p>Total</p>
+          <div className="CartMenu-TotalAmountWrapper">
+            <div className="CartMenu-TotalLabel">
+              Total
+            </div>
+            <div className="CartMenu-TotalAmount">
+              { cartTotalAmount }
+            </div>
           </div>
           <Link to="/cart" onClick={ changeClickedState }>
             <button className="CartMenu-ViewBagBtn">

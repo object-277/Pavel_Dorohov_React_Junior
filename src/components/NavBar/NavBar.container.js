@@ -15,10 +15,6 @@ class NavBarContainer extends PureComponent {
          this.getCurrency = this.getCurrency.bind(this);
     }
 
-    componentDidUpdate() {
-        console.log(this.state.selectedCurrency);
-    }
-
     componentDidMount() {
         this.getCategories();
         this.getProducts();
