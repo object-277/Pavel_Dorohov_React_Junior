@@ -2,10 +2,18 @@
     position: absolute;
     width: 325px;
     height: 540px;
-    top: 78px;
     left: 1028px;
     border: 1px solid black;
     background: white;
+
+    &-BackgroundOverlay {
+        width: 1440px;
+        height: 1700px;
+        background-color: rgba(57, 55, 72, 0.22);
+        z-index: 10;
+        position: absolute;
+        top: 78px;
+    }
 
     &-Header {
         position: relative;
@@ -71,6 +79,11 @@
         color: #1D1F22;
         position: absolute;
         top: 9px;
+        font-family: 'Roboto';
+        font-style: normal ;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 112%;
     }
 
     &-TotalAmount {
@@ -81,6 +94,10 @@
         justify-content: right;
         position: absolute;
         left: 194px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 160%;
     }
 
     &-ViewBagBtn {
@@ -133,3 +150,4 @@
         text-align: center;
     }
 }
+

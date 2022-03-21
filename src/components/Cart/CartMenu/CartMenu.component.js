@@ -52,7 +52,7 @@ class CartMenu extends PureComponent {
   }
 
   render() {
-    const { cartTotalQuantity, cartTotalAmount, changeClickedState } = this.props;
+    const { cartTotalQuantity, cartTotalAmount, currency, changeClickedState } = this.props;
    
     return (
         <div className="CartMenu">
@@ -65,6 +65,7 @@ class CartMenu extends PureComponent {
               Total
             </div>
             <div className="CartMenu-TotalAmount">
+              { currency }
               { cartTotalAmount }
             </div>
           </div>

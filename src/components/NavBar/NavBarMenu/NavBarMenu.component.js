@@ -15,7 +15,8 @@ class NavBarMenu extends PureComponent {
         return (
             <Link className="NavBar-MenuItemLink" to={ "/" } key={ i } onClick={ () => onClick(name) } >
                 <div className="NavBar-MenuItem" key={ i } 
-                    style={ name === Category ? activeCategoryStyle : null } >
+                    style={ name === Category ? activeCategoryStyle : null } 
+                >
                     <p className="NavBar-CategoryName">{ name }</p>
                 </div>
             </Link> 

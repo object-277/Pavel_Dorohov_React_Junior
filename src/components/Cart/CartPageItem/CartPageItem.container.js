@@ -63,7 +63,8 @@ class CartPageItemContainer extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        itemsInCart: state.cart.itemsInCart
+        itemsInCart: state.cart.itemsInCart,
+        currency: state.cart.currency
     }
 }
 

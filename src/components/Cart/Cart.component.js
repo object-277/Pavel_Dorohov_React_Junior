@@ -28,10 +28,12 @@ class Cart extends PureComponent {
             { cartTotalQuantity > 0 && this.renderCartQuantity() }
         </div>
         { isClicked && 
-          <CartMenuContainer 
-            { ...this.state } 
-            cartMenuUnmounts = { this.props.cartMenuUnmounts }
-          /> 
+          <div className="CartMenu-BackgroundOverlay">
+            <CartMenuContainer 
+              { ...this.state } 
+              cartMenuUnmounts = { this.props.cartMenuUnmounts }
+            /> 
+          </div>
         }
       </>
     );

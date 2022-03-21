@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.style.scss";
 import CircleIcon from "./CircleIcon.svg";
-import ProductPriceContainer from "../ProductPrice/ProductPrice.container";
 
 class ProductCard extends PureComponent {
     
@@ -10,11 +9,11 @@ class ProductCard extends PureComponent {
         const { currency} = this.props; 
         const { prices } = this.props;
         const index = prices.findIndex((price) => (price.currency.symbol === currency));
-        
+
         return (
-            <div className="ProductPrice">
-                <p className="ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>
-                <p className="ProductPrice-Amount">{ prices[index].amount }</p>
+            <div className="Product-Price">
+                <p className="Product-PriceCurrencySymbol">{ prices[index].currency.symbol }</p>
+                <p className="Product-PriceAmount">{ prices[index].amount }</p>
             </div>
         );         
     }
@@ -38,9 +37,6 @@ class ProductCard extends PureComponent {
                             <p id="Product-Brand" >{ brand }</p>
                             <p id="Product-Name" >{ name }</p>
                             { this.getPrice() }
-                            {/*<ProductPriceContainer 
-                                { ...this.props }
-                            />*/}
                         </div> 
                     </Link>
                     <img className="Product-AddToCartIcon" 
@@ -61,9 +57,7 @@ class ProductCard extends PureComponent {
                         <div className="Product-Content">
                             <p id="Product-Brand" >{ brand }</p>
                             <p id="Product-Name" >{ name }</p>
-                            <ProductPriceContainer 
-                                { ...this.props }
-                            />
+                            { this.getPrice() }
                         </div> 
                     </div>
                 </div>   

@@ -58,6 +58,19 @@
         left: 115px;    
     }
 
+    &-Price {
+        width: 58px;
+        height: 29px;
+        position: absolute;
+        display: flex;
+        top: 29px; 
+    }
+
+    &-PriceCurrencySymbol, &-PriceAmount {
+        margin: 0;
+        padding: 0;
+    }
+
     &-AddToCartIcon {
         position: relative;
         width: 52px;

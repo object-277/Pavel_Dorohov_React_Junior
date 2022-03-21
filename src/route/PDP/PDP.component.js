@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import PDPGalleryContainer from "./PDPGallery";
-import ProductPriceContainer from "../../components/ProductPrice";
 import "./PDP.style.scss";
 
 class PDP extends PureComponent {
@@ -9,8 +8,6 @@ class PDP extends PureComponent {
         const { currency} = this.props; 
         const { prices } = this.props.product;
         const index = prices.findIndex((price) => (price.currency.symbol === currency));
-
-        console.log(index);
         return (
             <div className="PDP-ProductPrice">
                 <p className="PDP-ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>
@@ -20,7 +17,7 @@ class PDP extends PureComponent {
     }
 
     componentDidMount() {
-        console.log(this.props.product);
+        console.log(this.props);
     }
 
     componentDidUpdate() { 
@@ -30,10 +27,11 @@ class PDP extends PureComponent {
     
     renderAttributeItems(item, i) {
         const { value } = item;
+        const { setAttribute, product } = this.props;
 
         return (
-            <div className="PDP-AttributeItem" key={ i }>
-                <p className="PDP-ItemText">{ value }</p> 
+            <div className="PDP-AttributeItem" key={ i } onClick = { () => setAttribute(item) } >
+                <p className="PDP-ItemText">{ value }</p>  
             </div>
         );
     }

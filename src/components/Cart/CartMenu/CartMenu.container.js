@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import CartMenu from "./CartMenu.component";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity, getTotals } from "../../../redux/Cart/Cart.reducer";
+import { setItemInCart, decreaseQuantity, getTotals, setCurrency } from "../../../redux/Cart/Cart.reducer";
 
 class CartMenuContainer extends PureComponent {
     constructor(props) {
@@ -67,7 +67,8 @@ const mapStateToProps = state => {
     return {
         itemsInCart: state.cart.itemsInCart,
         cartTotalQuantity: state.cart.cartTotalQuantity,
-        cartTotalAmount: state.cart.cartTotalAmount
+        cartTotalAmount: state.cart.cartTotalAmount,
+        currency: state.cart.currency
     }
 }
 

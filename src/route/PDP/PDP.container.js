@@ -3,7 +3,7 @@ import PDP from "./PDP.component";
 import { executePost } from "../../util/Request.util";
 import { Field, Query } from "@tilework/opus";
 import { connect } from "react-redux";
-import { setItemInCart, getTotals } from "../../redux/Cart/Cart.reducer";
+import { setItemInCart, getTotals, setItemAttribute } from "../../redux/Cart/Cart.reducer";
 
 class PDPContainer extends PureComponent {
     constructor(props) {
@@ -18,6 +18,34 @@ class PDPContainer extends PureComponent {
         setItemInCart(product);
         this.props.getTotals();
     };
+
+    handleSetAttribute = (itemIn) => {
+        const { product } = this.state;
+        const { attributes } = this.state.product;
+        const index2 = attributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
+        const index3 = attributes[index2].items.findIndex((item) => (item === itemIn));
+        console.log(index2);
+        console.log(index3);
+
+        console.log(this.state);
+        const { setItemAttribute } = this.props;
+    
+        const extract = (({ id, attributes}) => ({ id, attributes}))(product);
+        const test = (({ id }) => ({ id }))(product);
+        console.log(test);
+       
+        if (this.state.product !== undefined) { 
+            console.log(this.state.product.attributes[index2]);
+            extract.attributes[index2].items.filter((item) => item === itemIn);
+            console.log(extract);
+        }
+        else { return console.log("error")};
+        const attributeName = product.attributes[index2].id;
+        const allAttributeItems = product.attributes[index2].items;
+        const test2 = Object.assign({}, test, { selectedAttribute: attributeName, allAttributeItems, itemIn });
+        console.log(test2);
+       setItemAttribute(test2);
+    }
   
     componentDidMount() {
         this.productQuery();
@@ -46,7 +74,7 @@ class PDPContainer extends PureComponent {
     }
 
     getCategory(product) {
-            this.setState(product);     
+            this.setState(product);
     }
 
     render(){
@@ -56,6 +84,7 @@ class PDPContainer extends PureComponent {
                     { ...this.props }
                     { ...this.state }
                     addToCart={ this.handleAddToCart }
+                    setAttribute = { this.handleSetAttribute }
                 />  
             );
         } else {
@@ -66,9 +95,10 @@ class PDPContainer extends PureComponent {
 
 const mapStateToProps = state => ({
     itemsInCart: state.cart.itemsInCart,
-    currency: state.cart.currency
+    currency: state.cart.currency,
+    itemAttributes: state.cart.itemAttributes
 });
 
-const mapDispatchToProps = { setItemInCart, getTotals };
+const mapDispatchToProps = { setItemInCart, getTotals, setItemAttribute };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PDPContainer);
