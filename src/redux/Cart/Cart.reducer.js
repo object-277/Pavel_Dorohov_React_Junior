@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -10,7 +10,9 @@ const cartSlice = createSlice({
         cartTotalAmount: [],
         Category: localStorage.getItem("category"),
         currency: localStorage.getItem("currency"),
-        itemAttributes: []
+        itemAttributes: localStorage.getItem("selectedAttributes") 
+        ? JSON.parse(localStorage.getItem("selectedAttributes")) 
+        : []
     },
     reducers: {
         setItemInCart: (state, action) => {
@@ -96,6 +98,19 @@ const cartSlice = createSlice({
             }
             localStorage.setItem("cartItems", JSON.stringify(state.itemsInCart));
 
+            let ifAlreadyInState = state.itemAttributes.some((item) => JSON.stringify(item) === JSON.stringify(action.payload));
+            let ifAlreadyInState2 = state.itemAttributes.some((item) => JSON.stringify(item.selectedAttribute) === JSON.stringify(action.payload.selectedAttribute));
+            const needFindIndex = state.itemAttributes.findIndex((item) => (item.id === action.payload.id));
+            if (ifAlreadyInState === true) {
+                state.itemAttributes = state.itemAttributes.filter((item) => (item.itemIn.id !== action.payload.itemIn.id));
+            } else if (state.itemAttributes[needFindIndex] !== undefined &&
+                       state.itemAttributes[needFindIndex].id === action.payload.id && 
+                       ifAlreadyInState2 === true) {
+                state.itemAttributes[needFindIndex].itemIn = action.payload.itemIn;
+            } else {
+                state.itemAttributes.push(action.payload);
+            }
+            localStorage.setItem("selectedAttributes", JSON.stringify(state.itemAttributes));
         }
     }
 });

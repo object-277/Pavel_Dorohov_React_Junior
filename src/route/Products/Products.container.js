@@ -4,11 +4,8 @@ import { executePost } from "../../util/Request.util";
 import { productsQuery } from "../../query/products.query";
 
 class ProductsContainer extends PureComponent {
-    constructor(props) {
-        super(props)
-
-        this.state = {};
-    }
+    
+    state = {};
 
     componentDidMount() {
         this.getProducts();

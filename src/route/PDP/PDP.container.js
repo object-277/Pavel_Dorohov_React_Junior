@@ -6,11 +6,10 @@ import { connect } from "react-redux";
 import { setItemInCart, getTotals, setItemAttribute } from "../../redux/Cart/Cart.reducer";
 
 class PDPContainer extends PureComponent {
-    constructor(props) {
-        super(props)
 
-        this.state = {};
-    }
+    state = {
+        attributesSelected: [] 
+    };
 
     handleAddToCart = () => {
         const { setItemInCart } = this.props;
@@ -44,6 +43,7 @@ class PDPContainer extends PureComponent {
         const allAttributeItems = product.attributes[index2].items;
         const test2 = Object.assign({}, test, { selectedAttribute: attributeName, allAttributeItems, itemIn });
         console.log(test2);
+
        setItemAttribute(test2);
     }
   
@@ -84,7 +84,7 @@ class PDPContainer extends PureComponent {
                     { ...this.props }
                     { ...this.state }
                     addToCart={ this.handleAddToCart }
-                    setAttribute = { this.handleSetAttribute }
+                    //setAttribute = { this.handleSetAttribute }
                 />  
             );
         } else {

@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PDPGalleryContainer from "./PDPGallery";
+import ProductAttributesContainer from "../../components/ProductAttributes";
 import "./PDP.style.scss";
 
 class PDP extends PureComponent {
@@ -25,7 +26,7 @@ class PDP extends PureComponent {
         this.getPrice();    
     }
     
-    renderAttributeItems(item, i) {
+    /*renderAttributeItems(item, i) {
         const { value } = item;
         const { setAttribute, product } = this.props;
 
@@ -50,7 +51,7 @@ class PDP extends PureComponent {
                 </div>
             </div>
         );    
-    }
+    }*/
 
     renderPDP() {
         const { brand, name, description, attributes } = this.props.product;
@@ -61,7 +62,7 @@ class PDP extends PureComponent {
                  <div className="PDP-SideSection">
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
-                    { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
+                    <ProductAttributesContainer { ...this.props } />
                     <p id="PDP-PriceLabel">price:</p>
                     { this.getPrice() } 
                     <button className="PDP-AddToCart" onClick={ addToCart }>ADD TO CART</button>
