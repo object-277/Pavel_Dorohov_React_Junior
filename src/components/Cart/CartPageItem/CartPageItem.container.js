@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity, getTotals } from "../../../redux/Cart/Cart.reducer";
+import { setItemInCart, decreaseQuantity, getTotals, setItemAttribute } from "../../../redux/Cart/Cart.reducer";
 import CartPageItem from "./CartPageItem.component";
 
 class CartPageItemContainer extends PureComponent {
@@ -14,6 +14,32 @@ class CartPageItemContainer extends PureComponent {
         this.handleIncrease = this.handleIncrease.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
     };
+
+    handleSetAttribute = (itemIn) => {
+        const { itemInCart } = this.props;
+        const { allAttributes } = this.props.itemInCart;
+        const index2 = allAttributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
+        const index3 = allAttributes[index2].items.findIndex((item) => (item === itemIn));
+        console.log(index2);
+        console.log(index3); 
+
+        console.log(this.state);
+        const { setItemAttribute } = this.props;
+    
+        const extract = (({ id, attributes}) => ({ id, attributes}))(itemInCart);
+        const test = (({ id }) => ({ id }))(itemInCart);
+        console.log(test);
+       
+           // extract.attributes[index2].items.filter((item) => item === itemIn);
+           // console.log(extract);
+       
+        const attributeName = itemInCart.attributes[index2].id;
+        const allAttributeItems = itemInCart.attributes[index2].items;
+        const test2 = Object.assign({}, test, { selectedAttribute: attributeName, allAttributeItems, itemIn });
+        console.log(test2);
+       
+       setItemAttribute(test2);
+    }
 
     changeImgForwards() {
         const { gallery } = this.props.item;
@@ -56,6 +82,7 @@ class CartPageItemContainer extends PureComponent {
                 changeImgBackwards = { this.changeImgBackwards }
                 increaseAmount={ this.handleIncrease }
                 decreaseAmount={ this.handleDecrease }
+                setAttribute= { this.handleSetAttribute }
             />
         );
     }
@@ -64,10 +91,11 @@ class CartPageItemContainer extends PureComponent {
 const mapStateToProps = state => {
     return {
         itemsInCart: state.cart.itemsInCart,
-        currency: state.cart.currency
+        currency: state.cart.currency,
+        itemAttributes: state.cart.itemAttributes
     }
 }
 
-const mapDispatchToProps = { setItemInCart, decreaseQuantity, getTotals };
+const mapDispatchToProps = { setItemInCart, decreaseQuantity, getTotals, setItemAttribute };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPageItemContainer);

@@ -9,7 +9,7 @@ class CartPage extends PureComponent {
     
           return (
             <div className="CartPage-Wrapper">
-              { itemsInCart.length > 0 ? itemsInCart.map((item, i) => <CartPageItemContainer item={ item } key={ i }/> ) 
+              { itemsInCart.length > 0 ? itemsInCart.map((item, i) => <CartPageItemContainer itemInCart={ item } key={ i }/> ) 
               : <p className="CartPage-Empty">Your Bag is empty</p>}
             </div> 
         );

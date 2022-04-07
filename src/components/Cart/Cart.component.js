@@ -27,13 +27,15 @@ class Cart extends PureComponent {
             <img src={ CartIcon } alt="Shopping Cart" />
             { cartTotalQuantity > 0 && this.renderCartQuantity() }
         </div>
-        { isClicked && 
-          <div className="CartMenu-BackgroundOverlay">
+        { isClicked &&
+          <div>
+            <div className="CartMenu-BackgroundOverlay" onClick={ onClick }>
+            </div>
             <CartMenuContainer 
               { ...this.state } 
               cartMenuUnmounts = { this.props.cartMenuUnmounts }
             /> 
-          </div>
+          </div> 
         }
       </>
     );

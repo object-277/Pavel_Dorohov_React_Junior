@@ -12,7 +12,7 @@ class ProductAttributes extends PureComponent {
                     { id }
                 </div>
                 <div className="PDP-AttributeItems">
-                   { items.map((item, i) => <AttributeItemsContainer item={ item } { ...this.props } key={ i } /> ) } 
+                   { items.map((item, i) => <AttributeItemsContainer attribute ={ id } item={ item } { ...this.props } key={ i } /> ) } 
                 </div>
             </div>
         );    

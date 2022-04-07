@@ -26,32 +26,63 @@ class PDP extends PureComponent {
         this.getPrice();    
     }
     
-    /*renderAttributeItems(item, i) {
+    renderAttributeItems(item, i, attribute, index) {
         const { value } = item;
-        const { setAttribute, product } = this.props;
+        const { setAttribute, productToCart, product } = this.props;
+        const selectedStyle = {
+            background: '#1D1F22',
+            color: '#FFF'
+        };
+        const isSelectedTrue = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
+       
+       productToCart[0].productReadyToCart.attributes[index].items.id === item.id
+             : false;
+        
+           if (isSelectedTrue) {
+                    console.log(isSelectedTrue );
+                    } else {
+                        console.log("lol");
+                    }
+        const ifColorStyle = {
+            background: value,
+            width: '63px',
+            height: '45px',
+            border: '1px solid #1D1F22'
+        };
 
         return (
-            <div className="PDP-AttributeItem" key={ i } onClick = { () => setAttribute(item) } >
-                <p className="PDP-ItemText">{ value }</p>  
+            
+            <div className="PDP-AttributeItem" key={ i } 
+                onClick = {
+                () => setAttribute(item) 
+                } 
+               style={ isSelectedTrue === true ? selectedStyle : null 
+               } 
+            >
+                <p className="PDP-ItemText"
+               style={ attribute.id === 'Color' ? ifColorStyle : null  }
+            >
+               { attribute.id !== 'Color' && value }
+            </p>   
             </div>
         );
     }
 
-    renderAttributes(attribute, i) {
+    renderAttributes(attribute, index) {
         const { id } = attribute;
         const { items } = attribute;
 
         return (
-            <div className="PDP-Attributes" key={ i }>
+            <div className="PDP-Attributes" key={ index }>
                 <div className="PDP-AttributeName">
                     { id }
                 </div>
                 <div className="PDP-AttributeItems">
-                   { items.map((item, i) => this.renderAttributeItems(item, i)) } 
+                   { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index)) } 
                 </div>
             </div>
         );    
-    }*/
+    }
 
     renderPDP() {
         const { brand, name, description, attributes } = this.props.product;
@@ -62,7 +93,8 @@ class PDP extends PureComponent {
                  <div className="PDP-SideSection">
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
-                    <ProductAttributesContainer { ...this.props } />
+                    {/*<ProductAttributesContainer { ...this.props } />*/}
+                    { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
                     <p id="PDP-PriceLabel">price:</p>
                     { this.getPrice() } 
                     <button className="PDP-AddToCart" onClick={ addToCart }>ADD TO CART</button>

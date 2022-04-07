@@ -6,10 +6,11 @@ import { setItemAttribute } from "../../../redux/Cart/Cart.reducer";
 class AttributeItemsContainer extends PureComponent {
 
     state = {
-        isSelected: false
+        isSelected: false,
+        productAttributes: this.props.product.attributes
     }
 
-    handleSetAttribute = (itemIn) => {
+   /* handleSetAttribute = (itemIn) => {
         const { product } = this.props;
         const { attributes } = this.props.product;
         const index2 = attributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
@@ -40,12 +41,54 @@ class AttributeItemsContainer extends PureComponent {
         setItemAttribute(test2);
     }
 
+    handleSetAttributeNotInCart = (itemIn) => {
+        const { productAttributes } = this.state;
+        const { product } = this.props;
+        const { attributes } = this.props.product;
+        const index2 = attributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
+        const index3 = attributes[index2].items.findIndex((item) => (item === itemIn));
+        console.log(index2);
+        console.log(index3);
+        this.setState(prevState => ({
+            isSelected: !prevState.isSelected
+        }));
+
+         if (product[attributeIndex].attributes[attributeIndex2].items.id === itemIn.id) {
+            product[attributeIndex].attributes = productAttributes;
+        } else if (product[attributeIndex].attributes[attributeIndex2].id === action.payload.selectedAttribute &&
+                    state.itemsInCart[attributeIndex].id === action.payload.id
+            ) 
+            {
+                state.itemsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.itemIn;
+        } else {
+            state.itemsInCart[attributeIndex].attributes[attributeIndex2].items = state.itemsInCart[attributeIndex].attributes[attributeIndex2].items.filter((productInCart) =>
+        (productInCart.id === action.payload.itemIn.id));
+        }
+        localStorage.setItem("cartItems", JSON.stringify(state.itemsInCart));
+
+        let ifAlreadyInState = state.itemAttributes.some((item) => JSON.stringify(item) === JSON.stringify(action.payload));
+        let ifAlreadyInState2 = state.itemAttributes.some((item) => JSON.stringify(item.selectedAttribute) === JSON.stringify(action.payload.selectedAttribute));
+        const needFindIndex = state.itemAttributes.findIndex((item) => (item.id === action.payload.id));
+        if (ifAlreadyInState === true) {
+            state.itemAttributes = state.itemAttributes.filter((item) => (item.itemIn.id !== action.payload.itemIn.id));
+        } else if (state.itemAttributes[needFindIndex] !== undefined &&
+                   state.itemAttributes[needFindIndex].id === action.payload.id && 
+                   ifAlreadyInState2 === true) {
+            state.itemAttributes[needFindIndex].itemIn = action.payload.itemIn;
+        } else {
+            state.itemAttributes.push(action.payload);
+        }
+        localStorage.setItem("selectedAttributes", JSON.stringify(state.itemAttributes));
+    }*/
+
     render() {
+        const { handleSetAttribute, handleSetAttributeNotInCart } = this.props;
         return (
             <AttributeItems
                 { ...this.state } 
                 { ...this.props } 
-                setAttribute={ this.handleSetAttribute }
+                setAttribute={ handleSetAttribute }
+                setAttributeIfNotInCart={ handleSetAttributeNotInCart }
             />
         );
     }
