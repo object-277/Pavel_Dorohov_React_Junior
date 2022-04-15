@@ -5,9 +5,9 @@ import "./Products.style.scss";
 class Products extends PureComponent {
 
     renderProducts() {
-        const { category: { products = [] } = {}, Category } = this.props;
-        if (Category !== "all") {
-           const filteredProducts = products.filter((product) => product.category === Category)
+        const { category: { products = [] } = {}, selectedCategory } = this.props;
+        if (selectedCategory !== "all") {
+           const filteredProducts = products.filter((product) => product.category === selectedCategory)
            return (
                 <div className="Product-Page"> 
                     { products && filteredProducts.map((product, i) => <ProductCardContainer product={ product } key={ i } /> )}
@@ -29,11 +29,11 @@ class Products extends PureComponent {
     }
 
     render() {
-        const { Category } = this.props;
+        const { selectedCategory } = this.props;
 
         return (
             <div className="Products">
-                 <h1 className="Products-CategoryName">{ Category }</h1>
+                 <h1 className="Products-CategoryName">{ selectedCategory }</h1>
                 { this.renderProducts() }  
             </div>  
         );

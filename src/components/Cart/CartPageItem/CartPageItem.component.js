@@ -9,7 +9,7 @@ class CartPageItem extends PureComponent {
 
   getPrice() {
     const { currency} = this.props; 
-    const { prices } = this.props.itemInCart;
+    const { prices } = this.props.productInCart;
     const index = prices.findIndex((price) => (price.currency.symbol === currency));
 
     return (
@@ -27,7 +27,7 @@ class CartPageItem extends PureComponent {
   renderAttributeItems(item, i, attribute, index) {
     const { value } = item;
     const { setAttribute } = this.props;
-    const { allAttributes, attributes } = this.props.itemInCart;
+    const { allAttributes, attributes } = this.props.productInCart;
     const selectedStyle = {
         background: '#1D1F22',
         color: '#FFF'
@@ -35,10 +35,10 @@ class CartPageItem extends PureComponent {
 
     const isSelectedTrue = allAttributes !== attributes && attributes[index].items.id === item.id ? true : false;
        if (isSelectedTrue) {
-                console.log(isSelectedTrue );
-                } else {
-                    console.log("lol");
-                }
+          console.log(isSelectedTrue );
+        } else {
+              console.log("lol");
+        }
     const ifColorStyle = {
       background: value,
       width: '63px',
@@ -48,16 +48,11 @@ class CartPageItem extends PureComponent {
       
     return (
         
-        <div className="PDP-AttributeItem" key={ i } 
-            onClick = {
-            //isProductInCart === false ?
-            () => setAttribute(item) 
-            //() => handleSetAttribute(item) 
-            } 
-           style={ isSelectedTrue === true ? selectedStyle : null 
-           } 
+        <div className="CartPageItem-AttributeItem" key={ i } 
+             onClick = { () => setAttribute(item) } 
+             style={ isSelectedTrue === true ? selectedStyle : null } 
         >
-            <p className="PDP-ItemText"
+            <p className="CartPageItem-ItemText"
                style={ attribute.id === 'Color' ? ifColorStyle : null  }
             >
                { attribute.id !== 'Color' && value }
@@ -66,21 +61,21 @@ class CartPageItem extends PureComponent {
     );
 }
 
-renderAttributes(attribute, index) {
-    const { items } = attribute;
+  renderAttributes(attribute, index) {
+      const { items } = attribute;
 
-    return (
-        <div className="CartPageItem-Attributes" key={ index }>
-            <div className="PDP-AttributeItems">
-               { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index)) } 
-            </div>
+      return (
+          
+        <div className="CartPageItem-AttributeItems" key={ index }>
+          { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index)) } 
         </div>
-    );    
-}
+         
+      );    
+  }
 
   render() {
-    const { itemInCart, increaseAmount, decreaseAmount, index, changeImgForwards, changeImgBackwards } = this.props;
-    const { brand, name, gallery, prices, cartQuantity, allAttributes } = itemInCart;
+    const { productInCart, increaseAmount, decreaseAmount, index, changeImgForwards, changeImgBackwards } = this.props;
+    const { brand, name, gallery, prices, cartQuantity, allAttributes } = productInCart;
     
     return (
       <div className="CartPageItem">
@@ -92,9 +87,11 @@ renderAttributes(attribute, index) {
           { name }
         </div>
         { this.getPrice() }
-        { allAttributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
+        <div className="CartPageItem-Attributes">
+          { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
+        </div>
         <div className="CartPageItem-BtnImgGroup">
-          <button className="CartPageItem-IncreaseQuantity" onClick={() => increaseAmount(itemInCart) }>
+          <button className="CartPageItem-IncreaseQuantity" onClick={() => increaseAmount(productInCart) }>
               <div className="CartPageItem-IncreaseButtonWrapper">
                 <img id="Horizontal" src={ Minus } alt="Increase product quantity" />
                 <img id="Vertical" src={ Plus } alt="Increase product quantity" />
@@ -103,13 +100,13 @@ renderAttributes(attribute, index) {
           <div className="CartPageItem-Quantity">
             { cartQuantity }
           </div>
-          <button className="CartPageItem-DecreaseQuantity" onClick={() => decreaseAmount(itemInCart) }>
+          <button className="CartPageItem-DecreaseQuantity" onClick={() => decreaseAmount(productInCart) }>
             <img className="CartPageItem-ButtonImg" src={ Minus } alt="Decrease product quantity" />
           </button>
           <div className="CartPageItem-Gallery">
             <img className="CartPageItem-Img" src={ gallery[index] } alt="Product in your Bag" />
-            <img id="VectorLeft" src={ VectorLeft } alt="Previous" onClick={ (e) => changeImgBackwards(e) } />
-            <img id="VectorRight" src={ VectorRight } alt="Next" onClick={ (e) => changeImgForwards(e) } />
+            { gallery.length > 1 && <img id="VectorLeft" src={ VectorLeft } alt="Previous" onClick={ () => changeImgBackwards() } /> }
+            { gallery.length > 1 && <img id="VectorRight" src={ VectorRight } alt="Next" onClick={ () => changeImgForwards() } /> }
           </div>
         </div>
       </div>

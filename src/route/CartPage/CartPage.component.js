@@ -5,11 +5,11 @@ import "./CartPage.style.scss";
 class CartPage extends PureComponent {
 
       renderCartWrapper() {
-          const { itemsInCart } = this.props;
+          const { productsInCart } = this.props;
     
           return (
             <div className="CartPage-Wrapper">
-              { itemsInCart.length > 0 ? itemsInCart.map((item, i) => <CartPageItemContainer itemInCart={ item } key={ i }/> ) 
+              { productsInCart.length > 0 ? productsInCart.map((product, i) => <CartPageItemContainer productInCart={ product } key={ i }/> ) 
               : <p className="CartPage-Empty">Your Bag is empty</p>}
             </div> 
         );

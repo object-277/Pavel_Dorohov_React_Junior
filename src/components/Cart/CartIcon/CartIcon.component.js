@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
-import CartMenuContainer from "./CartMenu/CartMenu.container";
-import CartIcon from "./Cart.svg";
+import CartMenuContainer from "../CartMenu/CartMenu.container";
+import cartIcon from "./Cart.svg";
 import CartQuantityIcon from "./CartQuantity.svg";  
 
-class Cart extends PureComponent {
+class CartIcon extends PureComponent {
 
   renderCartQuantity() {
     const { cartTotalQuantity } = this.props;
@@ -24,7 +24,7 @@ class Cart extends PureComponent {
     return (
       <>
         <div className="cartIcon" onClick={ onClick }>
-            <img src={ CartIcon } alt="Shopping Cart" />
+            <img src={ cartIcon } alt="Shopping Cart" />
             { cartTotalQuantity > 0 && this.renderCartQuantity() }
         </div>
         { isClicked &&
@@ -42,4 +42,4 @@ class Cart extends PureComponent {
   } 
 }
 
-export default Cart;
+export default CartIcon;

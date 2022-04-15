@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import CartMenu from "./CartMenu.component";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity, getTotals, setCurrency } from "../../../redux/Cart/Cart.reducer";
+import { addProductToCart, decreaseQuantity, getTotals } from "../../../redux/Cart/Cart.reducer";
 
 class CartMenuContainer extends PureComponent {
     constructor(props) {
@@ -11,7 +11,6 @@ class CartMenuContainer extends PureComponent {
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
-        //this.handleClickOutside = this.handleClickOutside.bind(this);
     };
 
     handleClick(e) {
@@ -19,13 +18,6 @@ class CartMenuContainer extends PureComponent {
             notClicked: !prevState.notClicked
         }));
     }
-    
-    /*handleClickOutside = (event) => {
-        const { current } = this.ref;
-        if (current && !current.contains(event.target)) {
-            this.props.onClickOutside() && this.props.onClickOutside();
-        }
-    };*/
 
     handleDecrease = (productInCart) => {
         this.props.decreaseQuantity(productInCart);
@@ -33,13 +25,9 @@ class CartMenuContainer extends PureComponent {
     };
     
     handleIncrease = (productInCart) => {
-        this.props.setItemInCart(productInCart);
+        this.props.addProductToCart(productInCart);
         this.props.getTotals();
     };
-
-    /*componentDidMount() {
-        document.addEventListener('click', this.handleClickOutside, true);
-    }*/
 
     componentWillUnmount() {
         this.setState({notClicked: true});
@@ -53,8 +41,8 @@ class CartMenuContainer extends PureComponent {
                     { ...this.state }
                     { ...this.props }
                     changeClickedState = { this.handleClick }
-                    decreaseAmount={ this.handleDecrease }
-                    increaseAmount ={ this.handleIncrease }
+                    decreaseQuantity={ this.handleDecrease }
+                    increaseQuantity ={ this.handleIncrease }
                 /> 
             );
         } else {
@@ -65,13 +53,13 @@ class CartMenuContainer extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        itemsInCart: state.cart.itemsInCart,
+        productsInCart: state.cart.productsInCart,
         cartTotalQuantity: state.cart.cartTotalQuantity,
-        cartTotalAmount: state.cart.cartTotalAmount,
+        cartTotalPrice: state.cart.cartTotalPrice,
         currency: state.cart.currency
     }
 }
 
-const mapDispatchToProps = { setItemInCart, decreaseQuantity, getTotals };
+const mapDispatchToProps = { addProductToCart, decreaseQuantity, getTotals };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartMenuContainer);

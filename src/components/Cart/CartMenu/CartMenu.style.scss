@@ -42,11 +42,12 @@
         background-color: #5ECE7B;
     }
 
-    &-Item {
-        display: flex;
-        justify-content: space-between;
+    &-Product {
         border: 1px solid;
         margin-bottom: 41px;
+        width: 293px;
+        height: 137px;
+        position: relative;
     }
 
     &-BrandName {
@@ -62,7 +63,7 @@
         left: 188px;
     }
 
-    &-TotalAmountWrapper {
+    &-TotalPriceWrapper {
         width: 289px;
         height: 28px;
         margin: 0;
@@ -87,7 +88,7 @@
         line-height: 112%;
     }
 
-    &-TotalAmount {
+    &-TotalPrice {
         width: 95px;
         height: 26px;
         display: flex;
@@ -149,6 +150,27 @@
         position: relative;
         top: 30px;
         text-align: center;
+    }
+
+    &-AttributeWrapper {
+        /* width: 40%; */
+        height: 24px;
+        display: inline-flex;
+        /* justify-content: space-between; */
+        /* margin-right: 8px; */
+        position: absolute;
+        top: 113px;
+    }
+
+    &-Attribute {
+        top: 113px;
+        margin-right: 8px;
+        border: 1px solid black;
+    }
+
+    &-SelectedAttribute {
+        height: 24px;
+        width: 24px;
     }
 }
 

@@ -6,7 +6,7 @@ class NavBarMenu extends PureComponent {
 
     renderMenuItem(category, i) {
         const { name } = category;
-        const { Category, onClick } = this.props;
+        const { selectedCategory, onClick } = this.props;
         const activeCategoryStyle = {
             color: '#5ECEB7',
             borderBottom: '2px solid #5ECEB7'
@@ -15,7 +15,7 @@ class NavBarMenu extends PureComponent {
         return (
             <Link className="NavBar-MenuItemLink" to={ "/" } key={ i } onClick={ () => onClick(name) } >
                 <div className="NavBar-MenuItem" key={ i } 
-                    style={ name === Category ? activeCategoryStyle : null } 
+                    style={ name === selectedCategory ? activeCategoryStyle : null } 
                 >
                     <p className="NavBar-CategoryName">{ name }</p>
                 </div>

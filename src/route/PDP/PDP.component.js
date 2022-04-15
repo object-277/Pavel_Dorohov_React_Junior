@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import PDPGalleryContainer from "./PDPGallery";
-import ProductAttributesContainer from "../../components/ProductAttributes";
 import "./PDP.style.scss";
 
 class PDP extends PureComponent {
@@ -17,12 +16,7 @@ class PDP extends PureComponent {
         );         
     }
 
-    componentDidMount() {
-        console.log(this.props);
-    }
-
     componentDidUpdate() { 
-        console.log(this.props.product);
         this.getPrice();    
     }
     
@@ -34,15 +28,9 @@ class PDP extends PureComponent {
             color: '#FFF'
         };
         const isSelectedTrue = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
-       
-       productToCart[0].productReadyToCart.attributes[index].items.id === item.id
+                               productToCart[0].productReadyToCart.attributes[index].items.id === item.id
              : false;
         
-           if (isSelectedTrue) {
-                    console.log(isSelectedTrue );
-                    } else {
-                        console.log("lol");
-                    }
         const ifColorStyle = {
             background: value,
             width: '63px',
@@ -93,7 +81,6 @@ class PDP extends PureComponent {
                  <div className="PDP-SideSection">
                     <p id="PDP-Brand">{ brand }</p>
                     <p id="PDP-Name">{ name }</p>
-                    {/*<ProductAttributesContainer { ...this.props } />*/}
                     { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
                     <p id="PDP-PriceLabel">price:</p>
                     { this.getPrice() } 
@@ -115,7 +102,7 @@ class PDP extends PureComponent {
                 </div>
             );
         } else {
-             return <p>error</p>         
+             return <p>Loading...</p>         
         }
     }
 }

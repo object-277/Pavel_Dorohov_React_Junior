@@ -28,7 +28,7 @@ class NavBarMenuContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    Category: state.cart.Category
+    selectedCategory: state.cart.selectedCategory
 });
 
 const mapDispatchToProps = { setCategory };

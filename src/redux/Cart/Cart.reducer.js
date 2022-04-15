@@ -1,15 +1,14 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
+import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        itemsInCart: localStorage.getItem("cartItems") 
-        ? JSON.parse(localStorage.getItem("cartItems")) 
+        productsInCart: localStorage.getItem("cartProducts") 
+        ? JSON.parse(localStorage.getItem("cartProducts")) 
         : [],
         cartTotalQuantity: 0,
-        cartTotalAmount: [],
-        Category: localStorage.getItem("category"),
+        cartTotalPrice: [],
+        selectedCategory: localStorage.getItem("category"),
         currency: localStorage.getItem("currency"),
         itemAttributes: localStorage.getItem("selectedAttributes") 
         ? JSON.parse(localStorage.getItem("selectedAttributes")) 
@@ -19,59 +18,59 @@ const cartSlice = createSlice({
         : []
     },
     reducers: {
-        setItemInCart: (state, action) => {
+        addProductToCart: (state, action) => {
             if (state.productToCart.length === 0) {
-                const itemIndex = state.itemsInCart.findIndex(
+                const productIndex = state.productsInCart.findIndex(
                     (product) => JSON.stringify(product) === JSON.stringify(action.payload));
-                if(itemIndex >= 0) {
-                    state.itemsInCart[itemIndex].cartQuantity += 1;
+                if(productIndex >= 0) {
+                    state.productsInCart[productIndex].cartQuantity += 1;
                 } else {
                     const newProduct = { ...action.payload, cartQuantity: 1 };
-                    state.itemsInCart.push(newProduct);
+                    state.productsInCart.push(newProduct);
                 }
             } else {
-                const ifAlreadyInCart= state.itemsInCart.some((productInCart) => 
+                const ifAlreadyInCart= state.productsInCart.some((productInCart) => 
                 JSON.stringify(productInCart.attributes) === JSON.stringify(action.payload.attributes) &&
                 JSON.stringify(productInCart.id) === JSON.stringify(action.payload.id));
-                const itemIndex = state.itemsInCart.findIndex(
+                const productIndex = state.productsInCart.findIndex(
                     (product) => JSON.stringify(product.attributes) === JSON.stringify(action.payload.attributes));
                     
                 if(ifAlreadyInCart) {
-                    state.itemsInCart[itemIndex].cartQuantity += 1;
+                    state.productsInCart[productIndex].cartQuantity += 1;
                     state.productToCart = [];
                     localStorage.setItem("productSetToCart", "[]");
                 } else {
                 const newProduct = { ...action.payload, cartQuantity: 1 };
-                state.itemsInCart.push(newProduct);
+                state.productsInCart.push(newProduct);
                 state.productToCart = [];
                 localStorage.setItem("productSetToCart", "[]");
                 }
             }
-            localStorage.setItem("cartItems", JSON.stringify(state.itemsInCart));
+            localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
         },
-        removeItemInCart: (state, action) => {
-            const stillInCart = state.itemsInCart.filter(
+        removeProductFromCart: (state, action) => {
+            const stillInCart = state.productsInCart.filter(
                 (productInCart) => JSON.stringify(productInCart) !== JSON.stringify(action.payload)
             );
-            state.itemsInCart = stillInCart;
-            localStorage.setItem("cartItems", JSON.stringify(state.itemsInCart));
+            state.productsInCart = stillInCart;
+            localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
         },
         decreaseQuantity: (state, action) => {
-            const itemIndex = state.itemsInCart.findIndex(
+            const productIndex = state.productsInCart.findIndex(
                 productInCart => JSON.stringify(productInCart) === JSON.stringify(action.payload)
             )
-            if(state.itemsInCart[itemIndex].cartQuantity > 1) {
-                state.itemsInCart[itemIndex].cartQuantity -= 1
-            } else if(state.itemsInCart[itemIndex].cartQuantity === 1) {
-                const stillInCart = state.itemsInCart.filter(
+            if(state.productsInCart[productIndex].cartQuantity > 1) {
+                state.productsInCart[productIndex].cartQuantity -= 1
+            } else if(state.productsInCart[productIndex].cartQuantity === 1) {
+                const stillInCart = state.productsInCart.filter(
                     (productInCart) => JSON.stringify(productInCart) !== JSON.stringify(action.payload)
                 );
-                state.itemsInCart = stillInCart;
+                state.productsInCart = stillInCart;
             }    
-            localStorage.setItem("cartItems", JSON.stringify(state.itemsInCart));
+            localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
         },
         getTotals: (state, action) => {
-            let { total, quantity } = state.itemsInCart.reduce((cartTotal, productInCart) => {
+            let { total, quantity } = state.productsInCart.reduce((cartTotal, productInCart) => {
                 const { prices,  cartQuantity } = productInCart;
                 const { currency } = state;
                 const index = prices.findIndex((price) => (price.currency.symbol === currency));
@@ -86,38 +85,38 @@ const cartSlice = createSlice({
                 quantity: 0
             });
             state.cartTotalQuantity = quantity;
-            state.cartTotalAmount = total;
+            state.cartTotalPrice = total;
         },
         setCategory: (state, action) => {
-            state.Category = action.payload;
+            state.selectedCategory = action.payload;
             localStorage.setItem("category", action.payload);
         },
         setCurrency: (state, action) => {
             state.currency = action.payload;
             localStorage.setItem("currency", action.payload);
         },
-        setItemAttribute: (state, action) => {
-            const { itemsInCart, itemAttributes } = state;
+        setProductAttribute: (state, action) => {
+            const { productsInCart, itemAttributes } = state;
             const attributeIndex = 
-                itemsInCart.findIndex((productInCart) => (productInCart.id === action.payload.id)
+                productsInCart.findIndex((productInCart) => (productInCart.id === action.payload.id)
                 
             );
-            const attributeIndex2 = itemsInCart[attributeIndex].attributes.findIndex((attribute) =>
+            const attributeIndex2 = productsInCart[attributeIndex].attributes.findIndex((attribute) =>
             (attribute.id === action.payload.selectedAttribute)
             );
 
-            if ( itemsInCart[attributeIndex].attributes[attributeIndex2].items.id === action.payload.itemIn.id) {
-                 itemsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.allAttributeItems;
-            } else if (itemsInCart[attributeIndex].attributes[attributeIndex2].id === action.payload.selectedAttribute &&
-                        itemsInCart[attributeIndex].id === action.payload.id
+            if ( productsInCart[attributeIndex].attributes[attributeIndex2].items.id === action.payload.itemIn.id) {
+                 productsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.allAttributeItems;
+            } else if (productsInCart[attributeIndex].attributes[attributeIndex2].id === action.payload.selectedAttribute &&
+                        productsInCart[attributeIndex].id === action.payload.id
                 ) 
                 {
-                    itemsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.itemIn;
+                    productsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.itemIn;
             } else {
-                itemsInCart[attributeIndex].attributes[attributeIndex2].items = itemsInCart[attributeIndex].attributes[attributeIndex2].items.filter((productInCart) =>
+                productsInCart[attributeIndex].attributes[attributeIndex2].items = productsInCart[attributeIndex].attributes[attributeIndex2].items.filter((productInCart) =>
             (productInCart.id === action.payload.itemIn.id));
             }
-            localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
+            localStorage.setItem("cartProducts", JSON.stringify(productsInCart));
 
             let ifAlreadyInState = itemAttributes.some((item) => JSON.stringify(item) === JSON.stringify(action.payload));
             let ifAlreadyInState2 = itemAttributes.some((item) => JSON.stringify(item.selectedAttribute) === JSON.stringify(action.payload.selectedAttribute));
@@ -165,13 +164,13 @@ const cartSlice = createSlice({
     }
 });
 
-export const { setItemInCart, 
-               removeItemInCart, 
+export const { addProductToCart, 
+               removeProductFromCart, 
                decreaseQuantity, 
                getTotals, 
                setCategory, 
                setCurrency,
-               setItemAttribute,
+               setProductAttribute,
                setProductToCart,
             } = cartSlice.actions;
 

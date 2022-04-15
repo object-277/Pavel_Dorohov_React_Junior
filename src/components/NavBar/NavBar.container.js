@@ -3,16 +3,15 @@ import NavBar from "./NavBar.component";
 import { categoriesQuery } from "../../query/category.query";
 import { productsQuery } from "../../query/products.query";
 import { executePost } from "../../util/Request.util";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { setCategory } from "../../redux/Cart/Cart.reducer";
 
 class NavBarContainer extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = { 
-            categories: [],
-            category: [],
-            selectedCurrency: '$'
-         };
-         this.getCurrency = this.getCurrency.bind(this);
+        this.state = {};
+         this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -20,8 +19,9 @@ class NavBarContainer extends PureComponent {
         this.getProducts();
     }
 
-    getCurrency(symbol) {
-        this.setState({selectedCurrency: symbol});
+    handleClick = (name) => {
+        const { setCategory } = this.props;
+        setCategory(name);
     }
 
     async getCategories() {
@@ -43,11 +43,16 @@ class NavBarContainer extends PureComponent {
             <NavBar
                 { ...this.props }
                 { ...this.state }
-                getCurrency={ this.getCurrency }
-                selectedCurrency={ this.state.selectedCurrency }
+                onClick={ this.handleClick }
             />
         );
     }
 }
 
-export default NavBarContainer;
+const mapStateToProps = state => ({
+    selectedCategory: state.cart.selectedCategory
+});
+
+const mapDispatchToProps = { setCategory };
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBarContainer));

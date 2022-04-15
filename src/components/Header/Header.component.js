@@ -1,7 +1,5 @@
 import React, { PureComponent } from "react";
 import NavBar from "../NavBar";
-import CurrencyButton from "../CurrencyButton";
-import CartContainer from "../Cart/Cart.container";
 import "./Header.style.scss";
 import logo from "./logo.svg";
 

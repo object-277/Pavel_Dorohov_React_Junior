@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import Cart from "./Cart.component";
+import CartIcon from "./CartIcon.component";
 
-class CartContainer extends PureComponent {
+class CartIconContainer extends PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -27,7 +27,7 @@ class CartContainer extends PureComponent {
         const { isClicked } = this.state;
 
         return ( 
-            <Cart 
+            <CartIcon 
                 { ...this.state }
                 { ...this.props }
                 isClicked={ isClicked } 
@@ -40,9 +40,9 @@ class CartContainer extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        itemsInCart: state.cart.itemsInCart,
+        productsInCart: state.cart.productsInCart,
         cartTotalQuantity: state.cart.cartTotalQuantity,
     }
 }
 
-export default connect(mapStateToProps)(CartContainer);
+export default connect(mapStateToProps)(CartIconContainer);

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import ProductCard from "./ProductCard.component";
 import { connect } from "react-redux";
-import { setItemInCart, getTotals } from "../../redux/Cart/Cart.reducer";
+import { addProductToCart, getTotals } from "../../redux/Cart/Cart.reducer";
 
 class ProductCardContainer extends PureComponent {
     constructor(props) {
@@ -13,8 +13,8 @@ class ProductCardContainer extends PureComponent {
     };
 
     handleAddToCart  = () => {
-        const { product, setItemInCart } = this.props;
-        setItemInCart(product);
+        const { product, addProductToCart } = this.props;
+        addProductToCart(product);
         this.props.getTotals();
     };
 
@@ -31,10 +31,10 @@ class ProductCardContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    itemsInCart: state.cart.itemsInCart,
+    productsInCart: state.cart.productsInCart,
     currency: state.cart.currency
 });
 
-const mapDispatchToProps = { setItemInCart, getTotals };
+const mapDispatchToProps = { addProductToCart, getTotals };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCardContainer);

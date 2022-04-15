@@ -13,12 +13,12 @@ class AppRouter extends PureComponent {
     render() {
         return(
             <Router>
+                <Header />
                 <Switch> 
                     <Route exact path="/" component={ HomePage }/>
                     <Route path="/pdp/:id" component={ PDP } /> 
                     <Route path="/cart" component={ CartPage } /> 
                 </Switch>
-                <Header />
             </Router> 
         );
     }

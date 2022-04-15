@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import AttributeItems from "./AttributeItems.component";
 import { connect } from "react-redux";
-import { setItemAttribute } from "../../../redux/Cart/Cart.reducer";
+import { setProductAttribute } from "../../../redux/Cart/Cart.reducer";
 
 class AttributeItemsContainer extends PureComponent {
 
@@ -19,7 +19,7 @@ class AttributeItemsContainer extends PureComponent {
         console.log(index3);
 
         console.log(this.state);
-        const { setItemAttribute } = this.props;
+        const { setProductAttribute } = this.props;
     
         const extract = (({ id, attributes}) => ({ id, attributes}))(product);
         const test = (({ id }) => ({ id }))(product);
@@ -38,7 +38,7 @@ class AttributeItemsContainer extends PureComponent {
         this.setState(prevState => ({
             isSelected: !prevState.isSelected
         }));
-        setItemAttribute(test2);
+        setProductAttribute(test2);
     }
 
     handleSetAttributeNotInCart = (itemIn) => {
@@ -56,15 +56,15 @@ class AttributeItemsContainer extends PureComponent {
          if (product[attributeIndex].attributes[attributeIndex2].items.id === itemIn.id) {
             product[attributeIndex].attributes = productAttributes;
         } else if (product[attributeIndex].attributes[attributeIndex2].id === action.payload.selectedAttribute &&
-                    state.itemsInCart[attributeIndex].id === action.payload.id
+                    state.productsInCart[attributeIndex].id === action.payload.id
             ) 
             {
-                state.itemsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.itemIn;
+                state.productsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.itemIn;
         } else {
-            state.itemsInCart[attributeIndex].attributes[attributeIndex2].items = state.itemsInCart[attributeIndex].attributes[attributeIndex2].items.filter((productInCart) =>
+            state.productsInCart[attributeIndex].attributes[attributeIndex2].items = state.productsInCart[attributeIndex].attributes[attributeIndex2].items.filter((productInCart) =>
         (productInCart.id === action.payload.itemIn.id));
         }
-        localStorage.setItem("cartItems", JSON.stringify(state.itemsInCart));
+        localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
 
         let ifAlreadyInState = state.itemAttributes.some((item) => JSON.stringify(item) === JSON.stringify(action.payload));
         let ifAlreadyInState2 = state.itemAttributes.some((item) => JSON.stringify(item.selectedAttribute) === JSON.stringify(action.payload.selectedAttribute));
@@ -98,6 +98,6 @@ const mapStateToProps = state => ({
     itemAttributes: state.cart.itemAttributes
 });
 
-const mapDispatchToProps = { setItemAttribute };
+const mapDispatchToProps = { setProductAttribute };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AttributeItemsContainer);

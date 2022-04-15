@@ -10,18 +10,26 @@ class CurrencySwitcherContainer extends PureComponent {
         super(props);
         this.state = {
             currencies: [],
-            isClicked: false,
-            notSelected: true
+            notSelected: true,
+            isHovering: undefined
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.handleSetCurrency = this.handleSetCurrency.bind(this);
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
+        this.props.sendState(this.state.isHovering);
+    }
+
+    componentDidMount() { 
         this.getCurrencies();
     }
 
     componentWillUnmount() {
-        this.setState({notSelected: true});
+        const { currencySwitcherUnmounts } = this.props;
+        currencySwitcherUnmounts();
+
     }
 
     async getCurrencies() {
@@ -29,11 +37,23 @@ class CurrencySwitcherContainer extends PureComponent {
             this.setState({currencies});
         });
     }
+
+    handleMouseOver() {
+        this.setState(() => ({
+            isHovering: true
+        }));
+    }
+
+    handleMouseOut() {
+        this.setState(() => ({
+            isHovering: false
+        }));
+    }
     
-    handleClick = (symbol) => {
+    handleSetCurrency = (symbol) => {
         this.setState(prevState => ({
-            isClicked: !prevState.isClicked,
             notSelected: !prevState.notSelected,
+            isHovering: false
         }));
         const { setCurrency, getTotals } = this.props;
         setCurrency(symbol);
@@ -42,12 +62,14 @@ class CurrencySwitcherContainer extends PureComponent {
 
     render() {
         const { notSelected } = this.state;
-        if ( notSelected === true ) {
+        if (notSelected) {
             return(
                 <CurrencySwitcher
                     { ...this.props }
                     { ...this.state }
-                    onClick={ this.handleClick }
+                    setCurrency={ this.handleSetCurrency }
+                    handleMouseOver = { this.handleMouseOver }
+                    handleMouseOut = { this.handleMouseOut } 
                 />
             );
         } else {

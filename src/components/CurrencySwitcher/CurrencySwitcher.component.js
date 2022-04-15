@@ -2,17 +2,13 @@ import React, { PureComponent } from "react";
 import "./CurrencySwitcher.style.scss";
 
 class CurrencySwitcher extends PureComponent {
-    
-    componentDidMount() {
-        console.log(this.props);
-    }
-
+ 
     renderCurrencyItem(currency, i) {
         const { symbol, label } = currency;
-        const { onClick } = this.props;
+        const { setCurrency } = this.props;
         
         return (
-            <div id="item" className="CurrencySwitcher-Item" key={ i } onClick={ () => onClick(symbol) }>
+            <div id="item" className="CurrencySwitcher-Item" key={ i } onClick={ () => setCurrency(symbol) }>
                 <p className="symbol">{ symbol }</p>
                 <p>{ label }</p>
             </div>
@@ -20,19 +16,19 @@ class CurrencySwitcher extends PureComponent {
     }
 
     renderCurrencySwithcer() {
-        const { currencies } = this.props;
+        const { currencies, handleMouseOver, handleMouseOut } = this.props;
 
         return (
-            <div className="CurrencySwitcher-Menu">
+            <div className="CurrencySwitcher-Menu" onMouseEnter={ handleMouseOver } onMouseLeave={ handleMouseOut } >
                 { currencies && currencies.map((currency, i) => this.renderCurrencyItem(currency, i))}
             </div>
         );
     }
 
     render() {
-
+ 
         return (
-            <div className="CurrencySwitcher">
+            <div className="CurrencySwitcher" >
                 { this.renderCurrencySwithcer() }
             </div>
         );

@@ -1,26 +1,46 @@
 import React, { PureComponent } from "react";
-import NavBarMenuContainer from "./NavBarMenu";
 import CurrencyButton from "../CurrencyButton";
-import CartContainer from "../Cart/Cart.container";
+import CartIconContainer from "../Cart/CartIcon/CartIcon.container";
+import ProductsContainer from "../../route/Products";
+import { Link } from "react-router-dom";
 import "./NavBar.style.scss";
 
 class NavBar extends PureComponent {
 
+    renderMenuItem(category, i) {
+        const { name } = category;
+        const { selectedCategory, onClick } = this.props;
+        const activeCategoryStyle = {
+            color: '#5ECEB7',
+            borderBottom: '2px solid #5ECEB7'
+        }
+    
+        return (
+            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } onClick={ () => onClick(name) } >
+                <div className="NavBar-MenuItem" key={ i } 
+                    style={ name === selectedCategory ? activeCategoryStyle : null } 
+                >
+                    <p className="NavBar-CategoryName">{ name }</p>
+                </div>
+            </Link> 
+        );
+    }
+
     render() {
-        const { getCurrency } = this.props;
+        const { categories, location } = this.props;
         
         return (
             <>
-                <div className="NavBar">
-                    <NavBarMenuContainer 
-                        { ...this.state }
-                        { ...this.props }
-                    />
+                <div className="NavBar-Menu">
+                    { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
                 </div>
-                <CurrencyButton 
-                    selectedCurrency={ getCurrency }    
-                /> 
-                <CartContainer /> 
+                { (location.pathname === "/" || location.pathname === "/all" || location.pathname === "/clothes" || location.pathname === "/tech" ) && 
+                    <ProductsContainer 
+                        { ...this.props }
+                    /> 
+                }
+                <CurrencyButton /> 
+                <CartIconContainer /> 
             </>
         );
     }

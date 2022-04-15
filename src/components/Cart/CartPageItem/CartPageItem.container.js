@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { setItemInCart, decreaseQuantity, getTotals, setItemAttribute } from "../../../redux/Cart/Cart.reducer";
+import { addProductToCart, decreaseQuantity, getTotals, setProductAttribute } from "../../../redux/Cart/Cart.reducer";
 import CartPageItem from "./CartPageItem.component";
 
 class CartPageItemContainer extends PureComponent {
@@ -16,33 +16,33 @@ class CartPageItemContainer extends PureComponent {
     };
 
     handleSetAttribute = (itemIn) => {
-        const { itemInCart } = this.props;
-        const { allAttributes } = this.props.itemInCart;
+        const { productInCart } = this.props;
+        const { allAttributes } = this.props.productInCart;
         const index2 = allAttributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
         const index3 = allAttributes[index2].items.findIndex((item) => (item === itemIn));
         console.log(index2);
         console.log(index3); 
 
         console.log(this.state);
-        const { setItemAttribute } = this.props;
+        const { setProductAttribute } = this.props;
     
-        const extract = (({ id, attributes}) => ({ id, attributes}))(itemInCart);
-        const test = (({ id }) => ({ id }))(itemInCart);
+        const extract = (({ id, attributes}) => ({ id, attributes}))(productInCart);
+        const test = (({ id }) => ({ id }))(productInCart);
         console.log(test);
        
            // extract.attributes[index2].items.filter((item) => item === itemIn);
            // console.log(extract);
        
-        const attributeName = itemInCart.attributes[index2].id;
-        const allAttributeItems = itemInCart.attributes[index2].items;
+        const attributeName = productInCart.attributes[index2].id;
+        const allAttributeItems = productInCart.attributes[index2].items;
         const test2 = Object.assign({}, test, { selectedAttribute: attributeName, allAttributeItems, itemIn });
         console.log(test2);
        
-       setItemAttribute(test2);
+       setProductAttribute(test2);
     }
 
     changeImgForwards() {
-        const { gallery } = this.props.item;
+        const { gallery } = this.props.productInCart
         let i = this.state.index;
         if ( i === gallery.length - 1 ) {
             i = 0;
@@ -53,7 +53,7 @@ class CartPageItemContainer extends PureComponent {
     }
 
     changeImgBackwards() {
-        const { gallery } = this.props.item;
+        const { gallery } = this.props.productInCart;
         let i = this.state.index;
         if ( i === 0 ) {
             i = gallery.length - 1;
@@ -64,7 +64,7 @@ class CartPageItemContainer extends PureComponent {
     }
 
     handleIncrease = (productInCart) => {
-        this.props.setItemInCart(productInCart);
+        this.props.addProductToCart(productInCart);
         this.props.getTotals();
     };
 
@@ -90,12 +90,12 @@ class CartPageItemContainer extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        itemsInCart: state.cart.itemsInCart,
+        productsInCart: state.cart.productsInCart,
         currency: state.cart.currency,
         itemAttributes: state.cart.itemAttributes
     }
 }
 
-const mapDispatchToProps = { setItemInCart, decreaseQuantity, getTotals, setItemAttribute };
+const mapDispatchToProps = { addProductToCart, decreaseQuantity, getTotals, setProductAttribute };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPageItemContainer);

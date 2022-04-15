@@ -153,7 +153,34 @@
     }
 
     &-Attributes {
-        position: absolute;
+        position: relative;
         top: 150px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    &-AttributeItems {
+        display: flex;    
+    }
+
+    &-AttributeItem {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border: 1px solid #1D1F22;
+        color: #292929;
+        box-sizing: border-box;
+        width: 63px;
+        height: 45px;
+        display: flex;
+        margin-right: 12px;
+    }
+
+    &-ItemText {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0.05em;       
     }
 }
