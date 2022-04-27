@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import Products from "./Products.component";
 import { executePost } from "../../util/Request.util";
 import { productsQuery } from "../../query/products.query";
+import { withRouter } from "react-router-dom";
 
 class ProductsContainer extends PureComponent {
     
@@ -12,13 +13,15 @@ class ProductsContainer extends PureComponent {
     }
 
     async getProducts() {
-        await executePost(productsQuery).then(({products}) => {
-            this.setState(products);
-            console.log(products);
+        await executePost(productsQuery).then(({category}) => {
+            const { products } = category;
+            this.setState({products});
+            console.log({category});
         });
     }
 
     render(){
+        
         return(
             <Products
                 { ...this.props }
@@ -28,4 +31,4 @@ class ProductsContainer extends PureComponent {
     }
 }
 
-export default ProductsContainer;
+export default withRouter(ProductsContainer);

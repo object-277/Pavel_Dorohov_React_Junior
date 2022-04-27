@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+
 .NavBar {
     width: 234px;
     height: 80px;
@@ -14,6 +16,7 @@
         margin-left: 101px;
         text-transform: uppercase;
         height: 80px;
+        width: 234px;
     }
 
     &-CategoryName {
@@ -21,10 +24,15 @@
         margin-bottom: 0px; 
         padding-top: 4px;
         padding-right: 16px;
-        padding-bottom: 30px;
+        padding-bottom: 32px;
         padding-left: 16px;
         text-transform: uppercase;
         cursor: pointer;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-size: 16px;
+        line-height: 120%;
     }
 
     &-MenuItemLink {
@@ -34,6 +42,11 @@
 
     &-MenuItemLink :focus, :hover, :visited, :link, :active {
         text-decoration: none; 
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 120%;
     }
 
     &-MenuItem:hover {

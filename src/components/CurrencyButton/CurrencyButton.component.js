@@ -11,11 +11,11 @@ class CurrencyButton extends PureComponent {
         
         return (
             <>
-                <div className="CurrencyButton-Selector" onClick={ onClick } onMouseEnter={ handleMouseOver } onMouseLeave={ handleMouseOut } >
-                    <div id="Currency-Label" >
-                        <p className="CurrencyButton-Symbol">{ currency }</p>
+                <div className="CurrencyButton" onClick={ onClick } onMouseEnter={ handleMouseOver } onMouseLeave={ handleMouseOut } >
+                    <div id="CurrencyButton-Symbol" >
+                        { currency }
                     </div>
-                    <img className="CurrencyButton" src={ isHovering ? vectorClicked : vector } alt="Select currency" /> 
+                    <img id="CurrencyButton-Arrow" src={ isHovering ? vectorClicked : vector } alt="Select currency" /> 
                     { isHovering && <CurrencySwitcherContainer { ...this.props } /> }
                 </div>
             </>

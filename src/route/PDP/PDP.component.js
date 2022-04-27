@@ -9,9 +9,9 @@ class PDP extends PureComponent {
         const { prices } = this.props.product;
         const index = prices.findIndex((price) => (price.currency.symbol === currency));
         return (
-            <div className="PDP-ProductPrice">
-                <p className="PDP-ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>
-                <p className="PDP-ProductPrice-Amount">{ prices[index].amount }</p>
+            <div className="PDP-Content-SideSection-ProductPrice">
+                <p className="PDP-Content-SideSection-ProductPrice-CurrencySymbol">{ prices[index].currency.symbol }</p>
+                <p className="PDP-Content-SideSection-ProductPrice-Amount">{ prices[index].amount }</p>
             </div>
         );         
     }
@@ -40,14 +40,14 @@ class PDP extends PureComponent {
 
         return (
             
-            <div className="PDP-AttributeItem" key={ i } 
+            <div className="PDP-Content-SideSection-Attributes-Items-Item" key={ i } 
                 onClick = {
                 () => setAttribute(item) 
                 } 
                style={ isSelectedTrue === true ? selectedStyle : null 
                } 
             >
-                <p className="PDP-ItemText"
+                <p className="PDP-Content-SideSection-Attributes-Items-ItemText"
                style={ attribute.id === 'Color' ? ifColorStyle : null  }
             >
                { attribute.id !== 'Color' && value }
@@ -61,11 +61,11 @@ class PDP extends PureComponent {
         const { items } = attribute;
 
         return (
-            <div className="PDP-Attributes" key={ index }>
-                <div className="PDP-AttributeName">
-                    { id }
+            <div className="PDP-Content-SideSection-Attributes" key={ index }>
+                <div className="PDP-Content-SideSection-Attributes-Name">
+                    { id }:
                 </div>
-                <div className="PDP-AttributeItems">
+                <div className="PDP-Content-SideSection-Attributes-Items">
                    { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index)) } 
                 </div>
             </div>
@@ -78,14 +78,15 @@ class PDP extends PureComponent {
 
         return (
             <div className="PDP-Content">
-                 <div className="PDP-SideSection">
-                    <p id="PDP-Brand">{ brand }</p>
-                    <p id="PDP-Name">{ name }</p>
+                 <div className="PDP-Content-SideSection">
+                    <p id="PDP-Content-SideSection-Brand">{ brand }</p>
+                    <p id="PDP-Content-SideSection-Name">{ name }</p>
                     { attributes.map((attribute, i) => this.renderAttributes(attribute, i)) }
-                    <p id="PDP-PriceLabel">price:</p>
+                    <p id="PDP-Content-SideSection-PriceLabel">price:</p>
                     { this.getPrice() } 
-                    <button className="PDP-AddToCart" onClick={ addToCart }>ADD TO CART</button>
-                    <p id="PDP-Description">{ description }</p>
+                    <button className="PDP-Content-SideSection-AddToCart" onClick={ addToCart }>ADD TO CART</button>
+                    {/*<p id="PDP-Description">{ description }</p>*/}
+                    <div id="PDP-Content-SideSection-Description" dangerouslySetInnerHTML={{ __html: description }} />
                  </div>
             </div>  
         ); 

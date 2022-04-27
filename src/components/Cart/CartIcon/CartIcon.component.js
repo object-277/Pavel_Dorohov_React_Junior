@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import CartMenuContainer from "../CartMenu/CartMenu.container";
 import cartIcon from "./Cart.svg";
 import CartQuantityIcon from "./CartQuantity.svg";  
+import './CartIcon.style.scss';
 
 class CartIcon extends PureComponent {
 

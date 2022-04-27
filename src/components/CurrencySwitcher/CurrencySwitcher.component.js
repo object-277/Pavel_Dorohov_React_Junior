@@ -9,8 +9,8 @@ class CurrencySwitcher extends PureComponent {
         
         return (
             <div id="item" className="CurrencySwitcher-Item" key={ i } onClick={ () => setCurrency(symbol) }>
-                <p className="symbol">{ symbol }</p>
-                <p>{ label }</p>
+                <p className="CurrencySwitcher-Item-Symbol">{ symbol }</p>
+                <p className="CurrencySwitcher-Item-Label">{ label }</p>
             </div>
         );
     }
@@ -19,16 +19,17 @@ class CurrencySwitcher extends PureComponent {
         const { currencies, handleMouseOver, handleMouseOut } = this.props;
 
         return (
-            <div className="CurrencySwitcher-Menu" onMouseEnter={ handleMouseOver } onMouseLeave={ handleMouseOut } >
+            <div className="CurrencySwitcher-Menu" >
                 { currencies && currencies.map((currency, i) => this.renderCurrencyItem(currency, i))}
             </div>
         );
     }
 
     render() {
+        const { handleMouseOver, handleMouseOut } = this.props; 
  
         return (
-            <div className="CurrencySwitcher" >
+            <div className="CurrencySwitcher" onMouseEnter={ handleMouseOver } onMouseLeave={ handleMouseOut } >
                 { this.renderCurrencySwithcer() }
             </div>
         );

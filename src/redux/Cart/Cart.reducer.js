@@ -74,8 +74,9 @@ const cartSlice = createSlice({
                 const { prices,  cartQuantity } = productInCart;
                 const { currency } = state;
                 const index = prices.findIndex((price) => (price.currency.symbol === currency));
-                const itemTotal = parseFloat((prices[index].amount * cartQuantity).toFixed(2));
-                cartTotal.total += itemTotal;
+                const itemTotal = (prices[index].amount * cartQuantity);
+                const totalTest = Number(itemTotal).toFixed(2);
+                cartTotal.total += (totalTest);
                 cartTotal.quantity += cartQuantity;
 
                 return cartTotal;

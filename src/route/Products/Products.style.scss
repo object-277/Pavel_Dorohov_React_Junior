@@ -1,24 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 .Product-Page {
     display: flex;
     flex-wrap: wrap;
-    position: absolute;
+    position: relative;
     left: calc(50% - 386px/2 - 427px);
     top: 331px;
    
 }
 
-.Products-CategoryName {
+.Product-Page::after {
+    content: "";
+    flex: auto;
+}
+
+#Products-CategoryName {
     
     position: absolute;
     height: 68px;
-    width: 299px;
+    width: fit-content;
     left: 101px;
     top: 160px;
     margin-top: 0px;
     bottom: 0px;
     margin-bottom: 0px;
-    line-height: 160%;
     text-transform: capitalize;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 160%;
+    color: #1D1F22;
+
+}
+
+.Products {
+    width: 1440px;
 }
 
 .Products::after {

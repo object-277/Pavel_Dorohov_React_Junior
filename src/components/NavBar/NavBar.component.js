@@ -10,15 +10,21 @@ class NavBar extends PureComponent {
     renderMenuItem(category, i) {
         const { name } = category;
         const { selectedCategory, onClick } = this.props;
+        const { pathname } = this.props.location;
+        const productsCategory = pathname.replace('/', '');
         const activeCategoryStyle = {
             color: '#5ECEB7',
-            borderBottom: '2px solid #5ECEB7'
+            borderBottom: '2px solid #5ECEB7',
+            fontWeight: 600
+        }
+        const notActiveCategoryStyle = {
+            fontWeight: 400
         }
     
         return (
             <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } onClick={ () => onClick(name) } >
                 <div className="NavBar-MenuItem" key={ i } 
-                    style={ name === selectedCategory ? activeCategoryStyle : null } 
+                    style={ name === productsCategory ? activeCategoryStyle : notActiveCategoryStyle } 
                 >
                     <p className="NavBar-CategoryName">{ name }</p>
                 </div>
@@ -27,18 +33,18 @@ class NavBar extends PureComponent {
     }
 
     render() {
-        const { categories, location } = this.props;
+        const { categories, location, handleMouseOver, handleMouseOut, isHovering } = this.props;
         
         return (
             <>
-                <div className="NavBar-Menu">
+                <div className="NavBar-Menu" onMouseOver={ handleMouseOver } onMouseOut={ handleMouseOut } >
                     { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
                 </div>
-                { (location.pathname === "/" || location.pathname === "/all" || location.pathname === "/clothes" || location.pathname === "/tech" ) && 
+                {/* (location.pathname === "/all" || location.pathname === "/clothes" || location.pathname === "/tech" ) && 
                     <ProductsContainer 
                         { ...this.props }
                     /> 
-                }
+        */}
                 <CurrencyButton /> 
                 <CartIconContainer /> 
             </>

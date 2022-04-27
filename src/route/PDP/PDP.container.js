@@ -14,18 +14,20 @@ class PDPContainer extends PureComponent {
 
     handleAddToCart = () => {
         const { addProductToCart, productToCart } = this.props;
+        const { allAttributesSelected } = this.state;
         if (productToCart.length > 0) {
-            const { attributes } = this.props.productToCart[0].productReadyToCart;
-            const ifAllAttributesSelected = attributes.every((attribute) => Object.entries(attribute.items).length === 2);
-            if (ifAllAttributesSelected) {
+            if (allAttributesSelected) {
                 addProductToCart(productToCart[0].productReadyToCart);
                 this.props.getTotals();
+                console.log(allAttributesSelected);
             } else {
-                console.log("SELECT ALL ATTRIBUTES"); 
+                return (
+                 console.log(allAttributesSelected)    
+                );
             }
         } else {
-            return (
-                <p>Select all attributes!</p>
+            return ( 
+                <div className="PDP-Warning">Select All Attributes!</div>   
             );
         }
     };
@@ -41,7 +43,6 @@ class PDPContainer extends PureComponent {
         const productAttributes = product.attributes;
         const testProduct = Object.assign({}, productSelectedAttribute, {allAttributes: productAttributes});
         const testToCart =  Object.assign({}, {productReadyToCart: testProduct }, {selectedAttribute: attributeName}, {allAttributes: attributes}, {itemIn: itemIn}, {product:product});
-    
         setProductToCart(testToCart);
     }
 
@@ -52,12 +53,28 @@ class PDPContainer extends PureComponent {
         this.setState({isProductInCart: ifInCart});
     }
 
+    checkIfAllAttributesSelected() {
+        const { productToCart } = this.props;
+        if (productToCart.length > 0) {
+            const { productReadyToCart } = this.props.productToCart[0];
+            const ifAllAttributesSelected = productReadyToCart.attributes.every((attribute) => attribute.items.constructor === Object);
+            if (ifAllAttributesSelected) {
+                this.setState({allAttributesSelected: true});
+            } else {
+                this.setState({allAttributesSelected: false});
+            }
+        } else {
+            return null;
+        }
+    }
+
     componentDidMount() {
         this.productQuery();
     }
 
     componentDidUpdate() {
         this.checkIfInCart();
+        this.checkIfAllAttributesSelected();
     }
 
     async productQuery() {

@@ -10,13 +10,33 @@ import { setCategory } from "../../redux/Cart/Cart.reducer";
 class NavBarContainer extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {};
-         this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            isHovering: false
+        };
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
         this.getCategories();
         this.getProducts();
+    }
+
+    componentDidUpdate() {
+        this.props.getStateFromNavBar(this.state.isHovering);
+    }
+
+    handleMouseOver() {
+        this.setState(() => ({
+            isHovering: true
+        }));
+    }
+
+    handleMouseOut() {
+        this.setState(() => ({
+            isHovering: false
+        }));
     }
 
     handleClick = (name) => {
@@ -44,6 +64,8 @@ class NavBarContainer extends PureComponent {
                 { ...this.props }
                 { ...this.state }
                 onClick={ this.handleClick }
+                handleMouseOver={ this.handleMouseOver }
+                handleMouseOut={ this.handleMouseOut }
             />
         );
     }

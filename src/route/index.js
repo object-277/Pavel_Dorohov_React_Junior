@@ -2,20 +2,25 @@ import { PureComponent } from "react";
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
   } from "react-router-dom";
-import Header from "../components/Header/Header.component";
-import HomePage from "./HomePage";
 import PDP from "./PDP";
 import CartPage from "./CartPage";
+import HeaderContainer from "../components/Header/Header.container";
+import ProductsContainer from "./Products";
+import HomePage from "./HomePage/HomePage.component";
 
 class AppRouter extends PureComponent { 
     render() {
         return(
             <Router>
-                <Header />
-                <Switch> 
-                    <Route exact path="/" component={ HomePage }/>
+                <HeaderContainer />
+                <Switch>
+                    <Redirect exact from="/" to="/all" /> 
+                    <Route path="/all" component={ ProductsContainer } />
+                    <Route path="/clothes" component={ ProductsContainer } />
+                    <Route path="/tech" component={ ProductsContainer } />
                     <Route path="/pdp/:id" component={ PDP } /> 
                     <Route path="/cart" component={ CartPage } /> 
                 </Switch>
