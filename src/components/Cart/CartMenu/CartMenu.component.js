@@ -4,6 +4,19 @@ import "./CartMenu.style.scss";
 
 class CartMenu extends PureComponent {
 
+  getPrice(product) {
+    const { currency} = this.props; 
+    const { prices } = product;
+    const index = prices.findIndex((price) => (price.currency.symbol === currency));
+    
+    return (
+        <div className="CartMenu-ProductPrice">
+            { prices[index].currency.symbol }
+            { prices[index].amount }
+        </div>
+    );         
+  }
+
   componentWillUnmount() {
     this.props.cartMenuUnmounts();
   }
@@ -11,7 +24,7 @@ class CartMenu extends PureComponent {
   renderCartProductAttribute(product) {
     const { value } = product.attributes[0].items;
     return (
-        <div className="CartMenu-Attribute">
+        <div className="CartMenu-Attribute" style={{ width: '24px'}} >
           { value } 
         </div> 
     );      
@@ -53,14 +66,17 @@ class CartMenu extends PureComponent {
 
     return (
       <div className="CartMenu-Product" key={ i }>
-        <div className="CartMenu-BrandName">
-          <p>{ brand }</p>
-          <p>{ name }</p>
-        </div>
-        <div className="CartMenu-AttributeWrapper">
-          { allAttributes.length > 1 ? allAttributes.map((attribute,index) => this.renderCartProductAttributes(attribute, index, product)) :
-            this.renderCartProductAttribute(product)   
-          }
+        <div className="CartMenu-LeftSideWrapper">
+          <div className="CartMenu-BrandName">
+            <p>{ brand }</p>
+            <p>{ name }</p>
+          </div>
+          { this.getPrice(product) }
+          <div className="CartMenu-AttributeWrapper">
+            { allAttributes.length > 1 ? allAttributes.map((attribute,index) => this.renderCartProductAttributes(attribute, index, product)) :
+              this.renderCartProductAttribute(product)   
+            }
+          </div>
         </div>
         <div className="CartMenu-Quantity">
           <button className="CartMenu-IncreaseQuantity" onClick={() => increaseQuantity(product) }>+</button>
@@ -69,7 +85,9 @@ class CartMenu extends PureComponent {
           </div>
           <button className="CartMenu-DecreaseQuantity" onClick={() => decreaseQuantity(product) }>-</button>
         </div>
-        <img className="CartMenu-Img" src={ gallery[0] } alt="Product in your Bag" />
+        <div className="CartMenu-Img-Wrapper">
+          <img className="CartMenu-Img" src={ gallery[0] } alt="Product in your Bag" />
+        </div>
       </div>
     );
   }
@@ -88,9 +106,9 @@ class CartMenu extends PureComponent {
     const { cartTotalQuantity } = this.props;
     let productsTotal = "";
     if ( cartTotalQuantity > 1 ) {
-      productsTotal = <span> { cartTotalQuantity + " items" } </span>;
+      productsTotal = <span id="CartMenu-Header-Quantity"> { cartTotalQuantity + " items" } </span>;
     } else {
-        productsTotal = <span> { cartTotalQuantity + " item" } </span>;
+        productsTotal = <span id="CartMenu-Header-Quantity"> { cartTotalQuantity + " item" } </span>;
     }
     return productsTotal;
   }
@@ -115,10 +133,10 @@ class CartMenu extends PureComponent {
           </div>
           <Link to="/cart" onClick={ changeClickedState }>
             <button className="CartMenu-ViewBagBtn">
-              <p>VIEW BAG</p>
+              view bag
             </button>
           </Link>
-          <button className="CartMenu-CheckOutBtn">CHECK OUT</button>
+          <button className="CartMenu-CheckOutBtn">check out</button>
         </div>
     );
   } 

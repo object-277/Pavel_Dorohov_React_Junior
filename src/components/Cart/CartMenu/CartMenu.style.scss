@@ -1,34 +1,45 @@
 .CartMenu {
-    position: absolute;
     width: 325px;
     height: 540px;
+    position: absolute;
     left: 1028px;
-    border: 1px solid black;
     background: white;
-    z-index: 10;
+    z-index: 3;
 
     &-BackgroundOverlay {
         width: 1440px;
         height: 1700px;
-        background-color: rgba(57, 55, 72, 0.22);
-        z-index: 10;
         position: absolute;
         top: 78px;
+        background-color: rgba(57, 55, 72, 0.22);
+        z-index: 2;
     }
 
     &-Header {
+        width: fit-content;
+        height: 28px;
         position: relative;
         left: 16px;
         top: 8px;
-    }
+        margin: 0;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+        text-align: right;
+
+        #CartMenu-Header-Quantity {
+            font-weight: 400;
+        }
+    }   
 
     &-Wrapper {
-        border: 1px solid black;
-        left: 16px;
-        top: 57px;
         width: 293px;
         height: 315px;
         position: absolute;
+        left: 16px;
+        top: 57px;
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
@@ -43,36 +54,71 @@
     }
 
     &-Product {
-        border: 1px solid;
-        margin-bottom: 41px;
         width: 293px;
         height: 137px;
         position: relative;
+        margin-bottom: 41px;
+    }
+
+    &-LeftSideWrapper {
+        width: fit-content;
+        height: 137px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
     }
 
     &-BrandName {
-        position: absolute;
         width: 136px;
-        height: 62px;
+        height: fit-content;
+        margin-bottom: 5px;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 160%;
     }
 
-    &-Img {
+    &-BrandName p {
+        margin: 0px 0px;
+    }
+
+    &-ProductPrice {
+        height: 26px;
+        width: fit-content;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 160%;
+        text-align: right;   
+    }
+
+    &-Img-Wrapper {
         width: 105px;
         height: 137px;
         position: relative;
         left: 188px;
+        display: flex;
+        align-items: center;
+    }
+
+    &-Img {
+        max-width: 100%;
+        max-height: 100%;
     }
 
     &-TotalPriceWrapper {
         width: 289px;
         height: 28px;
-        margin: 0;
-        padding: 0;
         position: absolute;
         top: 414px;
         bottom: 0px;
         right: 0px;
         left: 16px;
+        margin: 0;
+        padding: 0;
     }
 
     &-TotalLabel {
@@ -81,7 +127,8 @@
         color: #1D1F22;
         position: absolute;
         top: 9px;
-        font-family: 'Roboto';
+
+        font-family: 'Roboto', sans-serif;
         font-style: normal ;
         font-weight: 500;
         font-size: 16px;
@@ -91,11 +138,13 @@
     &-TotalPrice {
         width: 95px;
         height: 26px;
+        position: absolute;
+        left: 194px;
         display: flex;
         align-items: center;
         justify-content: right;
-        position: absolute;
-        left: 194px;
+
+        font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;
         font-size: 16px;
@@ -103,69 +152,124 @@
     }
 
     &-ViewBagBtn {
+        width: 140px;
+        height: 43px;
         position: absolute;
         bottom: 20px;
         left: 13px;
-        width: 140px;
-        height: 43px;
         background: #FFF;
         border: 1px solid #1D1F22;
         box-sizing: border-box;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 120%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &-ViewBagBtn:hover {
+        color:#5ECE7B;
+    }
+
+    &-ViewBagBtn:active {
+        border: 1px solid #5ECE7B;
+        color:#5ECE7B;
     }
 
     &-CheckOutBtn {
+        width: 140px;
+        height: 43px;
         position: absolute;
         bottom: 20px;
         left: 165px;
-        width: 140px;
-        height: 43px;
         background: #5ECE7B;
         border: none;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 120%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+        color: #FFF;
+    }
+
+    &-CheckOutBtn:hover {
+        color: #1D1F22;
+    }
+
+    &-CheckOutBtn:active {
+       border: 1px solid #1D1F22;
+        color: #1D1F22;
     }
 
     &-IncreaseQuantity {
-        height: 24px;
         width: 24px;
+        height: 24px;
         border: 1px solid #1D1F22;
         background: #FFF;
     }
 
     &-DecreaseQuantity {
-        height: 24px;
         width: 24px;
-        border: 1px solid #1D1F22;
-        background: #FFF;
+        height: 24px;
         position: absolute;
         top: 113px;
+        border: 1px solid #1D1F22;
+        background: #FFF;
     }
 
     &-Quantity {
-        position: absolute;
-        left: 154px;
         width: 24px;
         height: 137px;
+        position: absolute;
+        left: 154px;
     }
 
     &-QuantityNumber {
         position: relative;
         top: 30px;
         text-align: center;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 160%;
+        color: #1D1F22;
     }
 
     &-AttributeWrapper {
-        /* width: 40%; */
         height: 24px;
         display: inline-flex;
-        /* justify-content: space-between; */
-        /* margin-right: 8px; */
-        position: absolute;
-        top: 113px;
+        bottom: 0px;
+        margin-top: auto;
     }
 
     &-Attribute {
-        top: 113px;
-        margin-right: 8px;
+        margin-right: 5px;
         border: 1px solid black;
+
+        font-family: 'Source Sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 160%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #1D1F22;
     }
 
     &-SelectedAttribute {

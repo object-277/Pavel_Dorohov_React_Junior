@@ -14,6 +14,15 @@
         bottom: 0px;
         right: 0px;
         left: 0px;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 27px;
+        display: flex;
+        align-items: center;
+        color: #1D1F22;
     }
 
     #CartPageItem-Name {
@@ -24,6 +33,15 @@
         bottom: 0px;
         right: 0px;
         left: 0px;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 27px;
+        display: flex;
+        align-items: center;
+        color: #1D1F22;
     }
     
     &-BtnImgGroup {
@@ -70,11 +88,14 @@
         height: 185px;
         top: 0px;
         right: 0px;
+        display: flex;
+        align-items: center;
     }
 
     &-Img {
         width: 141px;
         height: 185px;
+        object-fit: scale-down;
     }
 
     #VectorLeft {
@@ -136,6 +157,12 @@
         display: flex;
         align-items: center;
         text-align: center;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 160%;
     }
 
     &-Price {
@@ -145,6 +172,12 @@
         top: 102px;
         display: flex;
         align-items: center;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 18px;
     }
 
     &-PriceCurrencySymbol, &-PriceAmount {
@@ -177,10 +210,14 @@
     }
 
     &-ItemText {
+        font-family: 'Source Sans Pro', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 18px;
-        letter-spacing: 0.05em;       
+        display: flex;
+        align-items: center;
+        text-align: center; 
+        letter-spacing: 0.05em; 
     }
 }

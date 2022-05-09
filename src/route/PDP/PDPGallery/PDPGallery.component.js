@@ -4,22 +4,28 @@ import "./PDPGallery.style.scss";
 class PDPGallery extends PureComponent {
  
     render() {
-        const { src, onClick } = this.props;
+        const { src, changeImage } = this.props;
         const { gallery } = this.props.product;
         if ( gallery.length > 1 ) {
             return (
                 <>
                     <div className="PDPGallery-SideGallery">
                         { gallery.map((image, i) =>  
-                                <img src={ image } alt="Product" key={ i } onClick={ onClick } />                        
+                                <img src={ image } alt="Product" key={ i } onClick={ changeImage } />                        
                             )
                         }   
                     </div>
-                    <img className="PDPGallery-MainImage" src={ src } alt="Product" />
+                    <div className="PDPGallery-MainImage-Wrapper">
+                        <img className="PDPGallery-MainImage" src={ src } alt="Product" />
+                    </div>
                 </>      
             );
         } else {
-            return <img className="PDPGallery-MainImage" src={ src } alt="Product" />    
+            return (
+                <div className="PDPGallery-MainImage-Wrapper">
+                    <img className="PDPGallery-MainImage" src={ src } alt="Product" />
+                </div>
+            ); 
         }    
     }
 }

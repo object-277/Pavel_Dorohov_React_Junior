@@ -1,14 +1,18 @@
-.PDPGallery-MainImage {
+.PDPGallery-MainImage-Wrapper {
     width: 610px;
     height: 511px;
-    left: 212px;
     top: 82px;
     position: absolute;
+
+    .PDPGallery-MainImage {
+        width: 610px;
+        height: 511px;
+        object-fit: cover;
+    }
 }
 
 .PDPGallery-SideGallery {
     position: absolute;
-    border: 1px solid black;
     width: 79px;
     height: 513px;
     left: 100px;

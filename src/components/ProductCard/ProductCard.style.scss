@@ -19,7 +19,7 @@
         filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
     }
 
-    &-Image {
+    &-Image-Wrapper {
 
         flex: none;
         order: 0;
@@ -31,7 +31,17 @@
         width: 354px;
         height: 330px;
         left: 16px;
-        top: 16px; 
+        top: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    &-Image {
+        width: 354px;
+        height: 330px;
+        object-fit: none;
     }
 
     &-Content {
@@ -49,6 +59,13 @@
             height: 29px;
             display: flex;
             align-items: center;  
+
+            font-family: 'Raleway';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 160%;
+            color: #1D1F22;
         }
 
         #ProductCard-Content-Brand {
@@ -61,15 +78,6 @@
             padding: 0;  
         }
 
-        #ProductCard-Content-Brand, #ProductCard-Content-Name {
-            font-family: 'Raleway';
-            font-style: normal;
-            font-weight: 00;
-            font-size: 18px;
-            line-height: 160%;
-            color: #1D1F22;
-        }
-
         &-Price {
             width: 58px;
             height: 29px;
@@ -77,7 +85,7 @@
             display: flex;
             top: 29px;
             
-            font-family: 'Raleway';
+            font-family: 'Raleway', sans-serif;
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
@@ -99,7 +107,7 @@
         height: 52px;
         right: 50px;
         bottom: -26px;
-        visibility: hidden;
+        display: none;
     }
 
     &-OutOfStock {

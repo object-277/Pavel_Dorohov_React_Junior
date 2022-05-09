@@ -29,10 +29,12 @@ class ProductCard extends PureComponent {
         if ( inStock === true ) {
             return (
                 <>
-                    <Link className="ProductCard" to={ "/pdp/" + id } > 
-                        <img className="ProductCard-Image" src={ gallery[0] } 
-                             alt="Product" 
-                        />
+                    <Link className="ProductCard" to={ "/pdp/" + id } >
+                        <div className="ProductCard-Image-Wrapper">
+                            <img className="ProductCard-Image" src={ gallery[0] } 
+                                alt="Product" 
+                            />
+                        </div> 
                         <div className="ProductCard-Content">
                             <div className="ProductCard-Content-ProductName">
                                 <p id="ProductCard-Content-Brand" >{ brand }</p>
@@ -51,19 +53,19 @@ class ProductCard extends PureComponent {
         } else {
             return (
                 <div className="ProductCard-OutOfStock" >
-                    <div className="ProductCard" >
                     <p className="ProductCard-OutOfStockLabel">out of stock</p>
-                        <img className="ProductCard-Image" src={ gallery[0] } 
+                    <div className="ProductCard-Image-Wrapper">
+                            <img className="ProductCard-Image" src={ gallery[0] } 
                                 alt="Product" 
-                        />
-                        <div className="ProductCard-Content">
-                            <div className="ProductCard-Content-ProductName">
-                                <p id="ProductCard-Content-Brand" >{ brand }</p>
-                                <p id="ProductCard-Content-Name" >{ name }</p>
-                            </div>
-                            { this.getPrice() }
-                        </div> 
-                    </div>
+                            />
+                    </div> 
+                    <div className="ProductCard-Content">
+                        <div className="ProductCard-Content-ProductName">
+                            <p id="ProductCard-Content-Brand" >{ brand }</p>
+                            <p id="ProductCard-Content-Name" >{ name }</p>
+                        </div>
+                        { this.getPrice() }
+                    </div> 
                 </div>   
             );
         }

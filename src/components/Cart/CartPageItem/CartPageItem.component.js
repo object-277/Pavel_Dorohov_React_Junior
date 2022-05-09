@@ -75,11 +75,10 @@ class CartPageItem extends PureComponent {
 
   render() {
     const { productInCart, increaseAmount, decreaseAmount, index, changeImgForwards, changeImgBackwards } = this.props;
-    const { brand, name, gallery, prices, cartQuantity, allAttributes } = productInCart;
+    const { brand, name, gallery, cartQuantity, allAttributes } = productInCart;
     
     return (
       <div className="CartPageItem">
-        <hr className="CartPageItem-Line"/>
         <div id="CartPageItem-Brand">
           { brand }
         </div>
@@ -109,6 +108,7 @@ class CartPageItem extends PureComponent {
             { gallery.length > 1 && <img id="VectorRight" src={ VectorRight } alt="Next" onClick={ () => changeImgForwards() } /> }
           </div>
         </div>
+        <hr className="CartPageItem-Line"/>
       </div>
     );
     }

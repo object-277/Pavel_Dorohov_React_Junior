@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 .Product-Page {
+    width: 1238px;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     position: relative;
     left: calc(50% - 386px/2 - 427px);
     top: 331px;
@@ -10,8 +13,8 @@
 }
 
 .Product-Page::after {
-    content: "";
-    flex: auto;
+    content: '';
+    width: 386px;
 }
 
 #Products-CategoryName {

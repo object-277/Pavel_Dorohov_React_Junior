@@ -7,7 +7,7 @@ const cartSlice = createSlice({
         ? JSON.parse(localStorage.getItem("cartProducts")) 
         : [],
         cartTotalQuantity: 0,
-        cartTotalPrice: [],
+        cartTotalPrice: 0,
         selectedCategory: localStorage.getItem("category"),
         currency: localStorage.getItem("currency"),
         itemAttributes: localStorage.getItem("selectedAttributes") 
@@ -75,8 +75,7 @@ const cartSlice = createSlice({
                 const { currency } = state;
                 const index = prices.findIndex((price) => (price.currency.symbol === currency));
                 const itemTotal = (prices[index].amount * cartQuantity);
-                const totalTest = Number(itemTotal).toFixed(2);
-                cartTotal.total += (totalTest);
+                cartTotal.total += (itemTotal);
                 cartTotal.quantity += cartQuantity;
 
                 return cartTotal;
@@ -86,7 +85,7 @@ const cartSlice = createSlice({
                 quantity: 0
             });
             state.cartTotalQuantity = quantity;
-            state.cartTotalPrice = total;
+            state.cartTotalPrice = total.toFixed(2);
         },
         setCategory: (state, action) => {
             state.selectedCategory = action.payload;
@@ -138,13 +137,15 @@ const cartSlice = createSlice({
             const { itemIn } = action.payload;
 
             if (productToCart.length !== 0 && productToCart[0].productReadyToCart.id === action.payload.productReadyToCart.id) {
-                    const attributeIndex = productToCart[0].productReadyToCart.allAttributes.findIndex((attribute) =>
+                    const attributeIndex = productToCart[0].allAttributes.findIndex((attribute) =>
                 (attribute.id === action.payload.selectedAttribute));
     
                     if (productToCart[0].productReadyToCart.attributes[attributeIndex].items.id === action.payload.itemIn.id) {
                         productToCart[0].productReadyToCart.attributes[attributeIndex].items = action.payload.allAttributes[attributeIndex].items;
+                        delete productToCart[0].productReadyToCart.allAttributes;
                         if (JSON.stringify(state.productToCart[0].productReadyToCart) === JSON.stringify(state.productToCart[0].product)) {
                             state.productToCart = [];
+                            localStorage.setItem("productSetToCart", "[]");
                         }
                     } else if (productToCart[0].productReadyToCart.attributes[attributeIndex].id === action.payload.selectedAttribute &&
                                 productToCart[0].productReadyToCart.id === action.payload.productReadyToCart.id

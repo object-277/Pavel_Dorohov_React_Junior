@@ -20,7 +20,7 @@ class PDPGalleryContainer extends PureComponent {
         return <PDPGallery
                     { ...this.state }
                     { ...this.props } 
-                    onClick={ this.handleClick }
+                    changeImage={ this.handleClick }
                 />    
     }
 }

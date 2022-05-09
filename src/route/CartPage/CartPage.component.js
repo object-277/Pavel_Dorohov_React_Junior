@@ -4,13 +4,24 @@ import "./CartPage.style.scss";
 
 class CartPage extends PureComponent {
 
+    renderCartPageItems() {
+        const { productsInCart } = this.props;
+
+        return (
+            <div>
+                <hr className="CartPageItem-Line"/>
+                { productsInCart.length > 0 ? productsInCart.map((product, i) => 
+              <CartPageItemContainer productInCart={ product } key={ i }/> )
+              : <p className="CartPage-Empty">Your Bag is empty</p> }
+            </div>
+        );
+    }
+
       renderCartWrapper() {
-          const { productsInCart } = this.props;
-    
+          
           return (
             <div className="CartPage-Wrapper">
-              { productsInCart.length > 0 ? productsInCart.map((product, i) => <CartPageItemContainer productInCart={ product } key={ i }/> ) 
-              : <p className="CartPage-Empty">Your Bag is empty</p>}
+                { this.renderCartPageItems() }
             </div> 
         );
     }
