@@ -1,10 +1,17 @@
-.CartMenu {
+.CartMenu-Wrapper {
     width: 325px;
-    height: 540px;
+    height: fit-content;
     position: absolute;
     left: 1028px;
     background: white;
     z-index: 3;
+    box-sizing: border-box;
+    padding: 32px 16px 32px 16px;
+}
+
+.CartMenu {
+    width: 293px;
+    height: fit-content;
 
     &-BackgroundOverlay {
         width: 1440px;
@@ -15,13 +22,11 @@
         z-index: 2;
     }
 
-    &-Header {
+    &-Header { 
         width: fit-content;
         height: 28px;
-        position: relative;
-        left: 16px;
-        top: 8px;
-        margin: 0;
+        margin-top: 0px;
+        margin-bottom: 32px;
 
         font-family: 'Raleway';
         font-style: normal;
@@ -34,10 +39,10 @@
         }
     }   
 
-    &-Wrapper {
+    &-Products-Wrapper {
         width: 293px;
-        height: 315px;
-        position: absolute;
+        height: fit-content;
+        max-height: 420px;
         left: 16px;
         top: 57px;
         display: flex;
@@ -45,33 +50,41 @@
         overflow-x: hidden;
     }
 
-    &-Wrapper::-webkit-scrollbar {
+    &-Products-Wrapper::-webkit-scrollbar {
         width: 2px;   
     }
     
-    &-Wrapper::-webkit-scrollbar-thumb {
+    &-Products-Wrapper::-webkit-scrollbar-thumb {
         background-color: #5ECE7B;
+    }
+
+    &-Products-Wrapper .CartMenu-Product:last-child {
+        margin-bottom: 32px;
     }
 
     &-Product {
         width: 293px;
-        height: 137px;
+        height: -moz-fit-content;
+        height: fit-content;
         position: relative;
-        margin-bottom: 41px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: row;
     }
 
     &-LeftSideWrapper {
-        width: fit-content;
-        height: 137px;
-        position: absolute;
+        width: 136px;
+        height: fit-content;
         display: flex;
         flex-direction: column;
+        margin-right: 4px;
     }
 
     &-BrandName {
         width: 136px;
         height: fit-content;
-        margin-bottom: 5px;
+        min-height: 52px;
+        margin-bottom: 4px;
 
         font-family: 'Raleway';
         font-style: normal;
@@ -87,6 +100,8 @@
     &-ProductPrice {
         height: 26px;
         width: fit-content;
+        margin-bottom: 8px;
+
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 500;
@@ -96,29 +111,27 @@
     }
 
     &-Img-Wrapper {
-        width: 105px;
-        height: 137px;
-        position: relative;
-        left: 188px;
+        width: 121px;
+        height: auto;
         display: flex;
         align-items: center;
     }
 
     &-Img {
-        max-width: 100%;
-        max-height: 100%;
+        width: 100%;
+        height: -moz-fit-content;
+        height: 100%;
+        object-fit: cover;
     }
 
     &-TotalPriceWrapper {
         width: 289px;
         height: 28px;
-        position: absolute;
-        top: 414px;
+        position: relative;
         bottom: 0px;
         right: 0px;
-        left: 16px;
-        margin: 0;
         padding: 0;
+        margin-bottom: 32px;
     }
 
     &-TotalLabel {
@@ -151,12 +164,21 @@
         line-height: 160%;
     }
 
+    &-ButtonsWrapper {
+        width: 293px;
+        height: 43px;
+        position: relative;
+        display: inline-flex;
+        justify-content: space-between;
+    }
+
+    #CartMenu-ViewBag-Link {
+        text-decoration: none;
+    }
+
     &-ViewBagBtn {
         width: 140px;
         height: 43px;
-        position: absolute;
-        bottom: 20px;
-        left: 13px;
         background: #FFF;
         border: 1px solid #1D1F22;
         box-sizing: border-box;
@@ -185,9 +207,6 @@
     &-CheckOutBtn {
         width: 140px;
         height: 43px;
-        position: absolute;
-        bottom: 20px;
-        left: 165px;
         background: #5ECE7B;
         border: none;
 
@@ -216,29 +235,30 @@
     &-IncreaseQuantity {
         width: 24px;
         height: 24px;
-        border: 1px solid #1D1F22;
+        padding: 0;
+        border: none;
         background: #FFF;
     }
 
     &-DecreaseQuantity {
         width: 24px;
         height: 24px;
-        position: absolute;
-        top: 113px;
-        border: 1px solid #1D1F22;
+        padding: 0;
+        border: none;
         background: #FFF;
     }
 
     &-Quantity {
         width: 24px;
-        height: 137px;
-        position: absolute;
+        height: initial;
         left: 154px;
+        margin-right: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     &-QuantityNumber {
-        position: relative;
-        top: 30px;
         text-align: center;
 
         font-family: 'Raleway';
@@ -250,13 +270,18 @@
     }
 
     &-AttributeWrapper {
-        height: 24px;
-        display: inline-flex;
+        height: fit-content;
+        display: flex;
         bottom: 0px;
         margin-top: auto;
+        flex-direction: column;
     }
 
-    &-Attribute {
+    &-AttributeWrapper div:last-child {
+        margin-bottom: 0px
+    }
+
+    /*&-Attribute {
         margin-right: 5px;
         border: 1px solid black;
 
@@ -272,9 +297,64 @@
         color: #1D1F22;
     }
 
-    &-SelectedAttribute {
+    /*&-SelectedAttribute {
         height: 24px;
         width: 24px;
+    }*/
+
+    &-Attribute {
+        display: flex;
+        flex-direction: column;
+        width: -moz-fit-content;
+        width: fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+        margin-bottom: 8px;
+    }
+
+    &-Attribute-Name {
+        width: fit-content;
+        height: 16px;
+        margin-bottom: 8px;
+
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        color: #1D1F22;
+    }
+
+    &-AttributeItems {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: -moz-fit-content;
+        width: fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+        gap: 8px;
+    }
+
+    &-AttributeItem {
+        width: fit-content;
+        min-width: 24px;
+        height: 24px;
+        box-sizing: border-box;
+        border: 1px solid #1D1F22;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    &-ItemText {
+        margin: 0px;
+
+        font-family: 'Source Sans Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 160%;
     }
 }
 

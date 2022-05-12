@@ -9,7 +9,7 @@ class CartPage extends PureComponent {
 
         return (
             <div>
-                <hr className="CartPageItem-Line"/>
+                <hr className="CartPage-TopLine"/>
                 { productsInCart.length > 0 ? productsInCart.map((product, i) => 
               <CartPageItemContainer productInCart={ product } key={ i }/> )
               : <p className="CartPage-Empty">Your Bag is empty</p> }

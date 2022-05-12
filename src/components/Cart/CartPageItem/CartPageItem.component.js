@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
-import Minus from "./Minus.svg";
-import Plus from "./Plus.svg";
-import VectorLeft from "./VectorLeft.svg";
-import VectorRight from "./VectorRight.svg";
+import CaretLeft from "./CaretLeft.svg";
+import CaretRight from "./CaretRight.svg";
+import IncreaseButton from "./plus-square.svg";
+import DecreaseButton from "./minus-square.svg";
 import "./CartPageItem.style.scss";
+import { decreaseQuantity } from "../../../redux/Cart/Cart.reducer";
 
 class CartPageItem extends PureComponent {
 
@@ -59,57 +60,71 @@ class CartPageItem extends PureComponent {
             </p>  
         </div>
     );
-}
+  }
 
   renderAttributes(attribute, index) {
-      const { items } = attribute;
+      const { id, items } = attribute;
 
       return (
-          
-        <div className="CartPageItem-AttributeItems" key={ index }>
-          { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index)) } 
-        </div>
-         
+        <div className="CartPageItem-Attribute" key={ index }>
+          <div className="CartPageItem-Attribute-Name">
+              { id }:
+          </div>  
+          <div className="CartPageItem-AttributeItems" key={ index }>
+            { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index)) } 
+          </div>
+        </div> 
       );    
   }
 
   render() {
-    const { productInCart, increaseAmount, decreaseAmount, index, changeImgForwards, changeImgBackwards } = this.props;
+    const { productInCart, increaseQuantity, decreaseQuantity, index, changeImgForwards, changeImgBackwards } = this.props;
     const { brand, name, gallery, cartQuantity, allAttributes } = productInCart;
     
     return (
-      <div className="CartPageItem">
-        <div id="CartPageItem-Brand">
-          { brand }
-        </div>
-        <div id="CartPageItem-Name">
-          { name }
-        </div>
-        { this.getPrice() }
-        <div className="CartPageItem-Attributes">
-          { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
+      <>
+        <div className="CartPageItem">
+        <div className="CartPageItem-ItemInfoWrapper">
+          <div id="CartPageItem-Brand">
+            { brand }
+          </div>
+          <div id="CartPageItem-Name">
+            { name }
+          </div>
+          { this.getPrice() }
+          <div className="CartPageItem-Attributes">
+            { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
+          </div>  
         </div>
         <div className="CartPageItem-BtnImgGroup">
-          <button className="CartPageItem-IncreaseQuantity" onClick={() => increaseAmount(productInCart) }>
-              <div className="CartPageItem-IncreaseButtonWrapper">
-                <img id="Horizontal" src={ Minus } alt="Increase product quantity" />
-                <img id="Vertical" src={ Plus } alt="Increase product quantity" />
-              </div>
-          </button>
-          <div className="CartPageItem-Quantity">
-            { cartQuantity }
+          <div className="CartPageItem-QuantityWrapper">
+            <button className="CartPageItem-IncreaseQuantity" onClick={() => increaseQuantity(productInCart) }>
+                <img id="IncreaseQty" src={ IncreaseButton } alt="Increase product quantity" /> 
+            </button>
+            <div className="CartPageItem-Quantity">
+              { cartQuantity }
+            </div>
+            <button className="CartPageItem-DecreaseQuantity" onClick={() => decreaseQuantity(productInCart) }>
+              <img id="DecreaseQty" src={ DecreaseButton } alt="Decrease product quantity" />
+            </button>
           </div>
-          <button className="CartPageItem-DecreaseQuantity" onClick={() => decreaseAmount(productInCart) }>
-            <img className="CartPageItem-ButtonImg" src={ Minus } alt="Decrease product quantity" />
-          </button>
           <div className="CartPageItem-Gallery">
             <img className="CartPageItem-Img" src={ gallery[index] } alt="Product in your Bag" />
-            { gallery.length > 1 && <img id="VectorLeft" src={ VectorLeft } alt="Previous" onClick={ () => changeImgBackwards() } /> }
-            { gallery.length > 1 && <img id="VectorRight" src={ VectorRight } alt="Next" onClick={ () => changeImgForwards() } /> }
+            { gallery.length > 1 && 
+              <button className="CartPageItem-CaretLeftWrapper" onClick={ () => changeImgBackwards() }>
+                <img id="CaretLeft" src={ CaretLeft } alt="Previous" /> 
+              </button>
+            }
+            { gallery.length > 1 && 
+              <button className="CartPageItem-CaretRightWrapper" onClick={ () => changeImgForwards() }>
+                <img id="CaretRight" src={ CaretRight } alt="Next" />
+              </button> 
+            }
           </div>
         </div>
-        <hr className="CartPageItem-Line"/>
       </div>
+      <hr className="CartPageItem-Line"/>
+      </>
     );
     }
 }

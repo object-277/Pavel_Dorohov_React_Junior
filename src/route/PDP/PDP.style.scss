@@ -187,6 +187,15 @@
                 font-weight: 600;
                 font-size: 16px;
                 line-height: 160%;
+                transition: 0.22ms ease-in-out;
+            }
+            
+            &-AddToCart:hover {
+                color: #1D1F22;
+            }
+
+            &-AddToCart:active {
+                background-color: #309C4D;
             }
 
             #PDP-SideSection-Description {

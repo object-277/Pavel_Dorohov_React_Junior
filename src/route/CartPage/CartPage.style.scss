@@ -1,13 +1,26 @@
 .CartPage {
+    width: 1440px;
+    height: fit-content;
+    padding-top: 80px;
     position: relative;
     top: 80px;
 
+    &-TopLine {
+        position: relative;
+        width: 1240px;
+        height: 1px;
+        background: #E5E5E5;
+        border: none;
+        margin: 0 0 24px 0;
+    }
+
     #Title {
-        position: absolute;
         width: 84px;
         height: 40px;
         left: 100px;
         top: 0px;
+        margin: 0;
+        margin-left: 100px;
         text-transform: uppercase;
         color: #1D1F22;
 
@@ -20,9 +33,12 @@
 
     &-Wrapper {
         position: relative;
-        top: 59px;
+        top: 55px;
+        left: 100px;
         display: flex;
         flex-direction: column;
+        width: 1240px;
+        height: fit-content;
     }
     
     &-Empty {

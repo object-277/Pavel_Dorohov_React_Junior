@@ -1,16 +1,11 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { addProductToCart, decreaseQuantity, getTotals, setProductAttribute } from "../../../redux/Cart/Cart.reducer";
-import CartPageItem from "./CartPageItem.component";
+import CartMenuItem from "./CartMenuItem.component";
 
-class CartPageItemContainer extends PureComponent {
+class CartMenuItemContainer extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            index: 0,
-        }
-        this.changeImgForwards = this.changeImgForwards.bind(this);
-        this.changeImgBackwards = this.changeImgBackwards.bind(this);
         this.handleIncrease = this.handleIncrease.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
     };
@@ -35,50 +30,26 @@ class CartPageItemContainer extends PureComponent {
         console.log(test2);
        
        setProductAttribute(test2);
-    }
-
-    changeImgForwards() {
-        const { gallery } = this.props.productInCart
-        let i = this.state.index;
-        if ( i === gallery.length - 1 ) {
-            i = 0;
-        } else {
-            i = i + 1;
-        }
-        this.setState({ index: i })
-    }
-
-    changeImgBackwards() {
-        const { gallery } = this.props.productInCart;
-        let i = this.state.index;
-        if ( i === 0 ) {
-            i = gallery.length - 1;
-        } else {
-            i = i - 1;
-        }
-        this.setState({ index: i })
-    }
-
-    handleIncrease = (productInCart) => {
-        this.props.addProductToCart(productInCart);
-        this.props.getTotals();
-    };
+    }    
 
     handleDecrease = (productInCart) => {
         this.props.decreaseQuantity(productInCart);
         this.props.getTotals();
     };
+    
+    handleIncrease = (productInCart) => {
+        this.props.addProductToCart(productInCart);
+        this.props.getTotals();
+    };
 
     render() {
         return(
-            <CartPageItem 
+            <CartMenuItem 
                 { ...this.state }
                 { ...this.props }
-                changeImgForwards = { this.changeImgForwards }
-                changeImgBackwards = { this.changeImgBackwards }
                 increaseQuantity={ this.handleIncrease }
                 decreaseQuantity={ this.handleDecrease }
-                setAttribute= { this.handleSetAttribute }
+                setAttribute={ this.handleSetAttribute }
             />
         );
     }
@@ -94,4 +65,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = { addProductToCart, decreaseQuantity, getTotals, setProductAttribute };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartPageItemContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartMenuItemContainer);

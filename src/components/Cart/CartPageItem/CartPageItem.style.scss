@@ -1,20 +1,25 @@
 .CartPageItem {
     position: relative;
-    width: 1098px;
-    height: 207px;
-    left: 100px;
-    top: 59px;
-    margin-bottom: 19px;
+    width: 1240px;
+    height: fit-content;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+
+    &-ItemInfoWrapper {
+        width: fit-content;
+        height: fit-content;
+    }
 
     #CartPageItem-Brand {
-        position: absolute;
-        width: 292px;
+        position: relative;
+        width: -moz-fit-content;
+        width: fit-content;
         height: 27px;
-        top: 20px;
+        /* top: 24px; */
         bottom: 0px;
         right: 0px;
         left: 0px;
-
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 600;
@@ -23,17 +28,15 @@
         display: flex;
         align-items: center;
         color: #1D1F22;
+        margin-bottom: 16px;
     }
 
-    #CartPageItem-Name {
-        position: absolute;
+    #CartPageItem-Name { 
         width: 292px;
         height: 27px;
-        top: 63px;
         bottom: 0px;
         right: 0px;
         left: 0px;
-
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 400;
@@ -42,34 +45,22 @@
         display: flex;
         align-items: center;
         color: #1D1F22;
+        margin-bottom: 20px;
     }
     
     &-BtnImgGroup {
-        position: absolute;
-        width: 198px;
-        height: 185px;
-        left: 900px;
-        top: 20px;
-        bottom: 19px;
+        width: 269px;
+        height: 288px;
+        left: 971px;
+        bottom: 0px;
     }
 
-    &-IncreaseButtonWrapper {
-        position: relative;
-    }
-
-    #Vertical {
-        position: absolute;
-        top: 33.33%;
-        bottom: 33.33%;
-        left: 50%;
-        right: 50%;
-        margin: auto;
-    }
-
-    #Horizontal {
-        position: absolute;
-        top: 50%;
-        left: 13px;
+    &-QuantityWrapper {
+        width: 45px;
+        height: 288px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     &-ButtonImg {
@@ -84,8 +75,8 @@
 
     &-Gallery {
         position: absolute;
-        width: 141px;
-        height: 185px;
+        width: 200px;
+        height: 288px;
         top: 0px;
         right: 0px;
         display: flex;
@@ -93,35 +84,58 @@
     }
 
     &-Img {
-        width: 141px;
-        height: 185px;
+        width: 200px;
+        height: 288px;
         object-fit: scale-down;
     }
 
-    #VectorLeft {
+    &-CaretLeftWrapper {
         width: 24px;
         height: 24px;
-        border: 1px solid black;
+        background: rgba(0, 0, 0, 0.73);
         position: absolute;
-        left: 0px;
-        bottom: 80px;
-        right: 0px;
+        top: 248px;
+        left: 128px;
+        padding: 2.7px 3px 3.32px 3px;
+        box-sizing: border-box;
+        border: none;
+        transition: 0.25s ease-in-out;
     }
-    
-    #VectorRight {
+
+    &-CaretLeftWrapper:hover {
+        background: #1D1F22;
+    }
+
+    &-CaretLeftWrapper:active {
+        background: black;
+    }
+
+    &-CaretRightWrapper {
         width: 24px;
         height: 24px;
-        border: 1px solid black;
+        background: rgba(0, 0, 0, 0.73);
         position: absolute;
-        left: 115px;
-        bottom: 80px;
-        right: 0px;
+        top: 248px;
+        bottom: 0px;
+        left: 160px;
+        padding: 2.7px 3px 3.32px 3px;
+        box-sizing: border-box;
+        border: none;
+        transition: 0.05s ease-in-out;
+    }
+
+    &-CaretRightWrapper:hover {
+        background: #1D1F22;
+    }
+
+    &-CaretRightWrapper:active {
+        background: black;
     }
 
     &-Line {
         width: 1097px;
         height: 1px;
-        width: 1097px;
+        width: 1240px;
         height: 1px;
         background: #E5E5E5;
         border: none;
@@ -131,33 +145,53 @@
     &-IncreaseQuantity {
         width: 45px;
         height: 45px;
-        background-color: transparent;
+        background: transparent;
         padding: 0;
         margin: 0;
-        border: 1px solid #1D1F22;
+        border: none;
+        transition: 0.05s ease-in-out;
+    }
+
+    &-IncreaseQuantity:hover {
+        background: rgba(0, 0, 0, 0.11);
+        cursor: pointer;
+    }
+
+    &-IncreaseQuantity:active {
+        background: rgba(0, 0, 0, 0.25);
+        cursor: pointer;
     }
 
     &-DecreaseQuantity {
         width: 45px;
         height: 45px;
-        position: absolute;
         bottom: 0;
         background-color: transparent;
+        //background: url(./minus-square.svg) no-repeat;
         padding: 0;
         margin: 0;
-        border: 1px solid #1D1F22;
+        border: none;
+    }
+
+    &-DecreaseQuantity:hover {
+        background: rgba(0, 0, 0, 0.11);
+        cursor: pointer;
+    }
+
+    &-DecreaseQuantity:active {
+        background: rgba(0, 0, 0, 0.25);
+        cursor: pointer;
     }
 
     &-Quantity {
-        position: relative;
-        width: 10px;
+        width: 45px;
         height: 34px;
         left: 17.5px;
-        top: 30px;
+        top: 71.76px;
         display: flex;
         align-items: center;
+        justify-content: center;
         text-align: center;
-
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 500;
@@ -166,18 +200,16 @@
     }
 
     &-Price {
-        width: 86px;
-        height: 46px;
-        position: absolute;
-        top: 102px;
+        width: fit-content;
+        height: 24px;
         display: flex;
         align-items: center;
-
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 700;
         font-size: 24px;
         line-height: 18px;
+        margin-bottom: 20px;
     }
 
     &-PriceCurrencySymbol, &-PriceAmount {
@@ -186,10 +218,33 @@
     }
 
     &-Attributes {
-        position: relative;
-        top: 150px;
+        top: 45px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+    }
+
+    &-Attributes div:last-child {
+        margin-bottom: 0px;    
+    }
+
+    &-Attribute {
+        margin-bottom: 16px;
+    }
+
+    &-Attribute-Name {
+        width: fit-content;
+        height: 18px;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 18px;
+        color: #1D1F22;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 7px;        
     }
 
     &-AttributeItems {
