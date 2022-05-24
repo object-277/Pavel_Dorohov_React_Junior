@@ -13,43 +13,22 @@ class CartMenuContainer extends PureComponent {
         this.handleDecrease = this.handleDecrease.bind(this);
     };
 
-    handleSetAttribute = (itemIn) => {
-        const { productInCart } = this.props;
-        const { allAttributes } = this.props.productInCart;
-        const index2 = allAttributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
-        const index3 = allAttributes[index2].items.findIndex((item) => (item === itemIn));
-        console.log(index2);
-        console.log(index3); 
-
-        console.log(this.state);
-        const { setProductAttribute } = this.props;
-    
-        const test = (({ id }) => ({ id }))(productInCart);
-        console.log(test);
-       
-        const attributeName = productInCart.attributes[index2].id;
-        const allAttributeItems = productInCart.attributes[index2].items;
-        const test2 = Object.assign({}, test, { selectedAttribute: attributeName, allAttributeItems, itemIn });
-        console.log(test2);
-       
-       setProductAttribute(test2);
-       console.log(itemIn);
-    }
-
     handleClick(e) {
         this.setState(prevState => ({
             notClicked: !prevState.notClicked
         }));
     }
 
-    handleDecrease = (productInCart) => {
-        this.props.decreaseQuantity(productInCart);
-        this.props.getTotals();
-    };
-    
     handleIncrease = (productInCart) => {
-        this.props.addProductToCart(productInCart);
-        this.props.getTotals();
+        const { addProductToCart, getTotals } = this.props;
+        addProductToCart(productInCart);
+        getTotals();
+    };
+
+    handleDecrease = (productInCart) => {
+        const { decreaseQuantity, getTotals } = this.props;
+        decreaseQuantity(productInCart);
+        getTotals();
     };
 
     componentWillUnmount() {
@@ -81,7 +60,6 @@ const mapStateToProps = state => {
         cartTotalQuantity: state.cart.cartTotalQuantity,
         cartTotalPrice: state.cart.cartTotalPrice,
         currency: state.cart.currency,
-        itemAttributes: state.cart.itemAttributes
     }
 }
 

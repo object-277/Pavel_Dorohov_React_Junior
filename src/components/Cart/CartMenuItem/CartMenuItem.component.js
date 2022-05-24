@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import IncreaseButton from "./plus.svg";
 import DecreaseButton from "./minus.svg";
+import "./CartMenuItem.style.scss";
 
 class CartMenuItem extends PureComponent {
   
@@ -10,7 +11,7 @@ class CartMenuItem extends PureComponent {
         const index = prices.findIndex((price) => (price.currency.symbol === currency));
         
         return (
-            <div className="CartMenu-ProductPrice">
+            <div className="CartMenuItem-ProductPrice">
                 { prices[index].currency.symbol }
                 { prices[index].amount }
             </div>
@@ -21,59 +22,67 @@ class CartMenuItem extends PureComponent {
         const { value } = item;
         const { setAttribute } = this.props;
         const { allAttributes, attributes } = product;
-        const selectedStyle = {
-            background: '#1D1F22',
-            color: '#FFF'
-        };
-    
+        const { keyId } = this.props;
         const isSelectedTrue = allAttributes !== attributes && attributes[index].items.id === item.id ? true : false;
-           if (isSelectedTrue) {
-              console.log(isSelectedTrue );
-            } else {
-                  console.log("lol");
-            }
-            const selectedColorStyle = {
-              width: '20px',
-              minWidth: 'auto',
-              height: '20px',
-              border: '1px solid #5ECE7B',
-          };
-  
-          const ifColorItemStyle = {
-              width: '16px',
-              minWidth: 'auto',
-              height: '16px',
-              border: 'none',
-              visibility: 'none'
-          };     
+
+        const selectedStyle = {
+          background: '#1D1F22',
+          color: '#FFF'
+        };
+        const selectedColorStyle = {
+          backgroundColor: value,
+          backgroundClip: 'content-box',
+          width: '20px',
+          height: '20px',
+          padding: '1px',
+          border: '1px solid #5ECE7B',
+          boxSizing: 'border-box',
+          transition: '0.08s ease-in-out'
+        };
           
-          const ifColorStyle = {
+          const colorStyle = {
               background: value,
               width: '16px',
               height: '16px',
+              transition: '0.08s ease-in-out'
           };
   
-          const ifWhiteStyle = {
+          const whiteStyle = {
               background: value,
               width: '16px',
               height: '16px',
+              padding: '0px',
               boxSizing: 'border-box',
               border: '1px solid #1D1F22'
           }
+
+          const whiteSelectedStyle = {
+            backgroundColor: value,
+            backgroundClip: 'content-box',
+            width: '20px',
+            height: '20px',
+            padding: '1px',
+            border: '1px solid #5ECE7B',
+            boxSizing: 'border-box',
+            transition: '0.08s ease-in-out'
+          }
           
         return (
-            <div className="CartMenu-AttributeItem" key={ i } 
-                onClick = { () => setAttribute(item) } 
-                style={ (isSelectedTrue === true && attribute.id !== 'Color') ? selectedStyle : 
-                       (isSelectedTrue === true && attribute.id === 'Color') ? selectedColorStyle : 
-                        attribute.id === 'Color' ? ifColorItemStyle : null
-                        
+            <div className={ (isSelectedTrue && attribute.id !== 'Color') ? "CartMenuItem-Attribute-Item-Active" : 
+                            (attribute.id === 'Color' && isSelectedTrue === false) ? "CartMenuItem-Attribute-Color" :
+                          (attribute.id === 'Color' && isSelectedTrue) ?
+                            "CartMenuItem-Attribute-Color-Active" : "CartMenuItem-Attribute-Item" 
+              } key={ i } 
+                onClick = { () => setAttribute(item, keyId) } 
+                style={ (isSelectedTrue && attribute.id !== 'Color') ? selectedStyle : 
+                (isSelectedTrue && attribute.id === 'Color' && value !== '#FFFFFF') ? selectedColorStyle :
+                (attribute.id === 'Color' && value !== '#FFFFFF') ? colorStyle : 
+                    (attribute.id === 'Color' && value === '#FFFFFF' && isSelectedTrue === false) ? whiteStyle : 
+                    (isSelectedTrue && value === '#FFFFFF' ) ? whiteSelectedStyle : null    
                 }  
             >
-                <p className="CartMenu-ItemText"
-                  style={ (attribute.id === 'Color' && value !== '#FFFFFF') ? ifColorStyle : 
-                   (attribute.id === 'Color' && value === '#FFFFFF') ? ifWhiteStyle : null
-                  }
+                <p className="CartMenuItem-Attribute-Item-ItemText"
+                  style={ attribute.id === 'Color' ? { display: 'none' } : null }
                 >
                    { attribute.id !== 'Color' && value }
                 </p>  
@@ -85,11 +94,11 @@ class CartMenuItem extends PureComponent {
         const { id, items } = attribute;
     
         return (
-          <div className="CartMenu-Attribute" key={ index }>
-            <div className="CartMenu-Attribute-Name">
+          <div className="CartMenuItem-Attribute" key={ index }>
+            <div className="CartMenuItem-Attribute-Name">
                 { id }:
             </div>  
-            <div className="CartMenu-AttributeItems" key={ index }>
+            <div className="CartMenuItem-Attribute-Items" key={ index }>
               { items.map((item, i) => this.renderAttributeItems(item, i, attribute, index, product)) } 
             </div>
           </div> 
@@ -101,30 +110,30 @@ class CartMenuItem extends PureComponent {
         const { brand, name, gallery, cartQuantity, allAttributes } = productInCart;
     
         return (
-          <div className="CartMenu-Product" key={ i }>
-            <div className="CartMenu-LeftSideWrapper">
-              <div className="CartMenu-BrandName">
+          <div className="CartMenuItem-Product" key={ i }>
+            <div className="CartMenuItem-LeftSideWrapper">
+              <div className="CartMenuItem-BrandName">
                 <p>{ brand }</p>
                 <p>{ name }</p>
               </div>
               { this.getPrice(productInCart) }
-              <div className="CartMenu-AttributeWrapper">
-                { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index, productInCart)) }  
+              <div className="CartMenuItem-AttributeWrapper">
+                { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index, productInCart))}  
               </div>
             </div>
-              <div className="CartMenu-Quantity">
-                <button className="CartMenu-IncreaseQuantity" onClick={() => increaseQuantity(productInCart) }>
-                  <img id="CartMenu-IncreaseQty" src={ IncreaseButton } alt="Increase product quantity" />   
+              <div className="CartMenuItem-Quantity">
+                <button className="CartMenuItem-IncreaseQuantity" onClick={() => increaseQuantity(productInCart) }>
+                  <img id="CartMenuItem-IncreaseQty" src={ IncreaseButton } alt="Increase product quantity" />   
                 </button>
-                <div className="CartMenu-QuantityNumber">
+                <div className="CartMenuItem-QuantityNumber">
                   { cartQuantity }
                 </div>
-                <button className="CartMenu-DecreaseQuantity" onClick={() => decreaseQuantity(productInCart) }>
-                  <img id="CartMenu-DecreaseQty" src={ DecreaseButton } alt="Increase product quantity" />      
+                <button className="CartMenuItem-DecreaseQuantity" onClick={() => decreaseQuantity(productInCart) }>
+                  <img id="CartMenuItem-DecreaseQty" src={ DecreaseButton } alt="Increase product quantity" />      
                 </button>
               </div>
-              <div className="CartMenu-Img-Wrapper">
-                <img className="CartMenu-Img" src={ gallery[0] } alt="Product in your Bag" />
+              <div className="CartMenuItem-Img-Wrapper">
+                <img className="CartMenuItem-Img" src={ gallery[0] } alt="Product in your Bag" />
               </div>
           </div>
         );

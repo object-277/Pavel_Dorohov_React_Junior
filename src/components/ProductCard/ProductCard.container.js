@@ -14,7 +14,9 @@ class ProductCardContainer extends PureComponent {
 
     handleAddToCart  = () => {
         const { product, addProductToCart } = this.props;
-        addProductToCart(product);
+        const productAttributes = product.attributes;
+        const productToCart = Object.assign({}, product, {allAttributes: productAttributes});
+        addProductToCart(productToCart);
         this.props.getTotals();
     };
 

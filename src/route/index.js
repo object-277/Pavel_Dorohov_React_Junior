@@ -8,8 +8,7 @@ import {
 import PDP from "./PDP";
 import CartPage from "./CartPage";
 import HeaderContainer from "../components/Header/Header.container";
-import ProductsContainer from "./Products";
-import HomePage from "./HomePage/HomePage.component";
+import ProductsContainer from "./PLP";
 
 class AppRouter extends PureComponent { 
     render() {

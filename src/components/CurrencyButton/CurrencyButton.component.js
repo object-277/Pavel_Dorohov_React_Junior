@@ -7,7 +7,7 @@ import CurrencySwitcherContainer from "../CurrencySwitcher";
 class CurrencyButton extends PureComponent {
 
     render() {
-        const { onClick, isClicked, isHovering, currency, handleMouseOver, handleMouseOut } = this.props;
+        const { onClick, isHovering, currency, handleMouseOver, handleMouseOut } = this.props;
         
         return (
             <>

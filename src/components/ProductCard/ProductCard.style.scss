@@ -19,8 +19,15 @@
         filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
     }
 
-    &-Image-Wrapper {
+    &:hover &-AddToCartIcon {
+        visibility: visible;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 1;
+        filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
+        cursor: pointer;
+    }
 
+    &-Image-Wrapper {
         flex: none;
         order: 0;
         align-self: stretch;
@@ -102,12 +109,13 @@
     }
 
     &-AddToCartIcon {
-        position: relative;
         width: 52px;
         height: 52px;
-        right: 50px;
-        bottom: -26px;
-        display: none;
+        position: absolute;
+        top: 320px;
+        left: 303px;
+        visibility: hidden;
+        opacity: 0;
     }
 
     &-OutOfStock {

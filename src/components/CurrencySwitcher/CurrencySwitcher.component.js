@@ -18,7 +18,7 @@ class CurrencySwitcher extends PureComponent {
     }
 
     renderCurrencySwithcer() {
-        const { currencies, handleMouseOver, handleMouseOut } = this.props;
+        const { currencies } = this.props;
 
         return (
             <div className="CurrencySwitcher-Menu" >

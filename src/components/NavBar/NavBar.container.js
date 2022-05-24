@@ -24,7 +24,9 @@ class NavBarContainer extends PureComponent {
     }
 
     componentDidUpdate() {
-        this.props.getStateFromNavBar(this.state.isHovering);
+        const { getStateFromNavBar } = this.props;
+        const { isHovering } = this.state;
+        getStateFromNavBar(isHovering);
     }
 
     handleMouseOver() {
@@ -53,7 +55,6 @@ class NavBarContainer extends PureComponent {
     async getProducts() {
         await executePost(productsQuery).then(({category}) => {
             this.setState({category});
-            console.log({category});
         });
     }
 

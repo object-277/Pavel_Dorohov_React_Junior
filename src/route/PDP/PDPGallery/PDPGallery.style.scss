@@ -26,6 +26,10 @@
     height: 80px;
     margin-bottom: 40px;
     object-fit: cover;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .PDPGallery-SideGallery::-webkit-scrollbar {

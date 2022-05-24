@@ -53,8 +53,7 @@ class CurrencyButtonContainer extends PureComponent {
     }
 
     render() {
-        const { isClicked } = this.state;
-
+    
         return ( 
             <CurrencyButton
                 {...this.state}

@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import ProductCardContainer from "../../components/ProductCard/ProductCard.container";
-import "./Products.style.scss";
+import "./PLP.style.scss";
 
 class Products extends PureComponent {
 
     renderProducts() {
-        const { products = [] , selectedCategory } = this.props;
+        const { products = []  } = this.props;
         const { pathname } = this.props.location;
         const productsCategory = pathname.replace('/', '');
         if (productsCategory !== "all" && pathname !== "/") {
@@ -31,7 +31,6 @@ class Products extends PureComponent {
     }
 
     render() {
-        const { selectedCategory } = this.props;
         const { pathname } = this.props.location;
         const productsCategory = pathname.replace('/', '');
 

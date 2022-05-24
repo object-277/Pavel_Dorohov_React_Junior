@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import CurrencyButton from "../CurrencyButton";
 import CartIconContainer from "../Cart/CartIcon/CartIcon.container";
-import ProductsContainer from "../../route/Products";
 import { Link } from "react-router-dom";
 import "./NavBar.style.scss";
 
@@ -9,7 +8,7 @@ class NavBar extends PureComponent {
 
     renderMenuItem(category, i) {
         const { name } = category;
-        const { selectedCategory, onClick } = this.props;
+        const { onClick } = this.props;
         const { pathname } = this.props.location;
         const productsCategory = pathname.replace('/', '');
         const activeCategoryStyle = {
@@ -33,18 +32,13 @@ class NavBar extends PureComponent {
     }
 
     render() {
-        const { categories, location, handleMouseOver, handleMouseOut, isHovering } = this.props;
+        const { categories, handleMouseOver, handleMouseOut } = this.props;
         
         return (
             <>
                 <div className="NavBar-Menu" onMouseOver={ handleMouseOver } onMouseOut={ handleMouseOut } >
                     { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
                 </div>
-                {/* (location.pathname === "/all" || location.pathname === "/clothes" || location.pathname === "/tech" ) && 
-                    <ProductsContainer 
-                        { ...this.props }
-                    /> 
-        */}
                 <CurrencyButton /> 
                 <CartIconContainer /> 
             </>

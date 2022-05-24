@@ -1,5 +1,4 @@
 .PDP {
-
    position: relative;
    width: 1440px;
    height: fit-content;
@@ -8,8 +7,6 @@
    padding-left: 219px;
 
     &-Content {
-       
-        //position: absolute;
         width: 1002px;
         height: fit-content;
         left: 219px;
@@ -17,7 +14,6 @@
         overflow: hidden;
 
         .PDP-SideSection {
-      
             position: relative;
             width: 292px;
             height: fit-content;
@@ -27,7 +23,6 @@
             right: 219px;
 
             #PDP-SideSection-Brand {
-               // position: absolute;
                 width: 292px;
                 height: 27px;
                 margin-bottom: 16px;
@@ -44,7 +39,6 @@
             }
             
             #PDP-SideSection-Name {
-               // position: absolute;
                 margin: 0;
                 top: 43px;
     
@@ -59,7 +53,6 @@
             }
 
             &-Attributes {
-                //position: absolute;
                 top: 113px;
                 display: flex;
                 flex-direction: column;
@@ -71,7 +64,6 @@
                     width: fit-content;
 
                     &-Name {
-                        //width: 38px;
                         height: 18px;
                         margin-bottom: 8px;       
 
@@ -99,7 +91,28 @@
                             width: 63px;
                             height: 45px;
                             display: flex;  
-                            margin-right: 12px;  
+                            margin-right: 12px; 
+                            transition: 0.08s ease-in-out;  
+
+                            &-Active {
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                border: 1px solid #1D1F22;
+                                color: #292929;
+                                box-sizing: border-box;
+                                width: 63px;
+                                height: 45px;
+                                display: flex;  
+                                margin-right: 12px;
+                                cursor: pointer;   
+                                transition: 0.08s ease-in-out;    
+                            }
+
+                            &:hover {
+                                background-color: #5ECE7B;
+                                cursor: pointer;        
+                            }
 
                             &-ItemText {
                                 font-family: 'Source Sans Pro', sans-serif;
@@ -118,11 +131,9 @@
             }
 
             #PDP-SideSection-PriceLabel {
-
                 text-transform: uppercase;
                 width: 50px;
                 height: 18px;
-                /* position: absolute; */
                 margin: 0px 10px 0px 0px;
                 top: 224px;
                 color: #1D1F22;
@@ -137,7 +148,6 @@
             }
 
             &-ProductPrice {
-                //position: absolute;
                 margin-bottom: 20px;
                 top: 252px;
                 width: 86px;
@@ -165,7 +175,6 @@
             }
 
             &-AddToCart {
-               // position: absolute;
                 top: 312.5px;
                 background-color: #5ECE7B;
                 border: none;
@@ -199,7 +208,6 @@
             }
 
             #PDP-SideSection-Description {
-                //position: absolute;
                 font-family: 'Roboto', sans-serif;
                 font-style: normal;
                 font-weight: 400;

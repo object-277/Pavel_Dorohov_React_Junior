@@ -40,7 +40,7 @@ class PDP extends PureComponent {
             marginRight: '8px'
         };
 
-        const ifColorItemStyle = {
+        const colorItemStyle = {
             width: '32px',
             height: '32px',
             border: '1px solid transparent',
@@ -48,13 +48,13 @@ class PDP extends PureComponent {
             visibility: 'none'
         };     
         
-        const ifColorStyle = {
+        const colorStyle = {
             background: value,
             width: '32px',
             height: '32px',
         };
 
-        const ifWhiteStyle = {
+        const whiteStyle = {
             background: value,
             width: '32px',
             height: '32px',
@@ -63,19 +63,19 @@ class PDP extends PureComponent {
         }
 
         return (
-            <div className="PDP-Attribute-Item" key={ i } 
+            <div className={ isSelectedTrue === true ? "PDP-Attribute-Item-Active" : "PDP-Attribute-Item" } key={ i } 
                 onClick = {
                 () => setAttribute(item) 
                 } 
                 style={ (isSelectedTrue === true && attribute.id !== 'Color') ? selectedStyle : 
                        (isSelectedTrue === true && attribute.id === 'Color') ? selectedColorStyle : 
-                        attribute.id === 'Color' ? ifColorItemStyle : null
+                        attribute.id === 'Color' ? colorItemStyle : null
                         
                 } 
             >
                 <p className="PDP-Attribute-Item-ItemText"
-                   style={ (attribute.id === 'Color' && value !== '#FFFFFF') ? ifColorStyle : 
-                          (attribute.id === 'Color' && value === '#FFFFFF') ? ifWhiteStyle : null
+                   style={ (attribute.id === 'Color' && value !== '#FFFFFF') ? colorStyle : 
+                          (attribute.id === 'Color' && value === '#FFFFFF') ? whiteStyle : null
                    }
             >
                { attribute.id !== 'Color' && value }

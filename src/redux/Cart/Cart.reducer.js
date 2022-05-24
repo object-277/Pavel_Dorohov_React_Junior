@@ -10,9 +10,9 @@ const cartSlice = createSlice({
         cartTotalPrice: 0,
         selectedCategory: localStorage.getItem("category"),
         currency: localStorage.getItem("currency"),
-        itemAttributes: localStorage.getItem("selectedAttributes") 
-        ? JSON.parse(localStorage.getItem("selectedAttributes")) 
-        : [],
+        //itemAttributes: localStorage.getItem("selectedAttributes") 
+        //? JSON.parse(localStorage.getItem("selectedAttributes")) 
+       // : [],
         productToCart: localStorage.getItem("productSetToCart") 
         ? JSON.parse(localStorage.getItem("productSetToCart")) 
         : []
@@ -70,7 +70,7 @@ const cartSlice = createSlice({
             localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
         },
         getTotals: (state, action) => {
-            let { total, quantity } = state.productsInCart.reduce((cartTotal, productInCart) => {
+            const { total, quantity } = state.productsInCart.reduce((cartTotal, productInCart) => {
                 const { prices,  cartQuantity } = productInCart;
                 const { currency } = state;
                 const index = prices.findIndex((price) => (price.currency.symbol === currency));
@@ -96,11 +96,16 @@ const cartSlice = createSlice({
             localStorage.setItem("currency", action.payload);
         },
         setProductAttribute: (state, action) => {
-            const { productsInCart, itemAttributes } = state;
-            const attributeIndex = 
+            const { productsInCart } = state;
+            let attributeIndex = {};
+            if (action.payload.keyId !== null) {
+                 attributeIndex = action.payload.keyId;
+            } else {
+                attributeIndex = 
                 productsInCart.findIndex((productInCart) => (productInCart.id === action.payload.id)
                 
             );
+            }
             const attributeIndex2 = productsInCart[attributeIndex].attributes.findIndex((attribute) =>
             (attribute.id === action.payload.selectedAttribute)
             );
@@ -117,20 +122,6 @@ const cartSlice = createSlice({
             (productInCart.id === action.payload.itemIn.id));
             }
             localStorage.setItem("cartProducts", JSON.stringify(productsInCart));
-
-            let ifAlreadyInState = itemAttributes.some((item) => JSON.stringify(item) === JSON.stringify(action.payload));
-            let ifAlreadyInState2 = itemAttributes.some((item) => JSON.stringify(item.selectedAttribute) === JSON.stringify(action.payload.selectedAttribute));
-            const needFindIndex = itemAttributes.findIndex((item) => (item.id === action.payload.id));
-            if (ifAlreadyInState === true) {
-                state.itemAttributes = itemAttributes.filter((item) => (item.itemIn.id !== action.payload.itemIn.id));
-            } else if (itemAttributes[needFindIndex] !== undefined &&
-                       itemAttributes[needFindIndex].id === action.payload.id && 
-                       ifAlreadyInState2 === true) {
-                itemAttributes[needFindIndex].itemIn = action.payload.itemIn;
-            } else {
-                itemAttributes.push(action.payload);
-            }
-            localStorage.setItem("selectedAttributes", JSON.stringify(itemAttributes));
         },
         setProductToCart: (state, action) => {
             const { productToCart } = state;

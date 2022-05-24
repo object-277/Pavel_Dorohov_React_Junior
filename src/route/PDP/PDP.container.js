@@ -8,7 +8,6 @@ import { addProductToCart, getTotals, setProductAttribute, setProductToCart } fr
 class PDPContainer extends PureComponent {
 
     state = {
-        //isProductInCart: null,
         allAttributesSelected : false     
     };
 
@@ -46,13 +45,6 @@ class PDPContainer extends PureComponent {
         setProductToCart(testToCart);
     }
 
-    /*checkIfInCart() {
-        const { product } = this.state;
-        const ifInCart = this.props.productsInCart.some((productInCart) => productInCart.id === product.id);
-        console.log(ifInCart);
-        this.setState({isProductInCart: ifInCart});
-    }*/
-
     checkIfAllAttributesSelected() {
         const { productToCart } = this.props;
         if (productToCart.length > 0) {
@@ -73,7 +65,6 @@ class PDPContainer extends PureComponent {
     }
 
     componentDidUpdate() {
-       // this.checkIfInCart();
         this.checkIfAllAttributesSelected();
     }
 
@@ -123,7 +114,6 @@ class PDPContainer extends PureComponent {
 const mapStateToProps = state => ({
     productsInCart: state.cart.productsInCart,
     currency: state.cart.currency,
-    itemAttributes: state.cart.itemAttributes,
     productToCart: state.cart.productToCart
 });
 

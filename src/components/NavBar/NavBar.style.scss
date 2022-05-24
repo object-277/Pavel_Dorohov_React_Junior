@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
-
 .NavBar {
     width: 234px;
     height: 80px;
@@ -27,7 +25,6 @@
         padding-bottom: 32px;
         padding-left: 16px;
         text-transform: uppercase;
-        cursor: pointer;
 
         font-family: 'Raleway';
         font-style: normal;
@@ -37,7 +34,7 @@
 
     &-MenuItemLink {
         text-decoration: none;
-        color: inherit; 
+        color: inherit;
     }
 
     &-MenuItemLink :focus, :hover, :visited, :link, :active {
@@ -47,6 +44,10 @@
         font-weight: 600;
         font-size: 16px;
         line-height: 120%;
+    }
+
+    &-MenuItem {
+        transition: 0.1s ease-in-out; 
     }
 
     &-MenuItem:hover {

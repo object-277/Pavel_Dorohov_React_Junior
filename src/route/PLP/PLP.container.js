@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import Products from "./Products.component";
+import Products from "./PLP.component";
 import { executePost } from "../../util/Request.util";
 import { productsQuery } from "../../query/products.query";
 import { withRouter } from "react-router-dom";
@@ -16,7 +16,6 @@ class ProductsContainer extends PureComponent {
         await executePost(productsQuery).then(({category}) => {
             const { products } = category;
             this.setState({products});
-            console.log({category});
         });
     }
 

@@ -28,8 +28,8 @@ class ProductCard extends PureComponent {
 
         if ( inStock === true ) {
             return (
-                <>
-                    <Link className="ProductCard" to={ "/pdp/" + id } >
+                <div className="ProductCard">
+                    <Link className="ProductCard-Link" to={ "/pdp/" + id } >
                         <div className="ProductCard-Image-Wrapper">
                             <img className="ProductCard-Image" src={ gallery[0] } 
                                 alt="Product" 
@@ -48,7 +48,7 @@ class ProductCard extends PureComponent {
                          alt="Add To Cart" 
                          onClick={() => addToCart(product) }
                     /> 
-                </>
+                </div>
             );
         } else {
             return (
