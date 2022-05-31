@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import "../CurrencyButton/CurrencyButton.style.scss";
 import vector from "../CurrencyButton/Vector.svg";
-import vectorClicked from "../CurrencyButton/VectorClicked.svg";
 import CurrencySwitcherContainer from "../CurrencySwitcher";
 
 class CurrencyButton extends PureComponent {
@@ -15,7 +14,7 @@ class CurrencyButton extends PureComponent {
                     <div id="CurrencyButton-Symbol" >
                         { currency }
                     </div>
-                    <img id="CurrencyButton-Arrow" src={ isHovering ? vectorClicked : vector } alt="Select currency" /> 
+                    <img id="CurrencyButton-Arrow" src={ vector } alt="Select currency" /> 
                     { isHovering && <CurrencySwitcherContainer { ...this.props } /> }
                 </div>
             </>

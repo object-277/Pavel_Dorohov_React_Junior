@@ -4,8 +4,6 @@ import { categoriesQuery } from "../../query/category.query";
 import { productsQuery } from "../../query/products.query";
 import { executePost } from "../../util/Request.util";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { setCategory } from "../../redux/Cart/Cart.reducer";
 
 class NavBarContainer extends PureComponent {
     constructor(props) {
@@ -15,7 +13,6 @@ class NavBarContainer extends PureComponent {
         };
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -41,11 +38,6 @@ class NavBarContainer extends PureComponent {
         }));
     }
 
-    handleClick = (name) => {
-        const { setCategory } = this.props;
-        setCategory(name);
-    }
-
     async getCategories() {
         await executePost(categoriesQuery).then(({categories}) => {
             this.setState({categories});
@@ -64,7 +56,6 @@ class NavBarContainer extends PureComponent {
             <NavBar
                 { ...this.props }
                 { ...this.state }
-                onClick={ this.handleClick }
                 handleMouseOver={ this.handleMouseOver }
                 handleMouseOut={ this.handleMouseOut }
             />
@@ -72,10 +63,4 @@ class NavBarContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
-    selectedCategory: state.cart.selectedCategory
-});
-
-const mapDispatchToProps = { setCategory };
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBarContainer));
+export default (withRouter(NavBarContainer));

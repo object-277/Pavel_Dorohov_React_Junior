@@ -1,0 +1,185 @@
+.ProductCard {
+  position: relative;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  margin: 0px 0px;
+  width: 386px;
+  height: 444px;
+  margin-bottom: 103px;
+  background: #FFF;
+  -webkit-filter: drop-shadow(0px 4px 35px transparent);
+          filter: drop-shadow(0px 4px 35px transparent);
+  -webkit-transition: -webkit-filter .25s;
+  transition: -webkit-filter .25s;
+  transition: filter .25s;
+  transition: filter .25s, -webkit-filter .25s;
+}
+
+.ProductCard:hover {
+  -webkit-filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+          filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+}
+
+.ProductCard:hover .ProductCard-AddToCartIcon {
+  visibility: visible;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  -webkit-filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
+          filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
+  cursor: pointer;
+}
+
+.ProductCard-Image-Wrapper {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  margin: 0px 0px;
+  position: absolute;
+  width: 354px;
+  height: 330px;
+  left: 16px;
+  top: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ProductCard-Image {
+  width: 354px;
+  height: 330px;
+  -o-object-fit: none;
+     object-fit: none;
+}
+
+.ProductCard-Content {
+  position: absolute;
+  width: 354px;
+  height: 58px;
+  top: 370px;
+  right: 0px;
+  bottom: 0px;
+  left: 16px;
+}
+
+.ProductCard-Content-ProductName {
+  width: 354px;
+  height: 29px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1D1F22;
+}
+
+.ProductCard-Content #ProductCard-Content-Brand {
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+.ProductCard-Content #ProductCard-Content-Name {
+  margin: 0;
+  padding: 0;
+}
+
+.ProductCard-Content-Price {
+  width: 58px;
+  height: 29px;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 29px;
+  font-family: 'Raleway', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  text-align: right;
+  color: #1D1F22;
+}
+
+.ProductCard-Content-PriceCurrencySymbol, .ProductCard-Content-PriceAmount {
+  margin: 0;
+  padding: 0;
+}
+
+.ProductCard-AddToCartIcon {
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  top: 320px;
+  left: 303px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.ProductCard-OutOfStock {
+  position: relative;
+  background: #FFF;
+  opacity: 0.5;
+  width: 386px;
+  height: 444px;
+}
+
+.ProductCard-OutOfStockLabel {
+  position: absolute;
+  text-transform: uppercase;
+  color: #8D8F9A;
+  width: 173px;
+  height: 39px;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 90px;
+  top: 146px;
+  z-index: 1;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 160%;
+}
+/*# sourceMappingURL=ProductCard.style.css.map */

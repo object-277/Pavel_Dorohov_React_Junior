@@ -1,0 +1,91 @@
+.CurrencySwitcher {
+  position: absolute;
+  width: 114px;
+  height: 269px;
+  top: 36.5px;
+  right: 0px;
+  bottom: 0px;
+  left: -11px;
+  background-color: #FFF;
+  -webkit-filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+          filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+  z-index: 4;
+}
+
+.CurrencySwitcher-BackgroundOverlay {
+  width: 1440px;
+  height: 1700px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+}
+
+.CurrencySwitcher-Menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  width: 114px;
+  height: 269px;
+  padding: 12px 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.CurrencySwitcher-Item-Wrapper {
+  width: 114px;
+  height: 45px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  padding-top: 8px;
+  padding-left: 20px;
+  background-color: transparent;
+  -webkit-transition: background-color 10ms ease-in-out;
+  transition: background-color 10ms ease-in-out;
+}
+
+.CurrencySwitcher-Item-Wrapper:hover {
+  background-color: #eee;
+}
+
+.CurrencySwitcher-Item {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 29px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid transparent;
+  -webkit-transition: border 0.17s;
+  transition: border 0.17s;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.CurrencySwitcher-Item-Symbol {
+  margin-right: 3px;
+}
+/*# sourceMappingURL=CurrencySwitcher.style.css.map */

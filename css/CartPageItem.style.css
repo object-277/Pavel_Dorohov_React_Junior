@@ -1,0 +1,401 @@
+.CartPageItem {
+  position: relative;
+  width: 1240px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.CartPageItem-ItemInfoWrapper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.CartPageItem #CartPageItem-Brand {
+  position: relative;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+  height: 27px;
+  /* top: 24px; */
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1D1F22;
+  margin-bottom: 16px;
+}
+
+.CartPageItem #CartPageItem-Name {
+  width: 292px;
+  height: 27px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1D1F22;
+  margin-bottom: 20px;
+}
+
+.CartPageItem-BtnImgGroup {
+  width: 269px;
+  height: 288px;
+  left: 971px;
+  bottom: 0px;
+}
+
+.CartPageItem-QuantityWrapper {
+  width: 45px;
+  height: 288px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.CartPageItem-ButtonImg {
+  position: absolute;
+  left: 33%;
+  right: 33.33%;
+  top: 50%;
+  bottom: 50%;
+  padding: 0;
+  margin: 0;
+}
+
+.CartPageItem-Gallery {
+  position: absolute;
+  width: 200px;
+  height: 288px;
+  top: 0px;
+  right: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CartPageItem-Img {
+  width: 200px;
+  height: 288px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+
+.CartPageItem-CaretLeftWrapper {
+  width: 24px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.73);
+  position: absolute;
+  top: 248px;
+  left: 128px;
+  padding: 2.7px 3px 3.32px 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.CartPageItem-CaretLeftWrapper:hover {
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.CartPageItem-CaretLeftWrapper:active {
+  background: #1D1F22;
+}
+
+.CartPageItem-CaretRightWrapper {
+  width: 24px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.73);
+  position: absolute;
+  top: 248px;
+  bottom: 0px;
+  left: 160px;
+  padding: 2.7px 3px 3.32px 3px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+  -webkit-transition: 0.05s ease-in-out;
+  transition: 0.05s ease-in-out;
+}
+
+.CartPageItem-CaretRightWrapper:hover {
+  background: #1D1F22;
+  cursor: pointer;
+}
+
+.CartPageItem-CaretRightWrapper:active {
+  background: black;
+}
+
+.CartPageItem-Line {
+  width: 1097px;
+  height: 1px;
+  width: 1240px;
+  height: 1px;
+  background: #E5E5E5;
+  border: none;
+  margin: 0 0 20px 0;
+}
+
+.CartPageItem-IncreaseQuantity {
+  width: 45px;
+  height: 45px;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-transition: 0.08s ease-in-out;
+  transition: 0.08s ease-in-out;
+}
+
+.CartPageItem-IncreaseQuantity:hover {
+  background: rgba(0, 0, 0, 0.11);
+  cursor: pointer;
+}
+
+.CartPageItem-IncreaseQuantity:active {
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.CartPageItem-DecreaseQuantity {
+  width: 45px;
+  height: 45px;
+  bottom: 0;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  -webkit-transition: 0.08s ease-in-out;
+  transition: 0.08s ease-in-out;
+}
+
+.CartPageItem-DecreaseQuantity:hover {
+  background: rgba(0, 0, 0, 0.11);
+  cursor: pointer;
+}
+
+.CartPageItem-DecreaseQuantity:active {
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.CartPageItem-Quantity {
+  width: 45px;
+  height: 34px;
+  left: 17.5px;
+  top: 71.76px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 160%;
+}
+
+.CartPageItem-Price {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+
+.CartPageItem-PriceCurrencySymbol, .CartPageItem-PriceAmount {
+  margin: 0;
+  padding: 0;
+}
+
+.CartPageItem-Attributes {
+  top: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.CartPageItem-Attributes div:last-child {
+  margin-bottom: 0px;
+}
+
+.CartPageItem-Attribute {
+  margin-bottom: 16px;
+}
+
+.CartPageItem-Attribute-Name {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 18px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #1D1F22;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+.CartPageItem-Attribute-Items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+
+.CartPageItem-Attribute-Item {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  border: 1px solid #1D1F22;
+  color: #292929;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 63px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 0.08s ease-in-out;
+  transition: 0.08s ease-in-out;
+}
+
+.CartPageItem-Attribute-Item:hover {
+  background-color: #5ECE7B;
+  cursor: pointer;
+}
+
+.CartPageItem-Attribute-Item-Active {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  border: 1px solid #1D1F22;
+  color: #292929;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 63px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-transition: 0.08s ease-in-out;
+  transition: 0.08s ease-in-out;
+}
+
+.CartPageItem-Attribute-Item-ItemText {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.CartPageItem-Attribute-Color:hover {
+  background-clip: content-box !important;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 1px !important;
+  border: 1px solid #1D1F22;
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+  cursor: pointer;
+}
+/*# sourceMappingURL=CartPageItem.style.css.map */

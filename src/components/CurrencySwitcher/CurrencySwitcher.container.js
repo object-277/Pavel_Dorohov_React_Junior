@@ -10,7 +10,7 @@ class CurrencySwitcherContainer extends PureComponent {
         super(props);
         this.state = {
             currencies: [],
-            notSelected: true,
+            notSelected: true,  
             isHovering: undefined
         };
         this.handleSetCurrency = this.handleSetCurrency.bind(this);
@@ -28,8 +28,10 @@ class CurrencySwitcherContainer extends PureComponent {
 
     componentWillUnmount() {
         const { currencySwitcherUnmounts } = this.props;
-        currencySwitcherUnmounts();
-
+        /* when CurrencySwitcher has been closed, 
+        then hover state of this component and the state of its' parent component
+        is set to initial  */
+        currencySwitcherUnmounts();      
     }
 
     async getCurrencies() {
@@ -52,7 +54,7 @@ class CurrencySwitcherContainer extends PureComponent {
     
     handleSetCurrency = (symbol) => {
         this.setState(prevState => ({
-            notSelected: !prevState.notSelected,
+            notSelected: !prevState.notSelected,  // when user selects currency, then CurrencySwitcher is being closed 
             isHovering: false
         }));
         const { setCurrency, getTotals } = this.props;

@@ -1,0 +1,16 @@
+.Header {
+  position: absolute;
+  width: 1440px;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+}
+
+.Header .logo {
+  position: absolute;
+  width: 41px;
+  height: 41px;
+  left: 699px;
+  top: calc(50% - 41px/2 + 4.5px);
+}
+/*# sourceMappingURL=Header.style.css.map */

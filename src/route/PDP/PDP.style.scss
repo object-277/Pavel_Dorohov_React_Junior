@@ -13,6 +13,17 @@
         top: 80px;
         overflow: hidden;
 
+        #PDP-Warning {
+            margin-bottom: 10px;
+            font-family: 'Raleway';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 18px;
+            color: #E60000;
+            line-height: 20px;
+            letter-spacing: 0.04em;
+        }
+
         .PDP-SideSection {
             position: relative;
             width: 292px;
@@ -59,6 +70,15 @@
                 margin-top: 43px;
                 margin-bottom: 40px;
 
+                &-Warning {
+                    top: 113px;
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 43px;
+                    margin-bottom: 10px;    
+                }
+            }
+
                 .PDP-Attribute {
                     margin-bottom: 20px;
                     width: fit-content;
@@ -73,7 +93,21 @@
                         font-size: 18px;
                         line-height: 18px;
                         text-transform: uppercase;
+                        transition: 1s color ease-out;
                     } 
+
+                    &-NotSelected {
+                        height: 18px;
+                        margin-bottom: 8px;       
+
+                        font-family: 'Roboto Condensed', sans-serif;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 18px;
+                        line-height: 18px;
+                        text-transform: uppercase;
+                        color: #E60000;
+                    }
 
                     &-Items {
                         display: flex;
@@ -92,7 +126,8 @@
                             height: 45px;
                             display: flex;  
                             margin-right: 12px; 
-                            transition: 0.08s ease-in-out;  
+                            transition: 0.08s ease-in-out;
+                            transition: 1s border ease-out;  
 
                             &-Active {
                                 align-items: center;
@@ -107,6 +142,25 @@
                                 margin-right: 12px;
                                 cursor: pointer;   
                                 transition: 0.08s ease-in-out;    
+                            }
+
+                            &-Warning {
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                border: 1px solid #E60000;
+                                color: #292929;
+                                box-sizing: border-box;
+                                width: 63px;
+                                height: 45px;
+                                display: flex;  
+                                margin-right: 12px; 
+                                transition: 0.08s ease-in-out;    
+                                
+                                &:hover {
+                                    background-color: #5ECE7B;
+                                    cursor: pointer;    
+                                }
                             }
 
                             &:hover {
@@ -128,7 +182,6 @@
                         margin: 0px 0px;
                     }
                 }
-            }
 
             #PDP-SideSection-PriceLabel {
                 text-transform: uppercase;

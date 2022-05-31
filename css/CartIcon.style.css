@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+}
+
+.cartIcon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 1319px;
+  top: 33px;
+}
+
+.cartIcon-ShowQuantity {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -8px;
+  left: 13px;
+}
+
+.cartIcon #cartQuantityNumber {
+  position: absolute;
+  top: 2.86px;
+  left: 2.86px;
+  right: 2.86px;
+  bottom: 2.86px;
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+  width: 14.29px;
+  height: 14.29px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.cartIcon:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=CartIcon.style.css.map */

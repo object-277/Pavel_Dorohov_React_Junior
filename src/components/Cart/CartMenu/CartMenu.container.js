@@ -7,7 +7,7 @@ class CartMenuContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            notClicked: true
+            active: false
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleDecrease = this.handleDecrease.bind(this);
@@ -15,7 +15,7 @@ class CartMenuContainer extends PureComponent {
 
     handleClick(e) {
         this.setState(prevState => ({
-            notClicked: !prevState.notClicked
+            active: !prevState.active
         }));
     }
 
@@ -32,17 +32,17 @@ class CartMenuContainer extends PureComponent {
     };
 
     componentWillUnmount() {
-        this.setState({notClicked: true});
+        this.setState({active: false});
     }
 
     render() {
-        const { notClicked } = this.state;
-        if ( notClicked === true ) {
+        const { active } = this.state;
+        if ( active === false ) {
             return ( 
                 <CartMenu
                     { ...this.state }
                     { ...this.props }
-                    changeClickedState = { this.handleClick }
+                    changeMenuState = { this.handleClick }
                     decreaseQuantity={ this.handleDecrease }
                     increaseQuantity ={ this.handleIncrease }
                     setAttribute= { this.handleSetAttribute }

@@ -5,6 +5,8 @@ import {
     Route,
     Redirect
   } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PDP from "./PDP";
 import CartPage from "./CartPage";
 import HeaderContainer from "../components/Header/Header.container";
@@ -14,6 +16,7 @@ class AppRouter extends PureComponent {
     render() {
         return(
             <Router>
+                <ToastContainer />
                 <HeaderContainer />
                 <Switch>
                     <Redirect exact from="/" to="/all" /> 

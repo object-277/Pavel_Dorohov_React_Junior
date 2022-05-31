@@ -1,0 +1,64 @@
+#CurrencyButton-Arrow {
+  position: absolute;
+  top: 16px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.CurrencyButton {
+  width: 38px;
+  height: 29px;
+  position: absolute;
+  top: 28.5px;
+  left: 1259px;
+  cursor: pointer;
+}
+
+.CurrencyButton #CurrencyButton-Symbol {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 12px;
+  height: 29px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.CurrencyButton:hover {
+  width: 38px;
+  height: 50px;
+  position: absolute;
+  top: 28.5px;
+  left: 1259px;
+  cursor: pointer;
+}
+
+.dropdown {
+  border: 2px solid black;
+  position: fixed;
+  width: 114px;
+  height: 169px;
+  left: 1248px;
+  top: 65px;
+  -webkit-filter: drop-shadow(0px, 4px, 35px rgba(168, 172, 176, 0.19));
+          filter: drop-shadow(0px, 4px, 35px rgba(168, 172, 176, 0.19));
+}
+/*# sourceMappingURL=CurrencyButton.style.css.map */

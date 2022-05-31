@@ -1,0 +1,285 @@
+.PDP {
+  position: relative;
+  width: 1440px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  top: 80px;
+  padding-top: 80px;
+  padding-left: 219px;
+}
+
+.PDP-Content {
+  width: 1002px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  left: 219px;
+  top: 80px;
+  overflow: hidden;
+}
+
+.PDP-Content .PDP-SideSection {
+  position: relative;
+  width: 292px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 513px;
+  left: 711px;
+  top: 0px;
+  right: 219px;
+}
+
+.PDP-Content .PDP-SideSection #PDP-SideSection-Brand {
+  width: 292px;
+  height: 27px;
+  margin-bottom: 16px;
+  margin-top: 0;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1D1F22;
+}
+
+.PDP-Content .PDP-SideSection #PDP-SideSection-Name {
+  margin: 0;
+  top: 43px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1D1F22;
+}
+
+.PDP-Content .PDP-SideSection-Attributes {
+  top: 113px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 43px;
+  margin-bottom: 40px;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute {
+  margin-bottom: 20px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Name {
+  height: 18px;
+  margin-bottom: 8px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Items .PDP-Attribute-Item {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  border: 1px solid #1D1F22;
+  color: #292929;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 63px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 12px;
+  -webkit-transition: 0.08s ease-in-out;
+  transition: 0.08s ease-in-out;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Items .PDP-Attribute-Item-Active {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  border: 1px solid #1D1F22;
+  color: #292929;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 63px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 12px;
+  cursor: pointer;
+  -webkit-transition: 0.08s ease-in-out;
+  transition: 0.08s ease-in-out;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Items .PDP-Attribute-Item:hover {
+  background-color: #5ECE7B;
+  cursor: pointer;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Items .PDP-Attribute-Item-ItemText {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+}
+
+.PDP-Content .PDP-SideSection-Attributes .PDP-Attribute-Items div:last-child {
+  margin: 0px 0px;
+}
+
+.PDP-Content .PDP-SideSection #PDP-SideSection-PriceLabel {
+  text-transform: uppercase;
+  width: 50px;
+  height: 18px;
+  margin: 0px 10px 0px 0px;
+  top: 224px;
+  color: #1D1F22;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.PDP-Content .PDP-SideSection-ProductPrice {
+  margin-bottom: 20px;
+  top: 252px;
+  width: 86px;
+  height: 46px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 18px;
+  color: #1D1F22;
+}
+
+.PDP-Content .PDP-SideSection-ProductPrice-CurrencySymbol {
+  margin: 0;
+  padding: 0;
+}
+
+.PDP-Content .PDP-SideSection-ProductPrice-Amount {
+  margin: 0px 0px;
+  width: 40px;
+  height: 20px;
+  padding: 0px 0px;
+}
+
+.PDP-Content .PDP-SideSection-AddToCart {
+  top: 312.5px;
+  background-color: #5ECE7B;
+  border: none;
+  color: #FFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  margin: 0px 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 40px;
+  padding: 16px 32px;
+  width: 292px;
+  height: 52px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  -webkit-transition: 0.22ms ease-in-out;
+  transition: 0.22ms ease-in-out;
+}
+
+.PDP-Content .PDP-SideSection-AddToCart:hover {
+  color: #1D1F22;
+}
+
+.PDP-Content .PDP-SideSection-AddToCart:active {
+  background-color: #309C4D;
+}
+
+.PDP-Content .PDP-SideSection #PDP-SideSection-Description {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.PDP-Content .PDP-SideSection #PDP-SideSection-Description p {
+  margin: 0px 0px;
+}
+/*# sourceMappingURL=PDP.style.css.map */

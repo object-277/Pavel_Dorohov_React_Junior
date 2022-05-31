@@ -8,55 +8,49 @@ import { addProductToCart, getTotals, setProductAttribute, setProductToCart } fr
 class PDPContainer extends PureComponent {
 
     state = {
-        allAttributesSelected : false     
+        allAttributesSelected : false,
+        showWarning: false     
     };
+
+    handleWarning = () => {        // Not all product's attributes are selected warning     
+        this.setState({showWarning: true});     
+        setTimeout(() => this.setState({showWarning: false}), 3500);     
+    }
 
     handleAddToCart = () => {
         const { addProductToCart, productToCart } = this.props;
-        const { allAttributesSelected } = this.state;
-        if (productToCart.length > 0) {
-            if (allAttributesSelected) {
-                addProductToCart(productToCart[0].productReadyToCart);
-                this.props.getTotals();
-                console.log(allAttributesSelected);
-            } else {
-                return (
-                 console.log(allAttributesSelected)    
-                );
-            }
-        } else {
-            return ( 
-                <div className="PDP-Warning">Select All Attributes!</div>   
-            );
-        }
+        addProductToCart(productToCart[0].productReadyToCart);
+        this.props.getTotals();
     };
   
     handleSetAttribute = (itemIn) => {
         const { product } = this.state;
-        const productSelectedAttribute = JSON.parse(JSON.stringify(product));
+        const productCopy = JSON.parse(JSON.stringify(product));  // Made copy of the product to avoid direct state modifying
         const { attributes } = this.state.product;
         const { setProductToCart } = this.props;
-        const index2 = attributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
-        const attributeName = product.attributes[index2].id;
-        productSelectedAttribute.attributes[index2].items = itemIn;
+        const attributeIndex = attributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
+        const attributeName = product.attributes[attributeIndex].id;
+        productCopy.attributes[attributeIndex].items = itemIn;
         const productAttributes = product.attributes;
-        const testProduct = Object.assign({}, productSelectedAttribute, {allAttributes: productAttributes});
-        const testToCart =  Object.assign({}, {productReadyToCart: testProduct }, {selectedAttribute: attributeName}, {allAttributes: attributes}, {itemIn: itemIn}, {product:product});
-        setProductToCart(testToCart);
+        const productSelectedAttribute = Object.assign({}, productCopy, {allAttributes: productAttributes}); // allAttributes is needed to show product's all attributes in CartPage and CartMenu 
+        // productToCart is product with selected attributes. productReadyToCart will be added to Cart from PDP  
+        const productToCart =  Object.assign({}, {productReadyToCart: productSelectedAttribute }, {selectedAttribute: attributeName}, {itemIn: itemIn}, {product: product});
+        setProductToCart(productToCart);
     }
 
-    checkIfAllAttributesSelected() {
+    checkAttributeSelection() {
         const { productToCart } = this.props;
         if (productToCart.length > 0) {
             const { productReadyToCart } = this.props.productToCart[0];
-            const ifAllAttributesSelected = productReadyToCart.attributes.every((attribute) => attribute.items.constructor === Object);
-            if (ifAllAttributesSelected) {
+            // if every attribute of the product is not array, but object, then all attributes have been selected  
+            const allSelected = productReadyToCart.attributes.every((attribute) => attribute.items.constructor === Object);
+            if (allSelected) {
                 this.setState({allAttributesSelected: true});
             } else {
                 this.setState({allAttributesSelected: false});
             }
         } else {
-            return null;
+            this.setState({allAttributesSelected: false});
         }
     }
 
@@ -65,7 +59,7 @@ class PDPContainer extends PureComponent {
     }
 
     componentDidUpdate() {
-        this.checkIfAllAttributesSelected();
+        this.checkAttributeSelection();
     }
 
     async productQuery() {
@@ -91,18 +85,18 @@ class PDPContainer extends PureComponent {
     }
 
     getCategory(product) {
-            this.setState(product);
+        this.setState(product);
     }
 
     render(){
         if ( this.state !== {} ) { 
-
             return (
                 <PDP
                     { ...this.props }
                     { ...this.state }
                     addToCart={ this.handleAddToCart }
-                    setAttribute = { this.handleSetAttribute }
+                    setAttribute={ this.handleSetAttribute }
+                    warning={ this.handleWarning }
                 />  
             );
         } else {

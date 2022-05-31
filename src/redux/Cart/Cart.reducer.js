@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -8,32 +9,37 @@ const cartSlice = createSlice({
         : [],
         cartTotalQuantity: 0,
         cartTotalPrice: 0,
-        selectedCategory: localStorage.getItem("category"),
         currency: localStorage.getItem("currency"),
-        //itemAttributes: localStorage.getItem("selectedAttributes") 
-        //? JSON.parse(localStorage.getItem("selectedAttributes")) 
-       // : [],
         productToCart: localStorage.getItem("productSetToCart") 
         ? JSON.parse(localStorage.getItem("productSetToCart")) 
         : []
     },
     reducers: {
         addProductToCart: (state, action) => {
-            if (state.productToCart.length === 0) {
-                const productIndex = state.productsInCart.findIndex(
+            const { name, attributes, id } = action.payload;
+            /* if there's no product with selected options that is ready to be added to Cart (PDP),
+               e.g. adding product using green Add to Cart Button on Product Card or
+               increase/decrease quantity buttons */ 
+            if (state.productToCart.length === 0) {                                           
+                const productIndex = state.productsInCart.findIndex(                         
                     (product) => JSON.stringify(product) === JSON.stringify(action.payload));
                 if(productIndex >= 0) {
                     state.productsInCart[productIndex].cartQuantity += 1;
+                   
                 } else {
                     const newProduct = { ...action.payload, cartQuantity: 1 };
                     state.productsInCart.push(newProduct);
+                    toast.success(`${name} added to cart`, {
+                        position: "bottom-right"
+                    });
                 }
-            } else {
+            } else {                      
+                // adding product from PDP, with selected attributes
                 const ifAlreadyInCart= state.productsInCart.some((productInCart) => 
-                JSON.stringify(productInCart.attributes) === JSON.stringify(action.payload.attributes) &&
-                JSON.stringify(productInCart.id) === JSON.stringify(action.payload.id));
+                JSON.stringify(productInCart.attributes) === JSON.stringify(attributes) &&
+                JSON.stringify(productInCart.id) === JSON.stringify(id));
                 const productIndex = state.productsInCart.findIndex(
-                    (product) => JSON.stringify(product.attributes) === JSON.stringify(action.payload.attributes));
+                    (product) => JSON.stringify(product.attributes) === JSON.stringify(attributes));
                     
                 if(ifAlreadyInCart) {
                     state.productsInCart[productIndex].cartQuantity += 1;
@@ -45,6 +51,9 @@ const cartSlice = createSlice({
                 state.productToCart = [];
                 localStorage.setItem("productSetToCart", "[]");
                 }
+                toast.success(`${name} added to cart`, {
+                    position: "bottom-right"
+                });
             }
             localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
         },
@@ -69,7 +78,7 @@ const cartSlice = createSlice({
             }    
             localStorage.setItem("cartProducts", JSON.stringify(state.productsInCart));
         },
-        getTotals: (state, action) => {
+        getTotals: (state) => {
             const { total, quantity } = state.productsInCart.reduce((cartTotal, productInCart) => {
                 const { prices,  cartQuantity } = productInCart;
                 const { currency } = state;
@@ -87,70 +96,65 @@ const cartSlice = createSlice({
             state.cartTotalQuantity = quantity;
             state.cartTotalPrice = total.toFixed(2);
         },
-        setCategory: (state, action) => {
-            state.selectedCategory = action.payload;
-            localStorage.setItem("category", action.payload);
-        },
         setCurrency: (state, action) => {
             state.currency = action.payload;
             localStorage.setItem("currency", action.payload);
         },
         setProductAttribute: (state, action) => {
             const { productsInCart } = state;
-            let attributeIndex = {};
-            if (action.payload.keyId !== null) {
-                 attributeIndex = action.payload.keyId;
+            const { keyId, itemIn, id, allAttributeItems, selectedAttribute } = action.payload;
+            let productIndex = {};
+            if (keyId !== null) {       // keyId is used to determine the right product in productsInCart array  
+                 productIndex = keyId;
             } else {
-                attributeIndex = 
-                productsInCart.findIndex((productInCart) => (productInCart.id === action.payload.id)
-                
+                productIndex = productsInCart.findIndex((productInCart) => (productInCart.id === id)   
             );
             }
-            const attributeIndex2 = productsInCart[attributeIndex].attributes.findIndex((attribute) =>
-            (attribute.id === action.payload.selectedAttribute)
+            const attributeIndex = productsInCart[productIndex].attributes.findIndex((attribute) =>
+            (attribute.id === selectedAttribute)
             );
-
-            if ( productsInCart[attributeIndex].attributes[attributeIndex2].items.id === action.payload.itemIn.id) {
-                 productsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.allAttributeItems;
-            } else if (productsInCart[attributeIndex].attributes[attributeIndex2].id === action.payload.selectedAttribute &&
-                        productsInCart[attributeIndex].id === action.payload.id
-                ) 
-                {
-                    productsInCart[attributeIndex].attributes[attributeIndex2].items = action.payload.itemIn;
+            if (productsInCart[productIndex].attributes[attributeIndex].id === selectedAttribute &&
+                        productsInCart[productIndex].id === id
+                    ) 
+            {
+                productsInCart[productIndex].attributes[attributeIndex].items = itemIn;
             } else {
-                productsInCart[attributeIndex].attributes[attributeIndex2].items = productsInCart[attributeIndex].attributes[attributeIndex2].items.filter((productInCart) =>
-            (productInCart.id === action.payload.itemIn.id));
+                productsInCart[productIndex].attributes[attributeIndex].items = productsInCart[productIndex].attributes[attributeIndex].items.filter((productInCart) =>
+            (productInCart.id === itemIn.id));
             }
             localStorage.setItem("cartProducts", JSON.stringify(productsInCart));
         },
-        setProductToCart: (state, action) => {
+        setProductToCart: (state, action) => {   // productToCart is product with selected attributes. productReadyToCart will be added to Cart from PDP  
             const { productToCart } = state;
-            const { itemIn } = action.payload;
-
-            if (productToCart.length !== 0 && productToCart[0].productReadyToCart.id === action.payload.productReadyToCart.id) {
-                    const attributeIndex = productToCart[0].allAttributes.findIndex((attribute) =>
-                (attribute.id === action.payload.selectedAttribute));
-    
-                    if (productToCart[0].productReadyToCart.attributes[attributeIndex].items.id === action.payload.itemIn.id) {
-                        productToCart[0].productReadyToCart.attributes[attributeIndex].items = action.payload.allAttributes[attributeIndex].items;
+            const { itemIn, productReadyToCart, selectedAttribute, product } = action.payload;
+            if (productToCart.length !== 0 && productToCart[0].productReadyToCart.id === productReadyToCart.id) {
+                const attributeIndex = product.attributes.findIndex((attribute) =>
+                (attribute.id === selectedAttribute));
+                    if (productToCart[0].productReadyToCart.attributes[attributeIndex].items.id === itemIn.id) {  
+                        // if client clicks on the already selected attribute  
+                        productToCart[0].productReadyToCart.attributes[attributeIndex].items = product.attributes[attributeIndex].items;
                         delete productToCart[0].productReadyToCart.allAttributes;
                         if (JSON.stringify(state.productToCart[0].productReadyToCart) === JSON.stringify(state.productToCart[0].product)) {
+                            // if user deselects all product attributes, then productSetToCart in the localStorage is cleared 
                             state.productToCart = [];
                             localStorage.setItem("productSetToCart", "[]");
                         }
-                    } else if (productToCart[0].productReadyToCart.attributes[attributeIndex].id === action.payload.selectedAttribute &&
-                                productToCart[0].productReadyToCart.id === action.payload.productReadyToCart.id
-                        ) 
+                    } else if (productToCart[0].productReadyToCart.attributes[attributeIndex].id === selectedAttribute &&
+                                productToCart[0].productReadyToCart.id === productReadyToCart.id
+                        ) // if client clicks on different item in attribute
                         {
                             productToCart[0].productReadyToCart.attributes[attributeIndex].items = itemIn;
                             productToCart[0].itemIn = itemIn;
                     } else {
-                        productToCart[0].productReadyToCart.attributes[attributeIndex].items = productToCart[0].productReadyToCart.attributes[attributeIndex].items.filter((productInCart) =>
-                    (productInCart.productReadyToCart.id === action.payload.itemIn.id));
+                        productToCart[0].productReadyToCart.attributes[attributeIndex].items = 
+                        productToCart[0].productReadyToCart.attributes[attributeIndex].items.filter((productInCart) =>
+                        (productInCart.productReadyToCart.id === itemIn.id));
                     }
                 } else {
-                    state.productToCart = productToCart.filter((product) => product.productReadyToCart.id === action.payload.productReadyToCart.id);
+                    /* if client goes to different product's page and selects that product's attributes, but previous 
+                        product still is in the localStorage, then previous product is filtered from localStorage array  */
                     state.productToCart.push(action.payload);
+                    state.productToCart = productToCart.filter((product) => product.productReadyToCart.id === productReadyToCart.id);
                 }
                 localStorage.setItem("productSetToCart", JSON.stringify(state.productToCart));
         },
@@ -160,8 +164,7 @@ const cartSlice = createSlice({
 export const { addProductToCart, 
                removeProductFromCart, 
                decreaseQuantity, 
-               getTotals, 
-               setCategory, 
+               getTotals,  
                setCurrency,
                setProductAttribute,
                setProductToCart,

@@ -16,7 +16,7 @@ class CartPageItemContainer extends PureComponent {
     };
 
     handleSetAttribute = (itemIn) => {
-        const { productInCart, setProductAttribute, keyId } = this.props;
+        const { productInCart, setProductAttribute, keyId } = this.props;   // keyId is used to determine the right product in productsInCart array  
         const { allAttributes } = productInCart;
         const attributeIndex = allAttributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
     

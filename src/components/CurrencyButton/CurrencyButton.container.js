@@ -7,8 +7,7 @@ class CurrencyButtonContainer extends PureComponent {
         super(props);
         this.state = {
             isClicked: false,
-            isHovering: false,
-            isSelected: this.props.currency
+            isHovering: false
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
@@ -17,7 +16,7 @@ class CurrencyButtonContainer extends PureComponent {
         this.currencySwitcherUnmounts = this.currencySwitcherUnmounts.bind(this);
     }
 
-    currencySwitcherUnmounts() {
+    currencySwitcherUnmounts() {  // when CurrencySwitcher has been closed, then hover state is set to initial
         this.setState(() => ({
             isHovering: false
         }));
@@ -43,6 +42,7 @@ class CurrencyButtonContainer extends PureComponent {
     }
 
     getStateFromChild(value) {
+        // check if user is hovering CurrencySwitcher, so switcher not getting closed 
         if (value !== undefined) {
             this.setState(() => ({
                 isHovering: value

@@ -8,7 +8,6 @@ class NavBar extends PureComponent {
 
     renderMenuItem(category, i) {
         const { name } = category;
-        const { onClick } = this.props;
         const { pathname } = this.props.location;
         const productsCategory = pathname.replace('/', '');
         const activeCategoryStyle = {
@@ -21,7 +20,7 @@ class NavBar extends PureComponent {
         }
     
         return (
-            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } onClick={ () => onClick(name) } >
+            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } >
                 <div className="NavBar-MenuItem" key={ i } 
                     style={ name === productsCategory ? activeCategoryStyle : notActiveCategoryStyle } 
                 >

@@ -29,7 +29,7 @@ class CartMenu extends PureComponent {
         <div className="CartMenu-Products-Wrapper">
           { productsInCart.length > 0 ? productsInCart.map((product, i) => 
           <CartMenuItemContainer productInCart={ product } key={ i } keyId={ i }/> ) 
-          : <p>Your Bag is empty</p> }
+          : <p id="emptyBag">Your Bag is empty</p> }
         </div> 
     );
   }
@@ -46,7 +46,7 @@ class CartMenu extends PureComponent {
   }
 
   render() {
-    const { cartTotalQuantity, cartTotalPrice, currency, changeClickedState } = this.props;
+    const { cartTotalQuantity, cartTotalPrice, currency, changeMenuState } = this.props;
    
     return (
         <div className="CartMenu-Wrapper">
@@ -65,7 +65,7 @@ class CartMenu extends PureComponent {
               </div>
             </div>
             <div className="CartMenu-ButtonsWrapper">
-              <Link id="CartMenu-ViewBag-Link" to="/cart" onClick={ changeClickedState }>
+              <Link id="CartMenu-ViewBag-Link" to="/cart" onClick={ changeMenuState }>
                 <button className="CartMenu-ViewBagBtn">
                   view bag
                 </button>

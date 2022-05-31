@@ -1,0 +1,219 @@
+.CartPage {
+  width: 1440px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-top: 80px;
+  position: relative;
+  top: 80px;
+}
+
+.CartPage-TopLine {
+  position: relative;
+  width: 1240px;
+  height: 1px;
+  background: #E5E5E5;
+  border: none;
+  margin: 0 0 24px 0;
+}
+
+.CartPage #Title {
+  width: 84px;
+  height: 40px;
+  margin: 0;
+  margin-left: 100px;
+  text-transform: uppercase;
+  color: #1D1F22;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.CartPage-Wrapper {
+  position: relative;
+  top: 55px;
+  left: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 1240px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.CartPage-Total-Wrapper {
+  width: 279px;
+  height: 159px;
+  position: relative;
+  top: 87px;
+  left: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+}
+
+.CartPage-Total {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100px;
+  padding: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 6px;
+}
+
+.CartPage-Total-Content {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.CartPage-Total #tax, .CartPage-Total #quantity, .CartPage-Total #total {
+  margin: 0px;
+}
+
+.CartPage-Total #total {
+  font-weight: 500;
+}
+
+.CartPage-Total-Numbers {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.CartPage-Total-Numbers #taxAmount, .CartPage-Total-Numbers #quantityNumber, .CartPage-Total-Numbers #totalPrice {
+  margin: 0px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: right;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.CartPage-Total-OrderBtn {
+  width: 279px;
+  height: 43px;
+  background: #5ECE7B;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 16px 32px;
+  -webkit-transition: 0.12s ease-in-out;
+  transition: 0.12s ease-in-out;
+}
+
+.CartPage-Total-OrderBtn #btnLabel {
+  width: 48px;
+  height: 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFF;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.CartPage-Total-OrderBtn:hover {
+  background-color: #3CC360;
+  color: #1D1F22;
+  cursor: pointer;
+}
+
+.CartPage-Total-OrderBtn:active {
+  background-color: #36B056;
+}
+
+.CartPage-Empty {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  text-transform: uppercase;
+  color: #1D1F22;
+  text-align: center;
+}
+/*# sourceMappingURL=CartPage.style.css.map */

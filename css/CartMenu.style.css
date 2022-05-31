@@ -1,0 +1,230 @@
+.CartMenu-Wrapper {
+  width: 325px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 78px;
+  left: 1043px;
+  background: white;
+  z-index: 3;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 32px 16px 32px 16px;
+}
+
+.CartMenu {
+  width: 293px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 32px;
+  padding: 0px;
+}
+
+.CartMenu-BackgroundOverlay {
+  width: 1440px;
+  height: 1700px;
+  position: absolute;
+  top: 78px;
+  background-color: rgba(57, 55, 72, 0.22);
+  z-index: 2;
+}
+
+.CartMenu-Header {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 28px;
+  margin-top: 0px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+  text-align: right;
+}
+
+.CartMenu-Header #CartMenu-Header-Quantity {
+  font-weight: 400;
+}
+
+.CartMenu-Products-Wrapper {
+  width: 293px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 120px;
+  max-height: 420px;
+  left: 16px;
+  top: 57px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 40px;
+  overflow-x: hidden;
+}
+
+.CartMenu-Products-Wrapper::-webkit-scrollbar {
+  width: 2px;
+}
+
+.CartMenu-Products-Wrapper::-webkit-scrollbar-thumb {
+  background-color: #5ECE7B;
+}
+
+.CartMenu-Products-Wrapper .CartMenu-Product:last-child {
+  margin-bottom: 32px;
+}
+
+.CartMenu #emptyBag {
+  text-align: center;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.CartMenu-TotalPriceWrapper {
+  width: 289px;
+  height: 28px;
+  position: relative;
+  bottom: 0px;
+  right: 0px;
+  padding: 0;
+}
+
+.CartMenu-TotalLabel {
+  width: 55px;
+  height: 19px;
+  color: #1D1F22;
+  position: absolute;
+  top: 9px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 112%;
+}
+
+.CartMenu-TotalPrice {
+  width: 95px;
+  height: 26px;
+  position: absolute;
+  left: 194px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 160%;
+}
+
+.CartMenu-ButtonsWrapper {
+  width: 293px;
+  height: 43px;
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.CartMenu #CartMenu-ViewBag-Link {
+  text-decoration: none;
+}
+
+.CartMenu-ViewBagBtn {
+  width: 140px;
+  height: 43px;
+  background: #FFF;
+  border: 1px solid #1D1F22;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.CartMenu-ViewBagBtn:hover {
+  color: #5ECE7B;
+  cursor: pointer;
+}
+
+.CartMenu-ViewBagBtn:active {
+  border: 1px solid #5ECE7B;
+  color: #36B056;
+}
+
+.CartMenu-CheckOutBtn {
+  width: 140px;
+  height: 43px;
+  background: #5ECE7B;
+  border: none;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFF;
+  -webkit-transition: 0.12s ease-in-out;
+  transition: 0.12s ease-in-out;
+}
+
+.CartMenu-CheckOutBtn:hover {
+  background-color: #3CC360;
+  cursor: pointer;
+}
+
+.CartMenu-CheckOutBtn:active {
+  background-color: #36B056;
+}
+/*# sourceMappingURL=CartMenu.style.css.map */

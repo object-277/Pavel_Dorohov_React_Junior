@@ -7,7 +7,7 @@ class Products extends PureComponent {
     renderProducts() {
         const { products = []  } = this.props;
         const { pathname } = this.props.location;
-        const productsCategory = pathname.replace('/', '');
+        const productsCategory = pathname.replace('/', '');  // getting products' category from the pathname, removing '/' symbol
         if (productsCategory !== "all" && pathname !== "/") {
            const filteredProducts = products.filter((product) => product.category === productsCategory);
            return (
