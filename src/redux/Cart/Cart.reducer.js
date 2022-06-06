@@ -9,7 +9,9 @@ const cartSlice = createSlice({
         : [],
         cartTotalQuantity: 0,
         cartTotalPrice: 0,
-        currency: localStorage.getItem("currency"),
+        currency: localStorage.getItem("currency")
+        ? localStorage.getItem("currency")
+        : '$',
         productToCart: localStorage.getItem("productSetToCart") 
         ? JSON.parse(localStorage.getItem("productSetToCart")) 
         : []

@@ -253,11 +253,12 @@
             }
             
             &-AddToCart:hover {
-                color: #1D1F22;
+                background-color: #3CC360;
+                cursor: pointer;
             }
 
             &-AddToCart:active {
-                background-color: #309C4D;
+                background-color: #36B056;
             }
 
             #PDP-SideSection-Description {

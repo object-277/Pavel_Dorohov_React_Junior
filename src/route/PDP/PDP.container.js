@@ -14,7 +14,7 @@ class PDPContainer extends PureComponent {
 
     handleWarning = () => {        // Not all product's attributes are selected warning     
         this.setState({showWarning: true});     
-        setTimeout(() => this.setState({showWarning: false}), 3500);     
+        setTimeout(() => this.setState({showWarning: false}), 3000);     
     }
 
     handleAddToCart = () => {
