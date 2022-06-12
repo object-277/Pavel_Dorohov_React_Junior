@@ -53,19 +53,21 @@ class ProductCard extends PureComponent {
         } else {
             return (
                 <div className="ProductCard-OutOfStock" >
-                    <p className="ProductCard-OutOfStockLabel">out of stock</p>
-                    <div className="ProductCard-Image-Wrapper">
-                            <img className="ProductCard-Image" src={ gallery[0] } 
-                                alt="Product" 
-                            />
-                    </div> 
-                    <div className="ProductCard-Content">
-                        <div className="ProductCard-Content-ProductName">
-                            <p id="ProductCard-Content-Brand" >{ brand }</p>
-                            <p id="ProductCard-Content-Name" >{ name }</p>
-                        </div>
-                        { this.getPrice() }
-                    </div> 
+                    <Link className="ProductCard-Link" to={ "/pdp/" + id } >
+                        <p className="ProductCard-OutOfStockLabel">out of stock</p>
+                        <div className="ProductCard-Image-Wrapper">
+                                <img className="ProductCard-Image" src={ gallery[0] } 
+                                    alt="Product" 
+                                />
+                        </div> 
+                        <div className="ProductCard-Content">
+                            <div className="ProductCard-Content-ProductName">
+                                <p id="ProductCard-Content-Brand" >{ brand }</p>
+                                <p id="ProductCard-Content-Name" >{ name }</p>
+                            </div>
+                            { this.getPrice() }
+                        </div> 
+                    </Link>
                 </div>   
             );
         }

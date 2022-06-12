@@ -6,36 +6,10 @@ import { executePost } from "../../util/Request.util";
 import { withRouter } from "react-router-dom";
 
 class NavBarContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isHovering: false
-        };
-        this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
-    }
 
     componentDidMount() {
         this.getCategories();
         this.getProducts();
-    }
-
-    componentDidUpdate() {
-        const { getStateFromNavBar } = this.props;
-        const { isHovering } = this.state;
-        getStateFromNavBar(isHovering);
-    }
-
-    handleMouseOver() {
-        this.setState(() => ({
-            isHovering: true
-        }));
-    }
-
-    handleMouseOut() {
-        this.setState(() => ({
-            isHovering: false
-        }));
     }
 
     async getCategories() {
@@ -56,8 +30,6 @@ class NavBarContainer extends PureComponent {
             <NavBar
                 { ...this.props }
                 { ...this.state }
-                handleMouseOver={ this.handleMouseOver }
-                handleMouseOut={ this.handleMouseOut }
             />
         );
     }

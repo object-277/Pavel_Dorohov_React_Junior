@@ -107,7 +107,7 @@ class CartMenuItem extends PureComponent {
     
       render(product, i) {
         const { productInCart, increaseQuantity, decreaseQuantity } = this.props;
-        const { brand, name, gallery, cartQuantity, allAttributes } = productInCart;
+        const { brand, name, gallery, cartQuantity, attributes, allAttributes } = productInCart;
     
         return (
           <div className="CartMenuItem-Product" key={ i }>
@@ -117,9 +117,11 @@ class CartMenuItem extends PureComponent {
                 <p>{ name }</p>
               </div>
               { this.getPrice(productInCart) }
-              <div className="CartMenuItem-AttributeWrapper">
+              { attributes.length !== 0 && 
+                <div className="CartMenuItem-AttributeWrapper">
                 { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index, productInCart))}  
               </div>
+              }
             </div>
               <div className="CartMenuItem-Quantity">
                 <button className="CartMenuItem-IncreaseQuantity" onClick={() => increaseQuantity(productInCart) }>

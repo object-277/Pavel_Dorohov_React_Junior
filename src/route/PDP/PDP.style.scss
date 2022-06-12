@@ -250,6 +250,7 @@
                 font-size: 16px;
                 line-height: 160%;
                 transition: 0.22ms ease-in-out;
+                text-transform: uppercase;
             }
             
             &-AddToCart:hover {
@@ -259,6 +260,33 @@
 
             &-AddToCart:active {
                 background-color: #36B056;
+            }
+
+            &-OutOfStock {
+                top: 312.5px;
+                background-color: #8D8F9A;
+                opacity: 0.5;
+                border: none;
+                color: #FFF;
+                display: flex;
+                flex-direction: column;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 0px 0px;
+                align-items: center;
+                margin-bottom: 40px;
+                padding: 16px 32px;
+                width: 292px;
+                height: 52px;
+
+                font-family: 'Raleway';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 160%;
+                transition: 0.22ms ease-in-out;
+                text-transform: uppercase;    
             }
 
             #PDP-SideSection-Description {

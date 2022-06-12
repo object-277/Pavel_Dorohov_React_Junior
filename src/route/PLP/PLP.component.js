@@ -37,7 +37,7 @@ class Products extends PureComponent {
         return (
             <div className="Products">
                 { productsCategory !== "all" ? 
-                    <h1 id="Products-CategoryName">{ productsCategory}</h1> :
+                    <h1 id="Products-CategoryName">{ productsCategory }</h1> :
                     <h1 id="Products-CategoryName">all</h1>
                 }
                 { this.renderProducts() }  

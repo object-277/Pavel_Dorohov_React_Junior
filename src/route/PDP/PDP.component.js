@@ -17,19 +17,24 @@ class PDP extends PureComponent {
         );         
     }
 
+    componentDidMount() {
+      // this.props.ifNoAttributes();
+    }
+
     componentDidUpdate() { 
-        this.getPrice();    
+        this.getPrice(); 
+        this.props.ifNoAttributes();   
     }
     
     renderAttributeItems(item, i, attribute, index) {
         const { value } = item;
         const { setAttribute, productToCart, product, showWarning } = this.props;
-        const isSelectedTrue = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
+       /* const isSelectedTrue = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
                                productToCart[0].productReadyToCart.attributes[index].items.id === item.id
-              : false;
-        const attributeNotSelected = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
+              : false;*/
+       /* const attributeNotSelected = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
              productToCart[0].productReadyToCart.attributes[index].items.id === attribute.items.id
-              : true;
+              : true;*/
               
         const selectedStyle = {
             backgroundColor: '#1D1F22',
@@ -66,17 +71,17 @@ class PDP extends PureComponent {
         }
 
         return (
-            <div className={ isSelectedTrue ? "PDP-Attribute-Item-Active" : 
-                            (attributeNotSelected && showWarning) ? "PDP-Attribute-Item-Warning" :     
+            <div className={ /*isSelectedTrue ? "PDP-Attribute-Item-Active" : 
+                            (attributeNotSelected && showWarning) ? "PDP-Attribute-Item-Warning" :   */  
                             "PDP-Attribute-Item" } key={ i } 
                 onClick = {
                 () => setAttribute(item) 
                 } 
-                style={ (isSelectedTrue === true && attribute.id !== 'Color') ? selectedStyle : 
-                       (isSelectedTrue === true && attribute.id === 'Color') ? selectedColorStyle : 
-                        attribute.id === 'Color' ? colorItemStyle : null
+                //style={ (isSelectedTrue === true && attribute.id !== 'Color') ? selectedStyle : 
+                  //     (isSelectedTrue === true && attribute.id === 'Color') ? selectedColorStyle : 
+                    //    attribute.id === 'Color' ? colorItemStyle : null
                         
-                } 
+                //} 
             >
                 <p className="PDP-Attribute-Item-ItemText"
                    style={ (attribute.id === 'Color' && value !== '#FFFFFF') ? colorStyle : 
@@ -96,13 +101,13 @@ class PDP extends PureComponent {
         const ifColorStyle = {
             height: '36px',
         };
-        const notSelected = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
+       /* const notSelected = productToCart[0] !== undefined && productToCart[0].productReadyToCart.id === product.id ? 
         productToCart[0].productReadyToCart.attributes[index].items.id === attribute.items.id
-        : true;
+        : true;*/
 
         return (
             <div className="PDP-Attribute" key={ index }>
-                <div className={ showWarning && notSelected ? "PDP-Attribute-NotSelected" : "PDP-Attribute-Name" }>
+                <div className={ showWarning /*&& notSelected */ ? "PDP-Attribute-NotSelected" : "PDP-Attribute-Name" }>
                     { id }:
                 </div>
                 <div className="PDP-Attribute-Items"
@@ -114,8 +119,8 @@ class PDP extends PureComponent {
         );    
     }
 
-    renderPDP() {
-        const { allAttributesSelected, addToCart, warning, showWarning } = this.props;
+    renderOutOfStock() {
+        const { addToCart, warning, showWarning } = this.props;
         const { brand, name, description, attributes } = this.props.product;
 
         return (
@@ -129,11 +134,51 @@ class PDP extends PureComponent {
                     { showWarning && <div id="PDP-Warning">Please select product options!</div> }
                     <p id="PDP-SideSection-PriceLabel">price:</p>
                     { this.getPrice() } 
-                    <button className="PDP-SideSection-AddToCart" onClick={ allAttributesSelected ? addToCart : warning }>ADD TO CART</button> 
+                    <button className="PDP-SideSection-AddToCart">out of stock</button> 
                     <div id="PDP-SideSection-Description" dangerouslySetInnerHTML={{ __html: description }} />
                  </section>
-            </div>  
-        ); 
+            </div>
+        )     
+    }
+
+    renderPDP() {
+        const { allAttributesSelected, addToCart, warning, showWarning } = this.props;
+        const { brand, name, description, attributes, inStock } = this.props.product;
+
+        if ( inStock === true ) {
+            return (
+                <div className="PDP-Content">
+                     <section className="PDP-SideSection">
+                        <p id="PDP-SideSection-Brand">{ brand }</p>
+                        <p id="PDP-SideSection-Name">{ name }</p>
+                        <div className={ showWarning ? "PDP-SideSection-Attributes-Warning" : "PDP-SideSection-Attributes" }>
+                            { attributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
+                        </div>
+                        { showWarning && <div id="PDP-Warning">Please select product options!</div> }
+                        <p id="PDP-SideSection-PriceLabel">price:</p>
+                        { this.getPrice() } 
+                        <button className="PDP-SideSection-AddToCart" onClick={ allAttributesSelected ? addToCart : warning }>add to cart</button> 
+                        <div id="PDP-SideSection-Description" dangerouslySetInnerHTML={{ __html: description }} />
+                     </section>
+                </div>  
+            ); 
+        } else {
+            return (
+                <div className="PDP-Content">
+                     <section className="PDP-SideSection">
+                        <p id="PDP-SideSection-Brand">{ brand }</p>
+                        <p id="PDP-SideSection-Name">{ name }</p>
+                        <div className={ "PDP-SideSection-Attributes" }>
+                            { attributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
+                        </div>
+                        <p id="PDP-SideSection-PriceLabel">price:</p>
+                        { this.getPrice() } 
+                        <button className="PDP-SideSection-OutOfStock">out of stock</button> 
+                        <div id="PDP-SideSection-Description" dangerouslySetInnerHTML={{ __html: description }} />
+                     </section>
+                </div>  
+            );     
+        }
     }
     
     render() {

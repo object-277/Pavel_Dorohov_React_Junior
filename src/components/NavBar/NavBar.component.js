@@ -35,7 +35,7 @@ class NavBar extends PureComponent {
         
         return (
             <>
-                <div className="NavBar-Menu" onMouseOver={ handleMouseOver } onMouseOut={ handleMouseOut } >
+                <div className="NavBar-Menu" >
                     { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
                 </div>
                 <CurrencyButton /> 

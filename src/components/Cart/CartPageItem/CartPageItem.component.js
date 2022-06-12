@@ -124,7 +124,7 @@ class CartPageItem extends PureComponent {
 
   render() {
     const { productInCart, increaseQuantity, decreaseQuantity, index, changeImgForwards, changeImgBackwards } = this.props;
-    const { brand, name, gallery, cartQuantity, allAttributes } = productInCart;
+    const { brand, name, gallery, cartQuantity, attributes, allAttributes } = productInCart;
     
     return (
       <>
@@ -137,9 +137,11 @@ class CartPageItem extends PureComponent {
             { name }
           </div>
           { this.getPrice() }
-          <div className="CartPageItem-Attributes">
-            { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
-          </div>  
+          { attributes.length !== 0 && 
+            <div className="CartPageItem-Attributes">
+              { allAttributes.map((attribute, index) => this.renderAttributes(attribute, index)) }
+            </div> 
+          } 
         </div>
         <div className="CartPageItem-BtnImgGroup">
           <div className="CartPageItem-QuantityWrapper">
