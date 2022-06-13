@@ -17,21 +17,27 @@ const cartSlice = createSlice({
     },
     reducers: {
         addProductToCart: (state, action) => {
-            const { attributes, id } = action.payload;
             /* if there's no product with selected options that is ready to be added to Cart (PDP),
                e.g. adding product using green Add to Cart Button on Product Card or
                increase/decrease quantity buttons */ 
-            if (state.productToCart.length === 0) {                                           
-                const productIndex = state.productsInCart.findIndex(                         
-                    (product) => JSON.stringify(product) === JSON.stringify(action.payload));
+            if (state.productToCart.length === 0) {
+                const { attributes } = action.payload;
+                let productIndex;
+                if ( attributes.length === 0 ) {
+                    productIndex = state.productsInCart.findIndex(                         
+                        (product) => product.id === action.payload.id)
+                } else {
+                    productIndex = state.productsInCart.findIndex(                         
+                        (product) => JSON.stringify(product) === JSON.stringify(action.payload));
+                }                                          
                 if(productIndex >= 0) {
                     state.productsInCart[productIndex].cartQuantity += 1;
-                   
                 } else {
                     const newProduct = { ...action.payload, cartQuantity: 1 };
                     state.productsInCart.push(newProduct);
                 }
-            } else {                      
+            } else {      
+                const { attributes, id } = action.payload;                
                 // adding product from PDP, with selected attributes
                 const ifAlreadyInCart= state.productsInCart.some((productInCart) => 
                 JSON.stringify(productInCart.attributes) === JSON.stringify(attributes) &&
@@ -119,49 +125,14 @@ const cartSlice = createSlice({
             }
             localStorage.setItem("cartProducts", JSON.stringify(productsInCart));
         },
-        /*setProductToCart: (state, action) => {   // productToCart is product with selected attributes. productReadyToCart will be added to Cart from PDP  
-            const { productToCart } = state;
-            const { itemIn, productReadyToCart, selectedAttribute, product } = action.payload;
-            if (productToCart.length !== 0 && productToCart[0].productReadyToCart.id === productReadyToCart.id) {
-                const attributeIndex = product.attributes.findIndex((attribute) =>
-                (attribute.id === selectedAttribute));
-                    if (productToCart[0].productReadyToCart.attributes[attributeIndex].items.id === itemIn.id) {  
-                        // if client clicks on the already selected attribute  
-                        productToCart[0].productReadyToCart.attributes[attributeIndex].items = product.attributes[attributeIndex].items;
-                        delete productToCart[0].productReadyToCart.allAttributes;
-                        if (JSON.stringify(state.productToCart[0].productReadyToCart) === JSON.stringify(state.productToCart[0].product)) {
-                            // if user deselects all product attributes, then productSetToCart in the localStorage is cleared 
-                            state.productToCart = [];
-                            localStorage.setItem("productSetToCart", "[]");
-                        }
-                    } else if (productToCart[0].productReadyToCart.attributes[attributeIndex].id === selectedAttribute &&
-                                productToCart[0].productReadyToCart.id === productReadyToCart.id
-                        ) // if client clicks on different item in attribute
-                        {
-                            productToCart[0].productReadyToCart.attributes[attributeIndex].items = itemIn;
-                            productToCart[0].itemIn = itemIn;
-                    } else {
-                        productToCart[0].productReadyToCart.attributes[attributeIndex].items = 
-                        productToCart[0].productReadyToCart.attributes[attributeIndex].items.filter((productInCart) =>
-                        (productInCart.productReadyToCart.id === itemIn.id));
-                    }
-                } else {
-                    /* if client goes to different product's page and selects that product's attributes, but previous 
-                        product still is in the localStorage, then previous product is filtered from localStorage array  */
-                  //  state.productToCart.push(action.payload);
-                   // state.productToCart = productToCart.filter((product) => product.productReadyToCart.id === productReadyToCart.id);
-               // }
-               // localStorage.setItem("productSetToCart", JSON.stringify(state.productToCart));
-        //},
         setProductToCart: (state, action) => {   // productToCart is product with selected attributes. productReadyToCart will be added to Cart from PDP  
-            //const product = JSON.parse(localStorage.getItem("productSetToCart"))
             const { productToCart } = state;
-            const { itemIn, allAttributes, attributeIndex } = action.payload;
+            const { itemIn, attributeIndex } = action.payload;
             const product = action.payload.product;
             if (productToCart.length !== 0) {
                 const { productToCart } = state;
                 if (productToCart.attributes[attributeIndex].items.id === itemIn.id) {
-                    productToCart.attributes[attributeIndex].items = allAttributes[attributeIndex].items;    
+                    productToCart.attributes[attributeIndex].items = product.allAttributes[attributeIndex].items;    
                 } else if (productToCart.attributes[attributeIndex].items !== itemIn) {
                     productToCart.attributes[attributeIndex].items = itemIn;       
                 } else {
