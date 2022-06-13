@@ -17,11 +17,9 @@ class AppRouter extends PureComponent {
                 <HeaderContainer />
                 <Switch>
                     <Redirect exact from="/" to="/all" /> 
-                    <Route path="/all" component={ ProductsContainer } />
-                    <Route path="/clothes" component={ ProductsContainer } />
-                    <Route path="/tech" component={ ProductsContainer } />
-                    <Route path="/pdp/:id" component={ PDP } /> 
-                    <Route path="/cart" component={ CartPage } /> 
+                    <Route exact path="/cart" component={ CartPage } /> 
+                    <Route exact path="/:name" component={ ProductsContainer } />
+                    <Route path="/:name/:id" component={ PDP } /> 
                 </Switch>
             </Router> 
         );

@@ -31,7 +31,7 @@ class NavBar extends PureComponent {
     }
 
     render() {
-        const { categories, handleMouseOver, handleMouseOut } = this.props;
+        const { categories } = this.props;
         
         return (
             <>

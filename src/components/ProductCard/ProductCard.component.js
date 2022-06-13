@@ -23,13 +23,13 @@ class ProductCard extends PureComponent {
     }
 
     render() {
-        const { id, gallery, brand, name, inStock } = this.props.product;
+        const { category, id, gallery, brand, name, inStock } = this.props.product;
         const { product, addToCart } = this.props;
 
         if ( inStock === true ) {
             return (
                 <div className="ProductCard">
-                    <Link className="ProductCard-Link" to={ "/pdp/" + id } >
+                    <Link className="ProductCard-Link" to={ category + "/" + id } >
                         <div className="ProductCard-Image-Wrapper">
                             <img className="ProductCard-Image" src={ gallery[0] } 
                                 alt="Product" 
@@ -53,7 +53,7 @@ class ProductCard extends PureComponent {
         } else {
             return (
                 <div className="ProductCard-OutOfStock" >
-                    <Link className="ProductCard-Link" to={ "/pdp/" + id } >
+                    <Link className="ProductCard-Link" to={ category + "/" + id} >
                         <p className="ProductCard-OutOfStockLabel">out of stock</p>
                         <div className="ProductCard-Image-Wrapper">
                                 <img className="ProductCard-Image" src={ gallery[0] } 
