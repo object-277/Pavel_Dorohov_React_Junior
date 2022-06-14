@@ -9,18 +9,11 @@ class NavBarContainer extends PureComponent {
 
     componentDidMount() {
         this.getCategories();
-        this.getProducts();
     }
 
     async getCategories() {
         await executePost(categoriesQuery).then(({categories}) => {
             this.setState({categories});
-        });
-    }
-
-    async getProducts() {
-        await executePost(productsQuery).then(({category}) => {
-            this.setState({category});
         });
     }
 

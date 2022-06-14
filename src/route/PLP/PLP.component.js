@@ -8,26 +8,18 @@ class Products extends PureComponent {
         const { products = []  } = this.props;
         const { pathname } = this.props.location;
         const productsCategory = pathname.replace('/', '');  // getting products' category from the pathname, removing '/' symbol
-        if (productsCategory !== "all" && pathname !== "/") {
-           const filteredProducts = products.filter((product) => product.category === productsCategory);
-           return (
-                <div className="Product-Page"> 
-                    { products && filteredProducts.map((product, i) => <ProductCardContainer product={ product } key={ i } /> )}
-                </div> 
-           );
-        } else {
-            return (
-                <div className="Product-Page">
-                    { products && products.map((product, i) => 
-                    <ProductCardContainer 
-                        { ...this.props }
-                        product={ product } 
-                        key={ i } 
-                    /> 
-                    )}
+        return (
+            <div className="Product-Page">
+                { products && products.map((product, i) => 
+                              <ProductCardContainer 
+                              { ...this.props }
+                              product={ product } 
+                              key={ i } 
+                              /> 
+                              )
+                }
                 </div>
             );
-        }
     }
 
     render() {
