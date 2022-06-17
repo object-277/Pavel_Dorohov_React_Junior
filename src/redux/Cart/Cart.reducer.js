@@ -3,6 +3,9 @@ import { createSlice, current } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
+        products: localStorage.getItem("products") 
+        ? JSON.parse(localStorage.getItem("products")) 
+        : [],
         productsInCart: localStorage.getItem("cartProducts") 
         ? JSON.parse(localStorage.getItem("cartProducts")) 
         : [],
@@ -16,6 +19,10 @@ const cartSlice = createSlice({
         : []
     },
     reducers: {
+        setProducts: (state, action) => {
+            state.products = action.payload;
+            localStorage.setItem("products", JSON.stringify(state.products));
+        },
         addProductToCart: (state, action) => {
             /* if there's no product with selected options that is ready to be added to Cart (PDP),
                e.g. adding product using green Add to Cart Button on Product Card or
@@ -154,6 +161,7 @@ export const { addProductToCart,
                setCurrency,
                setProductAttribute,
                setProductToCart,
+               setProducts
             } = cartSlice.actions;
 
 export default cartSlice.reducer;

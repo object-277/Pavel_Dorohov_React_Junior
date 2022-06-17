@@ -6,8 +6,6 @@ class Products extends PureComponent {
 
     renderProducts() {
         const { products = []  } = this.props;
-        const { pathname } = this.props.location;
-        const productsCategory = pathname.replace('/', '');  // getting products' category from the pathname, removing '/' symbol
         return (
             <div className="Product-Page">
                 { products && products.map((product, i) => 

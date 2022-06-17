@@ -46,7 +46,7 @@ class ProductCard extends PureComponent {
                     <img className="ProductCard-AddToCartIcon" 
                          src={ CircleIcon } 
                          alt="Add To Cart" 
-                         onClick={() => addToCart(product) }
+                         onClick={() => addToCart() }
                     /> 
                 </div>
             );

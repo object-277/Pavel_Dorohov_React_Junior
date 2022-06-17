@@ -23,13 +23,13 @@ class PDPContainer extends PureComponent {
 
     handleAddToCart = () => {
         const { product } = this.state;
-        const { addProductToCart, productToCart } = this.props;
+        const { addProductToCart, productToCart, getTotals } = this.props;
         if (productToCart.length === 0) {
             addProductToCart(product);
         } else {
             addProductToCart(productToCart); 
         }
-        this.props.getTotals();
+        getTotals();
     };
 
     handleSetAttribute_test = (itemIn) => {

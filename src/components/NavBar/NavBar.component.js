@@ -18,9 +18,10 @@ class NavBar extends PureComponent {
         const notActiveCategoryStyle = {
             fontWeight: 400
         }
+        const { getProducts } = this.props;
     
         return (
-            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } >
+            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } onClick= { () => getProducts(name) } >
                 <div className="NavBar-MenuItem" key={ i } 
                     style={ name === productsCategory ? activeCategoryStyle : notActiveCategoryStyle } 
                 >
