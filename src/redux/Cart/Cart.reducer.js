@@ -131,23 +131,27 @@ const cartSlice = createSlice({
             (productInCart.id === itemIn.id));
             }
             localStorage.setItem("cartProducts", JSON.stringify(productsInCart));
-        },
+        }, 
         setProductToCart: (state, action) => {   // productToCart is product with selected attributes. productReadyToCart will be added to Cart from PDP  
             const { productToCart } = state;
             const { itemIn, attributeIndex } = action.payload;
             const product = action.payload.product;
-            if (productToCart.length !== 0) {
-                const { productToCart } = state;
-                if (productToCart.attributes[attributeIndex].items.id === itemIn.id) {
-                    productToCart.attributes[attributeIndex].items = product.allAttributes[attributeIndex].items;    
-                } else if (productToCart.attributes[attributeIndex].items !== itemIn) {
-                    productToCart.attributes[attributeIndex].items = itemIn;       
+            if ( productToCart.id === product.id ) {
+                if (productToCart.length !== 0) {
+                    const { productToCart } = state;
+                    if (productToCart.attributes[attributeIndex].items.id === itemIn.id) {
+                        productToCart.attributes[attributeIndex].items = product.allAttributes[attributeIndex].items;    
+                    } else if (productToCart.attributes[attributeIndex].items !== itemIn) {
+                        productToCart.attributes[attributeIndex].items = itemIn;       
+                    } else {
+                        productToCart.attributes[attributeIndex].items = productToCart.attributes[attributeIndex].items.filter((item) => item.id === itemIn.id);
+                    } 
                 } else {
-                    productToCart.attributes[attributeIndex].items = productToCart.attributes[attributeIndex].items.filter((item) => item.id === itemIn.id);
-                } 
+                    state.productToCart = product;
+                    //state.productToCart.attributes[attributeIndex].items = productToCart.attributes[attributeIndex].items.filter((item) => item.id === itemIn.id);
+                }   
             } else {
-                state.productToCart = product;
-                //state.productToCart.attributes[attributeIndex].items = productToCart.attributes[attributeIndex].items.filter((item) => item.id === itemIn.id);
+                state.productToCart = product;   
             }
             localStorage.setItem("productSetToCart", JSON.stringify(state.productToCart));
         }

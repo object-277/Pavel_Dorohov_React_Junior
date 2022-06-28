@@ -24,7 +24,7 @@ class ProductCard extends PureComponent {
 
     render() {
         const { category, id, gallery, brand, name, inStock } = this.props.product;
-        const { product, addToCart } = this.props;
+        const { addToCart } = this.props;
 
         if ( inStock === true ) {
             return (

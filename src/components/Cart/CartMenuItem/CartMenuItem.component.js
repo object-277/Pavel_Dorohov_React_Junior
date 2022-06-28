@@ -29,8 +29,6 @@ class CartMenuItem extends PureComponent {
         } else {
           isSelectedTrue = allAttributes !== attributes && attributes[index].items[0].id === item.id ? true : false; 
         }
-       // const isSelectedTrue = allAttributes !== attributes && attributes[index].items.id === item.id ? true : false;
-        console.log(isSelectedTrue);
 
         const selectedStyle = {
           background: '#1D1F22',

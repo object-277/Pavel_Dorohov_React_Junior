@@ -32,7 +32,7 @@ class PDPContainer extends PureComponent {
         getTotals();
     };
 
-    handleSetAttribute_test = (itemIn) => {
+    handleSetAttribute = (itemIn) => {
         const { product } = this.state;
         const productCopy = JSON.parse(JSON.stringify(product));
         const { setProductToCart } = this.props;
@@ -118,7 +118,7 @@ class PDPContainer extends PureComponent {
                     { ...this.props }
                     { ...this.state }
                     addToCart={ this.handleAddToCart }
-                    setAttribute={ this.handleSetAttribute_test }
+                    setAttribute={ this.handleSetAttribute }
                     ifNoAttributes={ this.ifNoAttributes }
                     warning={ this.handleWarning }
                 />  

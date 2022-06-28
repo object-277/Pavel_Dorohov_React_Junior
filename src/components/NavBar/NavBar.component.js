@@ -6,6 +6,14 @@ import "./NavBar.style.scss";
 
 class NavBar extends PureComponent {
 
+    componentDidMount() {
+        this.props.setCategory();   
+    }
+
+    componentDidUpdate() {
+        this.props.setCategory();   
+    }
+
     renderMenuItem(category, i) {
         const { name } = category;
         const { pathname } = this.props.location;
@@ -18,10 +26,9 @@ class NavBar extends PureComponent {
         const notActiveCategoryStyle = {
             fontWeight: 400
         }
-        const { getProducts } = this.props;
     
         return (
-            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } onClick= { () => getProducts(name) } >
+            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } >
                 <div className="NavBar-MenuItem" key={ i } 
                     style={ name === productsCategory ? activeCategoryStyle : notActiveCategoryStyle } 
                 >

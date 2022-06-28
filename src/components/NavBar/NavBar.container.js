@@ -10,12 +10,12 @@ import { Field, Query } from "@tilework/opus";
 class NavBarContainer extends PureComponent {
     constructor(props) {
         super(props);
+        this.setCategory = this.setCategory.bind(this);
         this.getProducts = this.getProducts.bind(this);
     }
 
     componentDidMount() {
         this.getCategories();
-        this.getProducts();
     }
 
     async getCategories() {
@@ -24,12 +24,16 @@ class NavBarContainer extends PureComponent {
         });
     }
 
-    async getProducts(name) {
+    setCategory() {
+        this.getProducts();
+    }
+
+    async getProducts() {
         const { setProducts } = this.props;
         const { pathname } = this.props.location;
         const categoryName = pathname.replace('/', '');
         const category = {
-            title: name ? name : categoryName
+            title: categoryName ? categoryName : "all"
         }
         await executePost(new Query("category", true)
         .addArgument("input", "CategoryInput", category)
@@ -48,17 +52,16 @@ class NavBarContainer extends PureComponent {
                 )
             )
         )).then(({category}) => {
-            const { products } = category;
+            const { products = [] } = category || {};
             setProducts(products);
         });
     }
-
 
     render() {
         
         return(
             <NavBar
-                getProducts={ this.getProducts }
+                setCategory={ this.setCategory }
                 { ...this.props }
                 { ...this.state }
             />
@@ -67,7 +70,6 @@ class NavBarContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    products: state.cart.products
 });
 
 const mapDispatchToProps = { setProducts };

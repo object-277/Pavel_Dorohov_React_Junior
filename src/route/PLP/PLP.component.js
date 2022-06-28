@@ -5,19 +5,19 @@ import "./PLP.style.scss";
 class Products extends PureComponent {
 
     renderProducts() {
-        const { products = []  } = this.props;
+        const { products = [] } = this.props;
         return (
             <div className="Product-Page">
-                { products && products.map((product, i) => 
-                              <ProductCardContainer 
-                              { ...this.props }
-                              product={ product } 
-                              key={ i } 
-                              /> 
-                              )
+                {products && products.map((product, i) =>
+                    <ProductCardContainer
+                        {...this.props}
+                        product={product}
+                        key={i}
+                    />
+                )
                 }
-                </div>
-            );
+            </div>
+        );
     }
 
     render() {
@@ -25,13 +25,13 @@ class Products extends PureComponent {
         const productsCategory = pathname.replace('/', '');
 
         return (
-            <div className="Products">
-                { productsCategory !== "all" ? 
-                    <h1 id="Products-CategoryName">{ productsCategory }</h1> :
+            <div id="products" className="Products">
+                {productsCategory !== "all" ?
+                    <h1 id="Products-CategoryName">{productsCategory}</h1> :
                     <h1 id="Products-CategoryName">all</h1>
                 }
-                { this.renderProducts() }  
-            </div>  
+                {this.renderProducts()}
+            </div>
         );
     }
 }

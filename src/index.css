@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto+Condensed:wght@700&family=Roboto:wght@400;500;700&family=Source+Sans+Pro&display=swap');
 
-html, body, #root, #root>div {
+html, body, #root {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 1440px;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 code {
