@@ -22,7 +22,7 @@ class CartIcon extends PureComponent {
   render() {
     const { onClick, isClicked, cartTotalQuantity } = this.props;
     const plpHeight = document.getElementById("root") !== null ? (document.getElementById("root").clientHeight - 80) : null;
-  
+
     return (
       <>
         <div className="cartIcon" onClick={onClick}>
@@ -31,7 +31,7 @@ class CartIcon extends PureComponent {
         </div>
         {isClicked &&
           <>
-            <div className="CartMenu-BackgroundOverlay" style={{height: (plpHeight)}} onClick={onClick}>
+            <div className="CartMenu-BackgroundOverlay" style={{ height: (plpHeight) }} onClick={onClick}>
             </div>
             <CartMenuContainer
               {...this.state}

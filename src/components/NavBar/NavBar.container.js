@@ -19,8 +19,8 @@ class NavBarContainer extends PureComponent {
     }
 
     async getCategories() {
-        await executePost(categoriesQuery).then(({categories}) => {
-            this.setState({categories});
+        await executePost(categoriesQuery).then(({ categories }) => {
+            this.setState({ categories });
         });
     }
 
@@ -36,34 +36,34 @@ class NavBarContainer extends PureComponent {
             title: categoryName ? categoryName : "all"
         }
         await executePost(new Query("category", true)
-        .addArgument("input", "CategoryInput", category)
-        .addField(new Field("products", true)
-            .addFieldList(["id", "brand", "name", "description", "category", "gallery", "inStock"])
-            .addField(new Field("prices", true)
-                .addFieldList(["amount"])
-                .addField(new Field("currency", true)
-                    .addFieldList(["label", "symbol"])
-                 )
-            )
-            .addField(new Field("attributes", true)
-                .addFieldList(["id", "name", "type"])
-                .addField(new Field("items", true)
-                    .addFieldList(["id", "value"])
+            .addArgument("input", "CategoryInput", category)
+            .addField(new Field("products", true)
+                .addFieldList(["id", "brand", "name", "description", "category", "gallery", "inStock"])
+                .addField(new Field("prices", true)
+                    .addFieldList(["amount"])
+                    .addField(new Field("currency", true)
+                        .addFieldList(["label", "symbol"])
+                    )
                 )
-            )
-        )).then(({category}) => {
-            const { products = [] } = category || {};
-            setProducts(products);
-        });
+                .addField(new Field("attributes", true)
+                    .addFieldList(["id", "name", "type"])
+                    .addField(new Field("items", true)
+                        .addFieldList(["id", "value"])
+                    )
+                )
+            )).then(({ category }) => {
+                const { products = [] } = category || {};
+                setProducts(products);
+            });
     }
 
     render() {
-        
-        return(
+
+        return (
             <NavBar
-                setCategory={ this.setCategory }
-                { ...this.props }
-                { ...this.state }
+                setCategory={this.setCategory}
+                {...this.props}
+                {...this.state}
             />
         );
     }

@@ -4,24 +4,24 @@ import {
     Switch,
     Route,
     Redirect
-  } from "react-router-dom";
+} from "react-router-dom";
 import PDP from "./PDP";
 import CartPage from "./CartPage";
 import HeaderContainer from "../components/Header/Header.container";
-import ProductsContainer from "./PLP";
+import PLPContainer from "./PLP";
 
-class AppRouter extends PureComponent { 
+class AppRouter extends PureComponent {
     render() {
-        return(
+        return (
             <Router>
                 <HeaderContainer />
                 <Switch>
-                    <Redirect exact from="/" to="/all" /> 
-                    <Route exact path="/cart" component={ CartPage } /> 
-                    <Route exact path="/:name" component={ ProductsContainer } />
-                    <Route path="/:name/:id" component={ PDP } /> 
+                    <Redirect exact from="/" to="/all" />
+                    <Route exact path="/cart" component={CartPage} />
+                    <Route exact path="/:name" component={PLPContainer} />
+                    <Route path="/:name/:id" component={PDP} />
                 </Switch>
-            </Router> 
+            </Router>
         );
     }
 }

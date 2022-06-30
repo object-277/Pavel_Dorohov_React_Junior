@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PDPGallery from "./PDPGallery.component";
 
 class PDPGalleryContainer extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props)
         const { gallery } = this.props.product;
         this.state = {
@@ -13,15 +13,15 @@ class PDPGalleryContainer extends PureComponent {
 
     handleClick(e) {
         const newSrc = e.target.getAttribute("src");
-        this.setState({src: newSrc});    
+        this.setState({ src: newSrc });
     }
 
     render() {
         return <PDPGallery
-                    { ...this.state }
-                    { ...this.props } 
-                    changeImage={ this.handleClick }
-                />    
+            {...this.state}
+            {...this.props}
+            changeImage={this.handleClick}
+        />
     }
 }
 

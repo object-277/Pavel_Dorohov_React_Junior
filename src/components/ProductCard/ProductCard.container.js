@@ -12,24 +12,23 @@ class ProductCardContainer extends PureComponent {
         this.handleAddToCart = this.handleAddToCart.bind(this);
     };
 
-    handleAddToCart  = () => {
-        const { product, addProductToCart } = this.props;
+    handleAddToCart = () => {
+        const { product, addProductToCart, getTotals } = this.props;
         const productAttributes = product.attributes;
         const productCopy = JSON.parse(JSON.stringify(product));
-        productCopy.attributes.map((attribute) => attribute.items.splice(1));
-        productCopy.attributes.map((attribute) =>(attribute.items = Object.assign({}, attribute.items[0])));
-        const productToCart = Object.assign({}, productCopy, {allAttributes: productAttributes});
+        productCopy.attributes.map((attribute) => (attribute.items = Object.assign({}, attribute.items[0])));
+        const productToCart = Object.assign({}, productCopy, { allAttributes: productAttributes });
         addProductToCart(productToCart);
-        this.props.getTotals();
+        getTotals();
     };
 
-    render(){
+    render() {
 
-        return(
+        return (
             <ProductCard
-                { ...this.props }
-                { ...this.state }
-                addToCart={ this.handleAddToCart }
+                {...this.props}
+                {...this.state}
+                addToCart={this.handleAddToCart}
             />
         );
     }

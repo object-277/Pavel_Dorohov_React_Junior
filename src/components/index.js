@@ -3,7 +3,8 @@ import CurrencyButtonContainer from "./CurrencyButton";
 import CurrencySwitcherContainer from "./CurrencySwitcher";
 import HeaderActions from "./Header_Actions";
 
-export { NavBarContainer,
+export {
+        NavBarContainer,
         CurrencySwitcherContainer,
         CurrencyButtonContainer,
         HeaderActions

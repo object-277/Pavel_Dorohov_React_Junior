@@ -1,15 +1,15 @@
 import React, { PureComponent } from "react";
-import Products from "./PLP.component";
+import PLP from "./PLP.component";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-class ProductsContainer extends PureComponent {
+class PLPContainer extends PureComponent {
 
-    render(){
-        
-        return(
-            <Products
-                { ...this.props }
+    render() {
+
+        return (
+            <PLP
+                {...this.props}
             />
         );
     }
@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
     products: state.cart.products
 });
 
-export default connect(mapStateToProps)(withRouter(ProductsContainer));
+export default connect(mapStateToProps)(withRouter(PLPContainer));

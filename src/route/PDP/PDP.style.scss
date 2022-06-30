@@ -1,9 +1,9 @@
 .PDP {
-   position: relative;
-   width: 1440px;
-   height: fit-content;
-   padding-top: 80px;
-   padding-left: 219px;
+    position: relative;
+    width: 1440px;
+    height: fit-content;
+    padding-top: 80px;
+    padding-left: 219px;
 
     &-Content {
         width: 1002px;
@@ -37,7 +37,7 @@
                 height: 27px;
                 margin-bottom: 16px;
                 margin-top: 0;
-    
+
                 font-family: 'Raleway';
                 font-style: normal;
                 font-weight: 600;
@@ -47,11 +47,11 @@
                 align-items: center;
                 color: #1D1F22;
             }
-            
+
             #PDP-SideSection-Name {
                 margin: 0;
                 top: 43px;
-    
+
                 font-family: 'Raleway';
                 font-style: normal;
                 font-weight: 400;
@@ -74,47 +74,61 @@
                     display: flex;
                     flex-direction: column;
                     margin-top: 43px;
-                    margin-bottom: 10px;    
+                    margin-bottom: 10px;
                 }
             }
 
-                .PDP-Attribute {
-                    margin-bottom: 20px;
-                    width: fit-content;
+            .PDP-Attribute {
+                margin-bottom: 20px;
+                width: fit-content;
 
-                    &-Name {
-                        height: 18px;
-                        margin-bottom: 8px;       
+                &-Name {
+                    height: 18px;
+                    margin-bottom: 8px;
 
-                        font-family: 'Roboto Condensed', sans-serif;
-                        font-style: normal;
-                        font-weight: 700;
-                        font-size: 18px;
-                        line-height: 18px;
-                        text-transform: uppercase;
-                        transition: 1s color ease-out;
-                    } 
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 18px;
+                    text-transform: uppercase;
+                    transition: 1s color ease-out;
+                }
 
-                    &-NotSelected {
-                        height: 18px;
-                        margin-bottom: 8px;       
+                &-NotSelected {
+                    height: 18px;
+                    margin-bottom: 8px;
 
-                        font-family: 'Roboto Condensed', sans-serif;
-                        font-style: normal;
-                        font-weight: 700;
-                        font-size: 18px;
-                        line-height: 18px;
-                        text-transform: uppercase;
-                        color: #E60000;
-                    }
+                    font-family: 'Roboto Condensed', sans-serif;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 18px;
+                    text-transform: uppercase;
+                    color: #E60000;
+                }
 
-                    &-Items {
-                        display: flex;
-                        flex-direction: row;
+                &-Items {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .PDP-Attribute-Item {
+
                         align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        border: 1px solid #1D1F22;
+                        color: #292929;
+                        box-sizing: border-box;
+                        width: 63px;
+                        height: 45px;
+                        display: flex;
+                        margin-right: 12px;
+                        transition: 0.08s ease-in-out;
+                        transition: 1s border ease-out;
 
-                        .PDP-Attribute-Item {
-                
+                        &-Active {
                             align-items: center;
                             justify-content: center;
                             text-align: center;
@@ -123,64 +137,51 @@
                             box-sizing: border-box;
                             width: 63px;
                             height: 45px;
-                            display: flex;  
-                            margin-right: 12px; 
+                            display: flex;
+                            margin-right: 12px;
+                            cursor: pointer;
                             transition: 0.08s ease-in-out;
-                            transition: 1s border ease-out;  
+                        }
 
-                            &-Active {
-                                align-items: center;
-                                justify-content: center;
-                                text-align: center;
-                                border: 1px solid #1D1F22;
-                                color: #292929;
-                                box-sizing: border-box;
-                                width: 63px;
-                                height: 45px;
-                                display: flex;  
-                                margin-right: 12px;
-                                cursor: pointer;   
-                                transition: 0.08s ease-in-out;    
-                            }
-
-                            &-Warning {
-                                align-items: center;
-                                justify-content: center;
-                                text-align: center;
-                                border: 1px solid #E60000;
-                                color: #292929;
-                                box-sizing: border-box;
-                                width: 63px;
-                                height: 45px;
-                                display: flex;  
-                                margin-right: 12px; 
-                                transition: 0.08s ease-in-out;    
-                                
-                                &:hover {
-                                    background-color: #5ECE7B;
-                                    cursor: pointer;    
-                                }
-                            }
+                        &-Warning {
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            border: 1px solid #E60000;
+                            color: #292929;
+                            box-sizing: border-box;
+                            width: 63px;
+                            height: 45px;
+                            display: flex;
+                            margin-right: 12px;
+                            transition: 0.08s ease-in-out;
 
                             &:hover {
                                 background-color: #5ECE7B;
-                                cursor: pointer;        
-                            }
-
-                            &-ItemText {
-                                font-family: 'Source Sans Pro', sans-serif;
-                                font-style: normal;
-                                font-weight: 400;
-                                font-size: 16px;
-                                line-height: 18px;
-                                letter-spacing: 0.05em;
+                                cursor: pointer;
                             }
                         }
-                    }
-                    &-Items div:last-child {
-                        margin: 0px 0px;
+
+                        &:hover {
+                            background-color: #5ECE7B;
+                            cursor: pointer;
+                        }
+
+                        &-ItemText {
+                            font-family: 'Source Sans Pro', sans-serif;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 18px;
+                            letter-spacing: 0.05em;
+                        }
                     }
                 }
+
+                &-Items div:last-child {
+                    margin: 0px 0px;
+                }
+            }
 
             #PDP-SideSection-PriceLabel {
                 text-transform: uppercase;
@@ -217,7 +218,7 @@
                     margin: 0;
                     padding: 0;
                 }
-            
+
                 &-Amount {
                     margin: 0px 0px;
                     width: 40px;
@@ -251,7 +252,7 @@
                 transition: 0.22ms ease-in-out;
                 text-transform: uppercase;
             }
-            
+
             &-AddToCart:hover {
                 background-color: #3CC360;
                 cursor: pointer;
@@ -285,7 +286,7 @@
                 font-size: 16px;
                 line-height: 160%;
                 transition: 0.22ms ease-in-out;
-                text-transform: uppercase;    
+                text-transform: uppercase;
             }
 
             #PDP-SideSection-Description {

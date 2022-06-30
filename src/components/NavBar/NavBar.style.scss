@@ -19,7 +19,7 @@
 
     &-CategoryName {
         margin-top: 24px;
-        margin-bottom: 0px; 
+        margin-bottom: 0px;
         padding-top: 4px;
         padding-right: 16px;
         padding-bottom: 32px;
@@ -37,8 +37,12 @@
         color: inherit;
     }
 
-    &-MenuItemLink :focus, :hover, :visited, :link, :active {
-        text-decoration: none; 
+    &-MenuItemLink :focus,
+    :hover,
+    :visited,
+    :link,
+    :active {
+        text-decoration: none;
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 600;
@@ -47,7 +51,7 @@
     }
 
     &-MenuItem {
-        transition: 0.1s ease-in-out; 
+        transition: 0.1s ease-in-out;
     }
 
     &-MenuItem:hover {

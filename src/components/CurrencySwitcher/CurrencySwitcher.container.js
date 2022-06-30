@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 import { setCurrency, getTotals } from "../../redux/Cart/Cart.reducer";
 
 class CurrencySwitcherContainer extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             currencies: [],
-            notSelected: true,  
+            notSelected: true,
             isHovering: undefined
         };
         this.handleSetCurrency = this.handleSetCurrency.bind(this);
@@ -22,7 +22,7 @@ class CurrencySwitcherContainer extends PureComponent {
         this.props.sendState(this.state.isHovering);
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         this.getCurrencies();
     }
 
@@ -31,12 +31,12 @@ class CurrencySwitcherContainer extends PureComponent {
         /* when CurrencySwitcher has been closed, 
         then hover state of this component and the state of its' parent component
         is set to initial  */
-        currencySwitcherUnmounts();      
+        currencySwitcherUnmounts();
     }
 
     async getCurrencies() {
-        await executePost(currenciesQuery).then(({currencies}) => {
-            this.setState({currencies});
+        await executePost(currenciesQuery).then(({ currencies }) => {
+            this.setState({ currencies });
         });
     }
 
@@ -51,7 +51,7 @@ class CurrencySwitcherContainer extends PureComponent {
             isHovering: false
         }));
     }
-    
+
     handleSetCurrency = (symbol) => {
         this.setState(prevState => ({
             notSelected: !prevState.notSelected,  // when user selects currency, then CurrencySwitcher is being closed 
@@ -65,17 +65,17 @@ class CurrencySwitcherContainer extends PureComponent {
     render() {
         const { notSelected } = this.state;
         if (notSelected) {
-            return(
+            return (
                 <CurrencySwitcher
-                    { ...this.props }
-                    { ...this.state }
-                    setCurrency={ this.handleSetCurrency }
-                    handleMouseOver = { this.handleMouseOver }
-                    handleMouseOut = { this.handleMouseOut } 
+                    {...this.props}
+                    {...this.state}
+                    setCurrency={this.handleSetCurrency}
+                    handleMouseOver={this.handleMouseOver}
+                    handleMouseOut={this.handleMouseOut}
                 />
             );
         } else {
-            return null;    
+            return null;
         }
     }
 }

@@ -1,9 +1,9 @@
-import React, {PureComponent} from "react";
+import React, { PureComponent } from "react";
 import CurrencyButton from "./CurrencyButton.component";
 import { connect } from "react-redux";
 
 class CurrencyButtonContainer extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             isClicked: false,
@@ -20,7 +20,7 @@ class CurrencyButtonContainer extends PureComponent {
         this.setState(() => ({
             isHovering: false
         }));
-    }   
+    }
 
     handleClick(e) {
         e.preventDefault();
@@ -53,16 +53,16 @@ class CurrencyButtonContainer extends PureComponent {
     }
 
     render() {
-    
-        return ( 
+
+        return (
             <CurrencyButton
                 {...this.state}
-                { ...this.props }
-                currencySwitcherUnmounts={ this.currencySwitcherUnmounts }
-                onClick={ this.handleClick }
-                handleMouseOver = { this.handleMouseOver }
-                handleMouseOut = { this.handleMouseOut }
-                sendState = { this.getStateFromChild } 
+                {...this.props}
+                currencySwitcherUnmounts={this.currencySwitcherUnmounts}
+                onClick={this.handleClick}
+                handleMouseOver={this.handleMouseOver}
+                handleMouseOut={this.handleMouseOut}
+                sendState={this.getStateFromChild}
             />
         );
     }

@@ -7,11 +7,11 @@ import "./NavBar.style.scss";
 class NavBar extends PureComponent {
 
     componentDidMount() {
-        this.props.setCategory();   
+        this.props.setCategory();
     }
 
     componentDidUpdate() {
-        this.props.setCategory();   
+        this.props.setCategory();
     }
 
     renderMenuItem(category, i) {
@@ -26,28 +26,28 @@ class NavBar extends PureComponent {
         const notActiveCategoryStyle = {
             fontWeight: 400
         }
-    
+
         return (
-            <Link className="NavBar-MenuItemLink" to={ "/" + name } key={ i } >
-                <div className="NavBar-MenuItem" key={ i } 
-                    style={ name === productsCategory ? activeCategoryStyle : notActiveCategoryStyle } 
+            <Link className="NavBar-MenuItemLink" to={"/" + name} key={i} >
+                <div className="NavBar-MenuItem" key={i}
+                    style={name === productsCategory ? activeCategoryStyle : notActiveCategoryStyle}
                 >
-                    <p className="NavBar-CategoryName">{ name }</p>
+                    <p className="NavBar-CategoryName">{name}</p>
                 </div>
-            </Link> 
+            </Link>
         );
     }
 
     render() {
         const { categories } = this.props;
-        
+
         return (
             <>
                 <div className="NavBar-Menu" >
-                    { this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
+                    {this.props.categories && categories.map((category, i) => this.renderMenuItem(category, i))}
                 </div>
-                <CurrencyButton /> 
-                <CartIconContainer /> 
+                <CurrencyButton />
+                <CartIconContainer />
             </>
         );
     }

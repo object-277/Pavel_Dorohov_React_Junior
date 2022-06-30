@@ -32,21 +32,21 @@ class CartMenuContainer extends PureComponent {
     };
 
     componentWillUnmount() {
-        this.setState({active: false});
+        this.setState({ active: false });
     }
 
     render() {
         const { active } = this.state;
-        if ( active === false ) {
-            return ( 
+        if (active === false) {
+            return (
                 <CartMenu
-                    { ...this.state }
-                    { ...this.props }
-                    changeMenuState = { this.handleClick }
-                    decreaseQuantity={ this.handleDecrease }
-                    increaseQuantity ={ this.handleIncrease }
-                    setAttribute= { this.handleSetAttribute }
-                /> 
+                    {...this.state}
+                    {...this.props}
+                    changeMenuState={this.handleClick}
+                    decreaseQuantity={this.handleDecrease}
+                    increaseQuantity={this.handleIncrease}
+                    setAttribute={this.handleSetAttribute}
+                />
             );
         } else {
             return null;

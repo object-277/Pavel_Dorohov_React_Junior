@@ -18,7 +18,7 @@
         bottom: 0px;
         top: 0px;
     }
-    
+
     &-Menu {
         display: flex;
         justify-content: space-between;
@@ -44,7 +44,7 @@
 
 
     &-Item-Wrapper:hover {
-       background-color: #eee;
+        background-color: #eee;
     }
 
     &-Item {
@@ -61,7 +61,7 @@
         font-weight: 500;
         font-size: 18px;
         line-height: 160%;
-        
+
         &-Symbol {
             margin-right: 3px;
         }

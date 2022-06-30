@@ -9,16 +9,16 @@ class PDPContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            allAttributesSelected : false,
-            showWarning: false     
+            allAttributesSelected: false,
+            showWarning: false
         };
         this.ifNoAttributes = this.ifNoAttributes.bind(this);
     }
 
 
     handleWarning = () => {        // Not all product's attributes are selected warning     
-        this.setState({showWarning: true});     
-        setTimeout(() => this.setState({showWarning: false}), 3000);     
+        this.setState({ showWarning: true });
+        setTimeout(() => this.setState({ showWarning: false }), 3000);
     }
 
     handleAddToCart = () => {
@@ -27,7 +27,7 @@ class PDPContainer extends PureComponent {
         if (productToCart.length === 0) {
             addProductToCart(product);
         } else {
-            addProductToCart(productToCart); 
+            addProductToCart(productToCart);
         }
         getTotals();
     };
@@ -39,13 +39,13 @@ class PDPContainer extends PureComponent {
         const { attributes } = this.state.product;
         const attributeIndex = attributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
         productCopy.attributes[attributeIndex].items = itemIn;
-        const productSelectedAttribute = Object.assign({}, productCopy, {allAttributes: attributes});
-        const productToCart = Object.assign({}, {product: productSelectedAttribute}, {attributeIndex: attributeIndex}, {itemIn: itemIn});
+        const productSelectedAttribute = Object.assign({}, productCopy, { allAttributes: attributes });
+        const productToCart = Object.assign({}, { product: productSelectedAttribute }, { attributeIndex: attributeIndex }, { itemIn: itemIn });
         setProductToCart(productToCart);
     }
 
     ifNoAttributes() {
-        this.setState({allAttributesSelected: true});    
+        this.setState({ allAttributesSelected: true });
     }
 
     checkAttributeSelection() {
@@ -54,12 +54,12 @@ class PDPContainer extends PureComponent {
             // if every attribute of the product is not array, but object, then all attributes have been selected  
             const allSelected = productToCart.attributes.every((attribute) => attribute.items.constructor === Object);
             if (allSelected) {
-                this.setState({allAttributesSelected: true});
+                this.setState({ allAttributesSelected: true });
             } else {
-                this.setState({allAttributesSelected: false});
+                this.setState({ allAttributesSelected: false });
             }
-        } else { 
-                this.setState({allAttributesSelected: false});
+        } else {
+            this.setState({ allAttributesSelected: false });
         }
     }
 
@@ -68,7 +68,7 @@ class PDPContainer extends PureComponent {
     }
 
     componentDidUpdate() {
-       this.checkAttributeSelection();
+        this.checkAttributeSelection();
     }
 
     componentWillUnmount() {
@@ -78,31 +78,31 @@ class PDPContainer extends PureComponent {
     async productQuery() {
         const id = this.props.match.params.id;
         await executePost(new Query("product", true)
-                .addArgument("id", "String!", id)
-                .addFieldList(["id", "name", "brand", "inStock", "gallery", "description", "category"])
-                .addField(new Field("prices", true)
-                    .addFieldList(["amount"])
-                    .addField(new Field("currency", true)
-                        .addFieldList(["label", "symbol"])
-                     )
+            .addArgument("id", "String!", id)
+            .addFieldList(["id", "name", "brand", "inStock", "gallery", "description", "category"])
+            .addField(new Field("prices", true)
+                .addFieldList(["amount"])
+                .addField(new Field("currency", true)
+                    .addFieldList(["label", "symbol"])
                 )
-                .addField(new Field("attributes", true)
-                    .addFieldList(["id", "name", "type"])
-                    .addField(new Field("items", true)
-                        .addFieldList(["id", "value"])
-                    )
+            )
+            .addField(new Field("attributes", true)
+                .addFieldList(["id", "name", "type"])
+                .addField(new Field("items", true)
+                    .addFieldList(["id", "value"])
                 )
-        ).then(({product}) => {
-            this.getCategory({product});
+            )
+        ).then(({ product }) => {
+            this.getCategory({ product });
             if (localStorage.getItem("productSetToCart").length !== 0) {
                 const productItem = JSON.parse(localStorage.getItem("productSetToCart"));
                 if (productItem.id === this.state.product.id) {
                     return null;
                 } else {
-                    localStorage.setItem("productSetToCart", JSON.stringify(product)); 
+                    localStorage.setItem("productSetToCart", JSON.stringify(product));
                 }
             } else {
-                localStorage.setItem("productSetToCart", JSON.stringify(product));     
+                localStorage.setItem("productSetToCart", JSON.stringify(product));
             }
         });
     }
@@ -111,17 +111,17 @@ class PDPContainer extends PureComponent {
         this.setState(product);
     }
 
-    render(){
-        if ( this.state !== {} ) { 
+    render() {
+        if (this.state !== {}) {
             return (
                 <PDP
-                    { ...this.props }
-                    { ...this.state }
-                    addToCart={ this.handleAddToCart }
-                    setAttribute={ this.handleSetAttribute }
-                    ifNoAttributes={ this.ifNoAttributes }
-                    warning={ this.handleWarning }
-                />  
+                    {...this.props}
+                    {...this.state}
+                    addToCart={this.handleAddToCart}
+                    setAttribute={this.handleSetAttribute}
+                    ifNoAttributes={this.ifNoAttributes}
+                    warning={this.handleWarning}
+                />
             );
         } else {
             return console.log("error");

@@ -7,15 +7,15 @@ class CurrencyButton extends PureComponent {
 
     render() {
         const { onClick, isHovering, currency, handleMouseOver, handleMouseOut } = this.props;
-        
+
         return (
             <>
-                <div className="CurrencyButton" onClick={ onClick } onMouseEnter={ handleMouseOver } onMouseLeave={ handleMouseOut } >
+                <div className="CurrencyButton" onClick={onClick} onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut} >
                     <div id="CurrencyButton-Symbol" >
-                        { currency }
+                        {currency}
                     </div>
-                    <img id="CurrencyButton-Arrow" src={ vector } alt="Select currency" /> 
-                    { isHovering && <CurrencySwitcherContainer { ...this.props } /> }
+                    <img id="CurrencyButton-Arrow" src={vector} alt="Select currency" />
+                    {isHovering && <CurrencySwitcherContainer {...this.props} />}
                 </div>
             </>
         );

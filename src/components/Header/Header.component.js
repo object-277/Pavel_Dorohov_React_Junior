@@ -9,11 +9,11 @@ class Header extends PureComponent {
 
         return (
             <>
-                <div className="Header">         
-                    <img className="logo" src={logo} alt="logo"/> 
-                    <NavBar /> 
-                </div> 
-            </> 
+                <div className="Header">
+                    <img className="logo" src={logo} alt="logo" />
+                    <NavBar />
+                </div>
+            </>
         );
     }
 }

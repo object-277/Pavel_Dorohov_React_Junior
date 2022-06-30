@@ -19,19 +19,18 @@ class CartPageItemContainer extends PureComponent {
         const { productInCart, setProductAttribute, keyId } = this.props;   // keyId is used to determine the right product in productsInCart array  
         const { allAttributes } = productInCart;
         const attributeIndex = allAttributes.findIndex((attribute) => (attribute.items.includes(itemIn)));
-    
         const productId = (({ id }) => ({ id }))(productInCart);
         const attributeName = productInCart.attributes[attributeIndex].id;
         const allAttributeItems = productInCart.attributes[attributeIndex].items;
         const attributeObject = Object.assign({}, productId, { selectedAttribute: attributeName, allAttributeItems, itemIn, keyId });
-       
-       setProductAttribute(attributeObject);
+
+        setProductAttribute(attributeObject);
     }
 
     changeImgForwards() {
         const { gallery } = this.props.productInCart
         let i = this.state.index;
-        if ( i === gallery.length - 1 ) {
+        if (i === gallery.length - 1) {
             i = 0;
         } else {
             i = i + 1;
@@ -42,7 +41,7 @@ class CartPageItemContainer extends PureComponent {
     changeImgBackwards() {
         const { gallery } = this.props.productInCart;
         let i = this.state.index;
-        if ( i === 0 ) {
+        if (i === 0) {
             i = gallery.length - 1;
         } else {
             i = i - 1;
@@ -63,15 +62,15 @@ class CartPageItemContainer extends PureComponent {
     };
 
     render() {
-        return(
-            <CartPageItem 
-                { ...this.state }
-                { ...this.props }
-                changeImgForwards = { this.changeImgForwards }
-                changeImgBackwards = { this.changeImgBackwards }
-                increaseQuantity={ this.handleIncrease }
-                decreaseQuantity={ this.handleDecrease }
-                setAttribute= { this.handleSetAttribute }
+        return (
+            <CartPageItem
+                {...this.state}
+                {...this.props}
+                changeImgForwards={this.changeImgForwards}
+                changeImgBackwards={this.changeImgBackwards}
+                increaseQuantity={this.handleIncrease}
+                decreaseQuantity={this.handleDecrease}
+                setAttribute={this.handleSetAttribute}
             />
         );
     }
@@ -81,7 +80,6 @@ const mapStateToProps = state => {
     return {
         productsInCart: state.cart.productsInCart,
         currency: state.cart.currency
-        //itemAttributes: state.cart.itemAttributes
     }
 }
 

@@ -31,7 +31,7 @@
         margin-bottom: 16px;
     }
 
-    #CartPageItem-Name { 
+    #CartPageItem-Name {
         width: 292px;
         height: 27px;
         bottom: 0px;
@@ -47,7 +47,7 @@
         color: #1D1F22;
         margin-bottom: 20px;
     }
-    
+
     &-BtnImgGroup {
         width: 269px;
         height: 288px;
@@ -204,7 +204,8 @@
         margin-bottom: 20px;
     }
 
-    &-PriceCurrencySymbol, &-PriceAmount {
+    &-PriceCurrencySymbol,
+    &-PriceAmount {
         margin: 0;
         padding: 0;
     }
@@ -216,7 +217,7 @@
     }
 
     &-Attributes div:last-child {
-        margin-bottom: 0px;    
+        margin-bottom: 0px;
     }
 
     &-Attribute {
@@ -235,14 +236,14 @@
             display: flex;
             align-items: center;
             text-align: center;
-            margin-bottom: 7px;        
+            margin-bottom: 7px;
         }
 
         &-Items {
             display: flex;
             flex-direction: row;
-            align-items: center; 
-            gap: 8px;   
+            align-items: center;
+            gap: 8px;
         }
 
         &-Item {
@@ -256,12 +257,12 @@
             height: 45px;
             display: flex;
             transition: 0.08s ease-in-out;
-    
+
             &:hover {
                 background-color: #5ECE7B;
-                cursor: pointer; 
+                cursor: pointer;
             }
-    
+
             &-Active {
                 align-items: center;
                 justify-content: center;
@@ -284,8 +285,8 @@
                 line-height: 18px;
                 display: flex;
                 align-items: center;
-                text-align: center; 
-                letter-spacing: 0.05em; 
+                text-align: center;
+                letter-spacing: 0.05em;
             }
         }
 
@@ -295,8 +296,9 @@
             height: 36px !important;
             padding: 1px !important;
             border: 1px solid #1D1F22;
-            box-sizing: border-box !important;;
-            cursor: pointer;  
+            box-sizing: border-box !important;
+            ;
+            cursor: pointer;
         }
     }
 }

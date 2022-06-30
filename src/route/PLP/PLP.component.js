@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import ProductCardContainer from "../../components/ProductCard/ProductCard.container";
 import "./PLP.style.scss";
 
-class Products extends PureComponent {
+class PLP extends PureComponent {
 
     renderProducts() {
         const { products = [] } = this.props;
@@ -25,7 +25,7 @@ class Products extends PureComponent {
         const productsCategory = pathname.replace('/', '');
 
         return (
-            <div id="products" className="Products">
+            <div className="Products">
                 {productsCategory !== "all" ?
                     <h1 id="Products-CategoryName">{productsCategory}</h1> :
                     <h1 id="Products-CategoryName">all</h1>
@@ -36,4 +36,4 @@ class Products extends PureComponent {
     }
 }
 
-export default Products;
+export default PLP;

@@ -1,3 +1,3 @@
-import ProductsContainer from "./PLP.container";
+import PLPContainer from "./PLP.container";
 
-export default ProductsContainer;
+export default PLPContainer;

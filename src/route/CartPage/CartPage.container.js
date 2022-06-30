@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import CartPage from "./CartPage.component";
 
 class CartPageContainer extends PureComponent {
-   
+
     render() {
-        return(
-            <CartPage 
-                { ...this.state }
-                { ...this.props }
+        return (
+            <CartPage
+                {...this.state}
+                {...this.props}
             />
         );
     }
