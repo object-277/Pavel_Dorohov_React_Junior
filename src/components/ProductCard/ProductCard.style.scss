@@ -48,10 +48,10 @@
     &-Image {
         width: 354px;
         height: 330px;
+        object-fit: contain;
     }
 
     &-Content {
-
         position: absolute;
         width: 354px;
         height: 58px;

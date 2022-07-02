@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
+        productsCategory: localStorage.getItem("productsCategory")
+            ? localStorage.getItem("productsCategory")
+            : 'all',
         products: localStorage.getItem("products")
             ? JSON.parse(localStorage.getItem("products"))
             : [],
@@ -19,6 +22,10 @@ const cartSlice = createSlice({
             : []
     },
     reducers: {
+        setCategory: (state, action) => {
+            state.productsCategory = action.payload;
+            localStorage.setItem("productsCategory", action.payload);
+        },
         setProducts: (state, action) => {
             state.products = action.payload;
             localStorage.setItem("products", JSON.stringify(state.products));
@@ -96,7 +103,7 @@ const cartSlice = createSlice({
             const { total, quantity } = state.productsInCart.reduce((cartTotal, productInCart) => {
                 const { prices, cartQuantity } = productInCart;
                 const { currency } = state;
-                const index = prices.findIndex((price) => (price.currency.symbol === currency));
+                const index = currency.length !== 0 && prices.findIndex((price) => (price.currency.symbol === currency));
                 const itemTotal = (prices[index].amount * cartQuantity);
                 cartTotal.total += (itemTotal);
                 cartTotal.quantity += cartQuantity;
@@ -162,14 +169,16 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addProductToCart,
+export const { 
+    setCategory,
+    setProducts,
+    addProductToCart,
     removeProductFromCart,
     decreaseQuantity,
     getTotals,
     setCurrency,
     setProductAttribute,
-    setProductToCart,
-    setProducts
+    setProductToCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

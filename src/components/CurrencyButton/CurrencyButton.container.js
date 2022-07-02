@@ -1,11 +1,14 @@
 import React, { PureComponent } from "react";
 import CurrencyButton from "./CurrencyButton.component";
+import { currenciesQuery } from "../../query/currency.query";
+import { executePost } from "../../util/Request.util";
 import { connect } from "react-redux";
 
 class CurrencyButtonContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            currencies: [],
             isClicked: false,
             isHovering: false
         };
@@ -14,6 +17,16 @@ class CurrencyButtonContainer extends PureComponent {
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.getStateFromChild = this.getStateFromChild.bind(this);
         this.currencySwitcherUnmounts = this.currencySwitcherUnmounts.bind(this);
+    }
+
+    componentDidMount() {
+        this.getCurrencies();
+    }
+
+    async getCurrencies() {
+        await executePost(currenciesQuery).then(({ currencies }) => {
+            this.setState({ currencies });
+        });
     }
 
     currencySwitcherUnmounts() {  // when CurrencySwitcher has been closed, then hover state is set to initial

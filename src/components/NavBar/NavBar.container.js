@@ -2,20 +2,17 @@ import React, { PureComponent } from "react";
 import NavBar from "./NavBar.component";
 import { categoriesQuery } from "../../query/category.query";
 import { executePost } from "../../util/Request.util";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux"
-import { setProducts } from "../../redux/Cart/Cart.reducer";
+import { setCategory, setProducts } from "../../redux/Cart/Cart.reducer";
 import { Field, Query } from "@tilework/opus";
 
 class NavBarContainer extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.setCategory = this.setCategory.bind(this);
-        this.getProducts = this.getProducts.bind(this);
-    }
-
     componentDidMount() {
         this.getCategories();
+    }
+
+    componentDidUpdate() {
+        this.getProducts();
     }
 
     async getCategories() {
@@ -24,16 +21,10 @@ class NavBarContainer extends PureComponent {
         });
     }
 
-    setCategory() {
-        this.getProducts();
-    }
-
     async getProducts() {
-        const { setProducts } = this.props;
-        const { pathname } = this.props.location;
-        const categoryName = pathname.replace('/', '');
+        const { setProducts, productsCategory } = this.props;
         const category = {
-            title: categoryName ? categoryName : "all"
+            title: productsCategory
         }
         await executePost(new Query("category", true)
             .addArgument("input", "CategoryInput", category)
@@ -61,7 +52,6 @@ class NavBarContainer extends PureComponent {
 
         return (
             <NavBar
-                setCategory={this.setCategory}
                 {...this.props}
                 {...this.state}
             />
@@ -69,9 +59,12 @@ class NavBarContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => {
+    return {
+        productsCategory: state.cart.productsCategory
+    }
+};
 
-const mapDispatchToProps = { setProducts };
+const mapDispatchToProps = { setCategory, setProducts };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBarContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(NavBarContainer);
