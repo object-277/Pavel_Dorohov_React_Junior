@@ -1,15 +1,15 @@
 .PDP {
     position: relative;
     width: 1440px;
+    height: -moz-fit-content;
     height: fit-content;
     padding-top: 80px;
-    padding-left: 219px;
+    display: flex;
 
     &-Content {
-        width: 1002px;
+        width: 292px;
+        height: -moz-fit-content;
         height: fit-content;
-        left: 219px;
-        top: 80px;
         overflow: hidden;
 
         #PDP-Warning {
@@ -24,7 +24,6 @@
         }
 
         .PDP-SideSection {
-            position: relative;
             width: 292px;
             height: fit-content;
             min-height: 513px;
@@ -108,13 +107,42 @@
                     color: #E60000;
                 }
 
+                &-Color {
+
+                    &:hover {
+                        width: 36px;
+                        height: 36px;
+                        padding: 1px;
+                        border: 1px solid #1D1F22;
+                        background-clip: content-box;
+                        box-sizing: border-box;
+                    }
+
+                    &-Active {
+                        background-clip: content-box;
+                        width: 36px;
+                        height: 36px;
+                        padding: 1px;
+                        border: 1px solid #5ECE7B;
+                        box-sizing: border-box;
+                        transition: 0.08s ease-in-out;
+                    }
+                }
+
                 &-Items {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
 
-                    .PDP-Attribute-Item {
+                    &-Color {
+                        height: 36px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 8px;
+                    }
 
+                    .PDP-Attribute-Item {
                         align-items: center;
                         justify-content: center;
                         text-align: center;
@@ -133,13 +161,14 @@
                             justify-content: center;
                             text-align: center;
                             border: 1px solid #1D1F22;
-                            color: #292929;
+                            color: #FFF;
                             box-sizing: border-box;
                             width: 63px;
                             height: 45px;
                             display: flex;
                             margin-right: 12px;
                             cursor: pointer;
+                            background: #1D1F22;
                             transition: 0.08s ease-in-out;
                         }
 

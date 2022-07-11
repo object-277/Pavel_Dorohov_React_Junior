@@ -3,6 +3,7 @@ import CurrencyButton from "./CurrencyButton.component";
 import { currenciesQuery } from "../../query/currency.query";
 import { executePost } from "../../util/Request.util";
 import { connect } from "react-redux";
+import { setCurrency, getTotals } from "../../redux/Cart/Cart.reducer";
 
 class CurrencyButtonContainer extends PureComponent {
     constructor(props) {
@@ -24,8 +25,9 @@ class CurrencyButtonContainer extends PureComponent {
     }
 
     async getCurrencies() {
+        const { setCurrency } = this.props;
         await executePost(currenciesQuery).then(({ currencies }) => {
-            this.setState({ currencies });
+            this.setState({ currencies }, () => setCurrency(this.state.currencies[0].symbol));
         });
     }
 
@@ -85,4 +87,6 @@ const mapStateToProps = state => ({
     currency: state.cart.currency
 });
 
-export default connect(mapStateToProps)(CurrencyButtonContainer);
+const mapDispatchToProps = { setCurrency, getTotals };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyButtonContainer);

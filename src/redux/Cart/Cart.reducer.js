@@ -5,7 +5,7 @@ const cartSlice = createSlice({
     initialState: {
         productsCategory: localStorage.getItem("productsCategory")
             ? localStorage.getItem("productsCategory")
-            : 'all',
+            : [],
         products: localStorage.getItem("products")
             ? JSON.parse(localStorage.getItem("products"))
             : [],
@@ -16,19 +16,26 @@ const cartSlice = createSlice({
         cartTotalPrice: 0,
         currency: localStorage.getItem("currency")
             ? localStorage.getItem("currency")
-            : '$',
+            : [],
         productToCart: localStorage.getItem("productSetToCart")
             ? JSON.parse(localStorage.getItem("productSetToCart"))
-            : []
+            : [],
+        cartMenuActive: false
     },
     reducers: {
         setCategory: (state, action) => {
-            state.productsCategory = action.payload;
+            if (state.productsCategory !== action.payload) { 
+                state.productsCategory = action.payload;    
+            }
             localStorage.setItem("productsCategory", action.payload);
         },
         setProducts: (state, action) => {
             state.products = action.payload;
             localStorage.setItem("products", JSON.stringify(state.products));
+        },
+        setCurrency: (state, action) => {
+            state.currency = action.payload;
+            localStorage.setItem("currency", action.payload);
         },
         addProductToCart: (state, action) => {
             /* if there's no product with selected options that is ready to be added to Cart (PDP),
@@ -103,7 +110,7 @@ const cartSlice = createSlice({
             const { total, quantity } = state.productsInCart.reduce((cartTotal, productInCart) => {
                 const { prices, cartQuantity } = productInCart;
                 const { currency } = state;
-                const index = currency.length !== 0 && prices.findIndex((price) => (price.currency.symbol === currency));
+                const index = currency.length !== 0 ? prices.findIndex((price) => (price.currency.symbol === currency)) : 0;
                 const itemTotal = (prices[index].amount * cartQuantity);
                 cartTotal.total += (itemTotal);
                 cartTotal.quantity += cartQuantity;
@@ -116,10 +123,6 @@ const cartSlice = createSlice({
                 });
             state.cartTotalQuantity = quantity;
             state.cartTotalPrice = total.toFixed(2);
-        },
-        setCurrency: (state, action) => {
-            state.currency = action.payload;
-            localStorage.setItem("currency", action.payload);
         },
         setProductAttribute: (state, action) => {
             const { productsInCart } = state;
@@ -146,13 +149,15 @@ const cartSlice = createSlice({
         },
         setProductToCart: (state, action) => {   // productToCart is product with selected attributes. productReadyToCart will be added to Cart from PDP  
             const { productToCart } = state;
-            const { itemIn, attributeIndex } = action.payload;
-            const product = action.payload.product;
-            if (productToCart.id === product.id) {
+            const { itemIn = [], attributeIndex = [], product = [] } = action.payload || [];
+            if (productToCart.id === product.id && product.length !== 0) {
                 if (productToCart.length !== 0) {
                     const { productToCart } = state;
                     if (productToCart.attributes[attributeIndex].items.id === itemIn.id) {
                         productToCart.attributes[attributeIndex].items = product.allAttributes[attributeIndex].items;
+                        if (JSON.stringify(productToCart.attributes) === JSON.stringify(product.allAttributes)) {
+                            state.productToCart = [];
+                        }
                     } else if (productToCart.attributes[attributeIndex].items !== itemIn) {
                         productToCart.attributes[attributeIndex].items = itemIn;
                     } else {
@@ -165,11 +170,22 @@ const cartSlice = createSlice({
                 state.productToCart = product;
             }
             localStorage.setItem("productSetToCart", JSON.stringify(state.productToCart));
+        },
+        setCartMenu: (state, action) => {
+            if (action.payload !== undefined) {
+                state.cartMenuActive = action.payload;
+            } else {
+                if (state.cartMenuActive === false) {
+                    state.cartMenuActive = true;
+                } else {
+                    state.cartMenuActive = false;
+                }
+            }
         }
     }
 });
 
-export const { 
+export const {
     setCategory,
     setProducts,
     addProductToCart,
@@ -178,7 +194,8 @@ export const {
     getTotals,
     setCurrency,
     setProductAttribute,
-    setProductToCart
+    setProductToCart,
+    setCartMenu
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

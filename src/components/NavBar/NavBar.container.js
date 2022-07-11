@@ -3,28 +3,41 @@ import NavBar from "./NavBar.component";
 import { categoriesQuery } from "../../query/category.query";
 import { executePost } from "../../util/Request.util";
 import { connect } from "react-redux"
-import { setCategory, setProducts } from "../../redux/Cart/Cart.reducer";
+import { setCategory, setProducts, setCartMenu } from "../../redux/Cart/Cart.reducer";
 import { Field, Query } from "@tilework/opus";
+import { withRouter } from "react-router-dom";
 
 class NavBarContainer extends PureComponent {
     componentDidMount() {
         this.getCategories();
     }
 
-    componentDidUpdate() {
-        this.getProducts();
+    componentDidUpdate(prevProps) {
+        const { categories = [] } = this.state || {};
+        const { productsCategory, setCategory } = this.props;
+        const { pathname } = this.props.location;
+        const categoryName = pathname.replace('/', '');
+        const checkIsCategory = categories ? categories.some((category) => category.name === categoryName) : false;
+        const checkPrevCategory = (productsCategory !== prevProps.productsCategory) ? true : false;
+        if (checkIsCategory) {
+            setCategory(categoryName);
+        }
+        if (checkPrevCategory) {
+            this.getProducts();
+        }
     }
 
     async getCategories() {
         await executePost(categoriesQuery).then(({ categories }) => {
-            this.setState({ categories });
+            this.setState({ categories }, () => this.getProducts());
         });
     }
 
     async getProducts() {
         const { setProducts, productsCategory } = this.props;
         const category = {
-            title: productsCategory
+            title: productsCategory.length === 0 ? this.state.categories[0].name :
+                productsCategory
         }
         await executePost(new Query("category", true)
             .addArgument("input", "CategoryInput", category)
@@ -43,7 +56,7 @@ class NavBarContainer extends PureComponent {
                     )
                 )
             )).then(({ category }) => {
-                const { products = [] } = category || {};
+                const { products = [] } = category;
                 setProducts(products);
             });
     }
@@ -65,6 +78,6 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = { setCategory, setProducts };
+const mapDispatchToProps = { setCategory, setProducts, setCartMenu };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBarContainer));

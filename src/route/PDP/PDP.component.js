@@ -2,20 +2,43 @@ import React, { PureComponent } from "react";
 import ReactHtmlParser from 'react-html-parser';
 import PDPGalleryContainer from "./PDPGallery";
 import "./PDP.style.scss";
+const COLOR = 'Color';
 
 class PDP extends PureComponent {
 
     getPrice() {
-        const { currency } = this.props;
-        const { prices } = this.props.product;
-        const index = prices.findIndex((price) => (price.currency.symbol === currency));
+        const { currency, product } = this.props;
+        const { prices } = this.props.product || [];
+        const index = prices !== undefined ? prices.findIndex((price) => (price.currency.symbol === currency)) : 0;
+        if (product) {
+            return (
+                <div className="PDP-SideSection-ProductPrice">
+                    <p className="PDP-SideSection-ProductPrice-CurrencySymbol">{prices[index].currency.symbol}</p>
+                    <p className="PDP-SideSection-ProductPrice-Amount">{prices[index].amount}</p>
+                </div>
+            );
+        }
+    }
 
-        return (
-            <div className="PDP-SideSection-ProductPrice">
-                <p className="PDP-SideSection-ProductPrice-CurrencySymbol">{prices[index].currency.symbol}</p>
-                <p className="PDP-SideSection-ProductPrice-Amount">{prices[index].amount}</p>
-            </div>
-        );
+    getAttributeItemClass(attribute, index, item) {
+        const { productToCart, product, showWarning } = this.props;
+        const isSelectedTrue = productToCart !== undefined && productToCart.id === product.id ?
+            productToCart.attributes[index].items.id === item.id
+            : false;
+        const attributeNotSelected = productToCart !== undefined && productToCart.id === product.id ?
+            productToCart.attributes[index].items.id === attribute.items.id
+            : true;
+        if (attributeNotSelected && showWarning) {
+            return "PDP-Attribute-Item-Warning";
+        } else if (isSelectedTrue && attribute.id !== COLOR) {
+            return "PDP-Attribute-Item-Active";
+        } else if (isSelectedTrue === false && attribute.id === COLOR) {
+            return "PDP-Attribute-Color";
+        } else if (isSelectedTrue && attribute.id === COLOR) {
+            return "PDP-Attribute-Color-Active";
+        } else {
+            return "PDP-Attribute-Item";
+        }
     }
 
     componentDidUpdate() {
@@ -25,67 +48,24 @@ class PDP extends PureComponent {
 
     renderAttributeItems(item, i, attribute, index) {
         const { value } = item;
-        const { setAttribute, productToCart, product, showWarning } = this.props;
-        const isSelectedTrue = productToCart !== undefined && productToCart.id === product.id ?
-            productToCart.attributes[index].items.id === item.id
-            : false;
-        const attributeNotSelected = productToCart !== undefined && productToCart.id === product.id ?
-            productToCart.attributes[index].items.id === attribute.items.id
-            : true;
-
-        const selectedStyle = {
-            backgroundColor: '#1D1F22',
-            color: "#FFF"
-        }
-
-        const selectedColorStyle = {
-            width: '36px',
-            height: '36px',
-            border: '1px solid #5ECE7B',
-            marginRight: '8px'
-        };
-
-        const colorItemStyle = {
-            width: '32px',
-            height: '32px',
-            border: '1px solid transparent',
-            marginRight: '8px',
-            visibility: 'none'
-        };
-
+        const { setAttribute } = this.props;
         const colorStyle = {
             background: value,
             width: '32px',
             height: '32px',
+            margin: '0px',
+            border: '1px solid #1D1F22',
+            boxSizing: 'border-box'
         };
 
-        const whiteStyle = {
-            background: value,
-            width: '32px',
-            height: '32px',
-            boxSizing: 'border-box',
-            border: '1px solid #1D1F22'
-        }
-
         return (
-            <div className={isSelectedTrue ? "PDP-Attribute-Item-Active" :
-                (attributeNotSelected && showWarning) ? "PDP-Attribute-Item-Warning" :
-                    "PDP-Attribute-Item"} key={i}
-                onClick={
-                    () => setAttribute(item)
-                }
-                style={(isSelectedTrue === true && attribute.id !== 'Color') ? selectedStyle :
-                    (isSelectedTrue === true && attribute.id === 'Color') ? selectedColorStyle :
-                        attribute.id === 'Color' ? colorItemStyle : null
-
-                }
+            <div className={this.getAttributeItemClass(attribute, index, item)} key={i}
+                onClick={() => setAttribute(item)}
             >
                 <p className="PDP-Attribute-Item-ItemText"
-                    style={(attribute.id === 'Color' && value !== '#FFFFFF') ? colorStyle :
-                        (attribute.id === 'Color' && value === '#FFFFFF') ? whiteStyle : null
-                    }
+                    style={attribute.id === COLOR ? colorStyle : null}
                 >
-                    {attribute.id !== 'Color' && value}
+                    {attribute.id !== COLOR && value}
                 </p>
             </div>
         );
@@ -95,9 +75,6 @@ class PDP extends PureComponent {
         const { showWarning, product, productToCart } = this.props;
         const { id } = attribute;
         const { items } = attribute;
-        const ifColorStyle = {
-            height: '36px',
-        };
         const notSelected = productToCart !== undefined && productToCart.id === product.id ?
             productToCart.attributes[index].items.id === attribute.items.id
             : true;
@@ -107,9 +84,7 @@ class PDP extends PureComponent {
                 <div className={showWarning && notSelected ? "PDP-Attribute-NotSelected" : "PDP-Attribute-Name"}>
                     {id}:
                 </div>
-                <div className="PDP-Attribute-Items"
-                    style={attribute.id === 'Color' ? ifColorStyle : null}
-                >
+                <div className={attribute.id === COLOR ? "PDP-Attribute-Items-Color" : "PDP-Attribute-Items"}>
                     {items.map((item, i) => this.renderAttributeItems(item, i, attribute, index))}
                 </div>
             </div>
@@ -164,10 +139,10 @@ class PDP extends PureComponent {
         if (this.props.product !== undefined) {
             return (
                 <div className="PDP">
-                    {this.renderPDP()}
                     <PDPGalleryContainer
                         {...this.props}
                     />
+                    {this.renderPDP()}
                 </div>
             );
         } else {

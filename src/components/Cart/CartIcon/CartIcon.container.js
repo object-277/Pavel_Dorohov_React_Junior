@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+import { setCartMenu } from "../../../redux/Cart/Cart.reducer";
 import CartIcon from "./CartIcon.component";
 
 class CartIconContainer extends PureComponent {
@@ -18,19 +19,19 @@ class CartIconContainer extends PureComponent {
 
    handleClick(e) {
         e.preventDefault();
+        const { setCartMenu } = this.props;
         this.setState(prevState => ({
             isClicked: !prevState.isClicked
-        }));
+        }), () => setCartMenu(this.state.isClicked));
+       // setBackdrop();
     }
 
     render() {
-        const { isClicked } = this.state;
 
         return ( 
             <CartIcon 
                 { ...this.state }
                 { ...this.props }
-                isClicked={ isClicked } 
                 onClick={ this.handleClick }
                 cartMenuUnmounts = { this.cartMenuUnmounts }
             />
@@ -42,7 +43,10 @@ const mapStateToProps = state => {
     return {
         productsInCart: state.cart.productsInCart,
         cartTotalQuantity: state.cart.cartTotalQuantity,
+        cartMenuActive: state.cart.cartMenuActive
     }
 }
 
-export default connect(mapStateToProps)(CartIconContainer);
+const mapDispatchToProps = { setCartMenu };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIconContainer);

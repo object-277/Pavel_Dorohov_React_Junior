@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import IncreaseButton from "./plus.svg";
 import DecreaseButton from "./minus.svg";
 import "./CartMenuItem.style.scss";
+const COLOR = 'Color';
 
 class CartMenuItem extends PureComponent {
 
@@ -18,76 +19,44 @@ class CartMenuItem extends PureComponent {
     );
   }
 
-  renderAttributeItems(item, i, attribute, index, product) {
-    const { value } = item;
-    const { setAttribute } = this.props;
-    const { allAttributes, attributes } = product;
-    const { keyId } = this.props;
+  getAttributeItemClass(attribute, index, item) {
+    const { allAttributes, attributes } = this.props.productInCart;
     let isSelectedTrue;
     if (typeof item === 'object') {
       isSelectedTrue = allAttributes !== attributes && attributes[index].items.id === item.id ? true : false;
     } else {
       isSelectedTrue = allAttributes !== attributes && attributes[index].items[0].id === item.id ? true : false;
     }
+    if (isSelectedTrue && attribute.id !== COLOR) {
+      return "CartMenuItem-Attribute-Item-Active";
+    } else if (isSelectedTrue === false && attribute.id === COLOR) {
+      return "CartMenuItem-Attribute-Color";
+    } else if (isSelectedTrue && attribute.id === COLOR) {
+      return "CartMenuItem-Attribute-Color-Active";
+    } else {
+      return "CartMenuItem-Attribute-Item";
+    }
+  }
 
-    const selectedStyle = {
-      background: '#1D1F22',
-      color: '#FFF'
-    };
-    const selectedColorStyle = {
-      backgroundColor: value,
-      backgroundClip: 'content-box',
-      width: '20px',
-      height: '20px',
-      padding: '1px',
-      border: '1px solid #5ECE7B',
-      boxSizing: 'border-box',
-      transition: '0.08s ease-in-out'
-    };
-
+  renderAttributeItems(item, i, attribute, index) {
+    const { value } = item;
+    const { setAttribute, keyId } = this.props; 
     const colorStyle = {
       background: value,
       width: '16px',
       height: '16px',
+      boxSizing: 'border-box',
+      border: '1px solid black',
       transition: '0.08s ease-in-out'
     };
 
-    const whiteStyle = {
-      background: value,
-      width: '16px',
-      height: '16px',
-      padding: '0px',
-      boxSizing: 'border-box',
-      border: '1px solid #1D1F22'
-    }
-
-    const whiteSelectedStyle = {
-      backgroundColor: value,
-      backgroundClip: 'content-box',
-      width: '20px',
-      height: '20px',
-      padding: '1px',
-      border: '1px solid #5ECE7B',
-      boxSizing: 'border-box',
-      transition: '0.08s ease-in-out'
-    }
-
     return (
-      <div className={(isSelectedTrue && attribute.id !== 'Color') ? "CartMenuItem-Attribute-Item-Active" :
-        (attribute.id === 'Color' && isSelectedTrue === false) ? "CartMenuItem-Attribute-Color" :
-          (attribute.id === 'Color' && isSelectedTrue) ?
-            "CartMenuItem-Attribute-Color-Active" : "CartMenuItem-Attribute-Item"
-      } key={i}
+      <div className={this.getAttributeItemClass(attribute, index, item)} key={i}
         onClick={() => setAttribute(item, keyId)}
-        style={(isSelectedTrue && attribute.id !== 'Color') ? selectedStyle :
-          (isSelectedTrue && attribute.id === 'Color' && value !== '#FFFFFF') ? selectedColorStyle :
-            (attribute.id === 'Color' && value !== '#FFFFFF') ? colorStyle :
-              (attribute.id === 'Color' && value === '#FFFFFF' && isSelectedTrue === false) ? whiteStyle :
-                (isSelectedTrue && value === '#FFFFFF') ? whiteSelectedStyle : null
-        }
       >
         <p className="CartMenuItem-Attribute-Item-ItemText"
-          style={attribute.id === 'Color' ? { display: 'none' } : null}
+          style={attribute.id === 'Color' ? colorStyle : null
+          }
         >
           {attribute.id !== 'Color' && value}
         </p>
@@ -103,14 +72,16 @@ class CartMenuItem extends PureComponent {
         <div className="CartMenuItem-Attribute-Name">
           {id}:
         </div>
-        <div className="CartMenuItem-Attribute-Items" key={index}>
+        <div className={attribute.id === COLOR ? "CartMenuItem-Attribute-Items-Color" : "CartMenuItem-Attribute-Items"} 
+             key={index}
+        >
           {items.map((item, i) => this.renderAttributeItems(item, i, attribute, index, product))}
         </div>
       </div>
     );
   }
 
-  render(product, i) {
+  render(i) {
     const { productInCart, increaseQuantity, decreaseQuantity } = this.props;
     const { brand, name, gallery, cartQuantity, attributes, allAttributes } = productInCart;
 

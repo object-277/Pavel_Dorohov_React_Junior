@@ -89,6 +89,14 @@
             height: -moz-fit-content;
             height: fit-content;
             gap: 8px;
+
+            &-Color {
+                height: 36px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+            }
         }
 
         &-Item {
@@ -116,6 +124,8 @@
                 padding: 3px;
                 box-sizing: border-box;
                 border: 1px solid #1D1F22;
+                background: #1D1F22;
+                color: #FFF;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -135,13 +145,23 @@
             }
         }
 
+        &-Color-Active {
+            background-clip: content-box;
+            width: 20px;
+            height: 20px;
+            padding: 1px;
+            border: 1px solid #5ECE7B;
+            box-sizing: border-box;
+            transition: 0.08s ease-in-out;
+        }
+
         &-Color:hover {
-            background-clip: content-box !important;
-            width: 20px !important;
-            height: 20px !important;
-            padding: 1px !important;
+            background-clip: content-box;
+            width: 20px;
+            height: 20px;
+            padding: 1px;
             border: 1px solid #1D1F22;
-            box-sizing: border-box !important;
+            box-sizing: border-box;
             cursor: pointer;  
         }
     }

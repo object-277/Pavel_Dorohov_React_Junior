@@ -28,10 +28,10 @@ class CurrencySwitcher extends PureComponent {
     }
 
     render() {
-        const { handleMouseOver, handleMouseOut } = this.props;
+        const { handleMouseOver, handleMouseOut, isHovering } = this.props;
 
         return (
-            <div className="CurrencySwitcher" onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut} >
+            <div className={isHovering ? "CurrencySwitcher-Active" : "CurrencySwitcher"} onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut} >
                 {this.renderCurrencySwithcer()}
             </div>
         );

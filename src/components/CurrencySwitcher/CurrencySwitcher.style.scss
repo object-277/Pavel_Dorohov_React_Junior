@@ -9,6 +9,26 @@
     background-color: #FFF;
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
     z-index: 4;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s linear; 
+
+    &-Active {
+        position: absolute;
+        width: 114px;
+        height: 269px;
+        top: 36.5px;
+        right: 0px;
+        bottom: 0px;
+        left: -11px;
+        background-color: #FFF;
+        filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+        z-index: 4;
+        opacity: 100;   
+        transition: opacity 0.3s linear; 
+    }
 
     &-BackgroundOverlay {
         width: 1440px;
@@ -25,8 +45,8 @@
         align-items: center;
         flex-direction: column;
         position: absolute;
-        width: 114px;
-        height: 269px;
+        width: inherit;
+        height: inherit;
         padding: 12px 0px;
         box-sizing: border-box;
     }

@@ -244,6 +244,14 @@
             flex-direction: row;
             align-items: center;
             gap: 8px;
+
+            &-Color {
+                height: 36px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+            }
         }
 
         &-Item {
@@ -268,13 +276,14 @@
                 justify-content: center;
                 text-align: center;
                 border: 1px solid #1D1F22;
-                color: #292929;
+                color: #FFF;
                 box-sizing: border-box;
                 width: 63px;
                 height: 45px;
                 display: flex;
                 cursor: pointer;
                 transition: 0.08s ease-in-out;
+                background: #1D1F22;
             }
 
             &-ItemText {
@@ -290,15 +299,26 @@
             }
         }
 
-        &-Color:hover {
-            background-clip: content-box !important;
-            width: 36px !important;
-            height: 36px !important;
-            padding: 1px !important;
-            border: 1px solid #1D1F22;
-            box-sizing: border-box !important;
-            ;
-            cursor: pointer;
-        }
+        &-Color {
+
+            &:hover {
+                width: 36px;
+                height: 36px;
+                padding: 1px;
+                border: 1px solid #1D1F22;
+                background-clip: content-box;
+                box-sizing: border-box;
+            }
+
+            &-Active {
+                background-clip: content-box;
+                width: 36px;
+                height: 36px;
+                padding: 1px;
+                border: 1px solid #5ECE7B;
+                box-sizing: border-box;
+                transition: 0.08s ease-in-out;
+            }
+        } 
     }
 }

@@ -6,20 +6,15 @@ import CircleIcon from "./CircleIcon.svg";
 class ProductCard extends PureComponent {
 
     getPrice() {
-        const { currency } = this.props;
+        const { currency = [] } = this.props;
         const { prices } = this.props;
-        const index = prices.findIndex((price) => (price.currency.symbol === currency));
-
+        const index = currency.length !== 0 ? prices.findIndex((price) => (price.currency.symbol === currency)) : 0;
         return (
             <div className="ProductCard-Content-Price">
                 <p className="ProductCard-Content-PriceCurrencySymbol">{prices[index].currency.symbol}</p>
                 <p className="ProductCard-Content-PriceAmount">{prices[index].amount}</p>
             </div>
         );
-    }
-
-    componentDidMount() {
-        this.getPrice();
     }
 
     render() {

@@ -26,7 +26,7 @@ class CartMenu extends PureComponent {
     const { productsInCart } = this.props;
 
     return (
-      <div className="CartMenu-Products-Wrapper">
+      <div className="CartMenu-Products-Wrapper" style={ productsInCart.length === 1 ? { overflowX: "unset" } : null }>
         {productsInCart.length > 0 ? productsInCart.map((product, i) =>
           <CartMenuItemContainer productInCart={product} key={i} keyId={i} />)
           : <p id="emptyBag">Your Bag is empty</p>}

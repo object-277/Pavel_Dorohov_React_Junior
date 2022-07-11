@@ -1,8 +1,7 @@
 .PDPGallery-MainImage-Wrapper {
     width: 610px;
     height: 511px;
-    top: 82px;
-    position: absolute;
+    margin-right: 100px;
 
     .PDPGallery-MainImage {
         width: 610px;
@@ -12,11 +11,10 @@
 }
 
 .PDPGallery-SideGallery {
-    position: absolute;
     width: 79px;
     height: 513px;
-    left: 100px;
-    top: 80px;
+    padding-left: 108px;
+    margin-right: 40px;
     overflow-y: scroll;
     overflow-x: hidden;
 }

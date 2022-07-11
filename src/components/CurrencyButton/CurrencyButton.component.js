@@ -4,9 +4,8 @@ import vector from "../CurrencyButton/Vector.svg";
 import CurrencySwitcherContainer from "../CurrencySwitcher";
 
 class CurrencyButton extends PureComponent {
-
     render() {
-        const { onClick, isHovering, currency, handleMouseOver, handleMouseOut } = this.props;
+        const { onClick, currency, handleMouseOver, handleMouseOut } = this.props;
 
         return (
             <>
@@ -15,7 +14,7 @@ class CurrencyButton extends PureComponent {
                         {currency}
                     </div>
                     <img id="CurrencyButton-Arrow" src={vector} alt="Select currency" />
-                    {isHovering && <CurrencySwitcherContainer {...this.props} />}
+                    <CurrencySwitcherContainer {...this.props} />
                 </div>
             </>
         );

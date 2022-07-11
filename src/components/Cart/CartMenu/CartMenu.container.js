@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import CartMenu from "./CartMenu.component";
 import { connect } from "react-redux";
-import { addProductToCart, decreaseQuantity, getTotals, setProductAttribute } from "../../../redux/Cart/Cart.reducer";
+import { addProductToCart, decreaseQuantity, getTotals, setProductAttribute, setCartMenu } from "../../../redux/Cart/Cart.reducer";
 
 class CartMenuContainer extends PureComponent {
     constructor(props) {
@@ -13,10 +13,10 @@ class CartMenuContainer extends PureComponent {
         this.handleDecrease = this.handleDecrease.bind(this);
     };
 
-    handleClick(e) {
+    handleClick() {
         this.setState(prevState => ({
             active: !prevState.active
-        }));
+        }), () => this.props.setCartMenu());
     }
 
     handleIncrease = (productInCart) => {
@@ -32,7 +32,7 @@ class CartMenuContainer extends PureComponent {
     };
 
     componentWillUnmount() {
-        this.setState({ active: false });
+        this.setState({ active: false }, () => this.props.setCartMenu());
     }
 
     render() {
@@ -63,6 +63,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = { addProductToCart, decreaseQuantity, getTotals, setProductAttribute };
+const mapDispatchToProps = { addProductToCart, decreaseQuantity, getTotals, setProductAttribute, setCartMenu };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartMenuContainer);

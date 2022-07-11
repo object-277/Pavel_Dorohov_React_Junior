@@ -16,6 +16,7 @@ class PLPContainer extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+    productsCategory: state.cart.productsCategory,
     products: state.cart.products
 });
 

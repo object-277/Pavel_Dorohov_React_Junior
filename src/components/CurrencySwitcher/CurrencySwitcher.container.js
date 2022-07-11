@@ -7,15 +7,18 @@ class CurrencySwitcherContainer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isHovering: undefined
+            isHoveringSwitcher: undefined
         };
         this.handleSetCurrency = this.handleSetCurrency.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
     }
 
-    componentDidUpdate() {
-        this.props.sendState(this.state.isHovering);
+    componentDidUpdate(prevProps) {
+        const { sendState } = this.props;
+        if (this.props.currency !== prevProps.currency) {
+            sendState(false);
+        } 
     }
 
     componentWillUnmount() {
@@ -28,40 +31,36 @@ class CurrencySwitcherContainer extends PureComponent {
 
     handleMouseOver() {
         this.setState(() => ({
-            isHovering: true
+            isHoveringSwitcher: true
         }));
     }
 
     handleMouseOut() {
         this.setState(() => ({
-            isHovering: false
+            isHoveringSwitcher: false
         }));
     }
 
     handleSetCurrency = (symbol) => {
-        this.setState(() => ({ 
-            isHovering: false
-        }));
+        const { sendState } = this.props;
+        this.setState(() => ({
+            isHoveringSwitcher: false
+        }), () => sendState(this.state.isHoveringSwitcher));
         const { setCurrency, getTotals } = this.props;
         setCurrency(symbol);
         getTotals();
     }
 
     render() {
-        const { isHovering } = this.props;
-        if (isHovering) {
-            return (
-                <CurrencySwitcher
-                    {...this.props}
-                    {...this.state}
-                    setCurrency={this.handleSetCurrency}
-                    handleMouseOver={this.handleMouseOver}
-                    handleMouseOut={this.handleMouseOut}
-                />
-            );
-        } else {
-            return null;
-        }
+        return (
+            <CurrencySwitcher
+                {...this.props}
+                {...this.state}
+                setCurrency={this.handleSetCurrency}
+                handleMouseOver={this.handleMouseOver}
+                handleMouseOut={this.handleMouseOut}
+            />
+        );
     }
 }
 

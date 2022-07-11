@@ -4,6 +4,7 @@ import CaretRight from "./CaretRight.svg";
 import IncreaseButton from "./plus-square.svg";
 import DecreaseButton from "./minus-square.svg";
 import "./CartPageItem.style.scss";
+const COLOR = 'Color';
 
 class CartPageItem extends PureComponent {
 
@@ -20,6 +21,20 @@ class CartPageItem extends PureComponent {
     );
   }
 
+  getAttributeItemClass(attribute, index, item) {
+    const { allAttributes, attributes } = this.props.productInCart;
+    const isSelectedTrue = allAttributes !== attributes && attributes[index].items.id === item.id ? true : false;
+    if (isSelectedTrue && attribute.id !== COLOR) {
+      return "CartPageItem-Attribute-Item-Active";
+    } else if (isSelectedTrue === false && attribute.id === COLOR) {
+      return "CartPageItem-Attribute-Color";
+    } else if (isSelectedTrue && attribute.id === COLOR) {
+      return "CartPageItem-Attribute-Color-Active";
+    } else {
+      return "CartPageItem-Attribute-Item";
+    }
+  }
+
   componentDidMount() {
     this.getPrice();
   }
@@ -27,76 +42,23 @@ class CartPageItem extends PureComponent {
   renderAttributeItems(item, i, attribute, index) {
     const { value } = item;
     const { setAttribute } = this.props;
-    const { allAttributes, attributes } = this.props.productInCart;
-    const isSelectedTrue = allAttributes !== attributes && attributes[index].items.id === item.id ? true : false;
-
-    const selectedStyle = {
-      background: '#1D1F22',
-      color: '#FFF',
-
-    };
-    const selectedColorStyle = {
-      backgroundColor: value,
-      backgroundClip: 'content-box',
-      width: '36px',
-      height: '36px',
-      padding: '1px',
-      border: '1px solid #5ECE7B',
-      boxSizing: 'border-box',
-      transition: '0.08s ease-in-out'
-    };
-
     const colorStyle = {
       background: value,
       width: '32px',
       height: '32px',
-      margin: '1px',
-      boxSizing: 'border-box',
-      transition: '0.08s ease-in-out'
+      margin: '0px',
+      border: '1px solid #1D1F22',
+      boxSizing: 'border-box'
     };
 
-    const whiteStyle = {
-      background: value,
-      width: '32px',
-      height: '32px',
-      margin: '1px',
-      boxSizing: 'border-box',
-      border: '1px solid #1D1F22',
-      transition: '0.08s ease-in-out'
-    }
-
-    const whiteSelectedStyle = {
-      backgroundColor: value,
-      backgroundClip: 'content-box',
-      width: '36px',
-      height: '36px',
-      padding: '1px',
-      border: '1px solid #5ECE7B',
-      boxSizing: 'border-box',
-      transition: '0.08s ease-in-out'
-    }
-
     return (
-      <div className={(isSelectedTrue && attribute.id !== 'Color') ? "CartPageItem-Attribute-Item-Active" :
-        (attribute.id === 'Color' && isSelectedTrue === false) ? "CartPageItem-Attribute-Color" :
-          (attribute.id === 'Color' && isSelectedTrue) ?
-            "CartPageItem-Attribute-Color-Active" : "CartPageItem-Attribute-Item"
-      } key={i}
-        onClick={
-          () => setAttribute(item)
-        }
-        style={(isSelectedTrue && attribute.id !== 'Color') ? selectedStyle :
-          (isSelectedTrue && attribute.id === 'Color' && value !== '#FFFFFF') ? selectedColorStyle :
-            (attribute.id === 'Color' && value !== '#FFFFFF') ? colorStyle :
-              (attribute.id === 'Color' && value === '#FFFFFF' && isSelectedTrue === false) ? whiteStyle :
-                (isSelectedTrue && value === '#FFFFFF') ? whiteSelectedStyle : null
-        }
+      <div className={this.getAttributeItemClass(attribute, index, item)} key={i}
+        onClick={() => setAttribute(item)}
       >
         <p className="CartPageItem-Attribute-Item-ItemText"
-          style={attribute.id === 'Color' ? { display: 'none' } : null
-          }
+          style={attribute.id === COLOR ? colorStyle : null}
         >
-          {attribute.id !== 'Color' && value}
+          {attribute.id !== COLOR && value}
         </p>
       </div>
     );
@@ -104,17 +66,14 @@ class CartPageItem extends PureComponent {
 
   renderAttributes(attribute, index) {
     const { id, items } = attribute;
-    const ifColorStyle = {
-      height: '36px',
-    };
-
+  
     return (
       <div className="CartPageItem-Attribute" key={index}>
         <div className="CartPageItem-Attribute-Name">
           {id}:
         </div>
-        <div className="CartPageItem-Attribute-Items" key={index}
-          style={attribute.id === 'Color' ? ifColorStyle : null}
+        <div className={attribute.id === COLOR ? "CartPageItem-Attribute-Items-Color" : "CartPageItem-Attribute-Items"} 
+             key={index}
         >
           {items.map((item, i) => this.renderAttributeItems(item, i, attribute, index))}
         </div>

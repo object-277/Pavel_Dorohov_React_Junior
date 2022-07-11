@@ -15,10 +15,9 @@ class PDPContainer extends PureComponent {
         this.ifNoAttributes = this.ifNoAttributes.bind(this);
     }
 
-
     handleWarning = () => {        // Not all product's attributes are selected warning     
         this.setState({ showWarning: true });
-        setTimeout(() => this.setState({ showWarning: false }), 3000);
+        setTimeout(() => this.setState({ showWarning: false }), 1500);
     }
 
     handleAddToCart = () => {
@@ -72,7 +71,7 @@ class PDPContainer extends PureComponent {
     }
 
     componentWillUnmount() {
-        localStorage.setItem("productSetToCart", "[]");
+        this.props.setProductToCart();
     }
 
     async productQuery() {
@@ -93,17 +92,18 @@ class PDPContainer extends PureComponent {
                 )
             )
         ).then(({ product }) => {
-            this.getCategory({ product });
-            if (localStorage.getItem("productSetToCart").length !== 0) {
-                const productItem = JSON.parse(localStorage.getItem("productSetToCart"));
-                if (productItem.id === this.state.product.id) {
-                    return null;
+            this.getCategory({ product }, () => {
+                if (localStorage.getItem("productSetToCart") !== null || undefined) {
+                    const productItem = JSON.parse(localStorage.getItem("productSetToCart"));
+                    if (productItem.id === this.state.product.id) {
+                        return null;
+                    } else {
+                        localStorage.setItem("productSetToCart", JSON.stringify(product));
+                    }
                 } else {
                     localStorage.setItem("productSetToCart", JSON.stringify(product));
                 }
-            } else {
-                localStorage.setItem("productSetToCart", JSON.stringify(product));
-            }
+            });
         });
     }
 

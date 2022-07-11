@@ -7,4 +7,4 @@ export const store = configureStore({
     }
 });
 
-store.dispatch(getTotals(), setCurrency("$") );
+store.dispatch(getTotals(), setCurrency());
